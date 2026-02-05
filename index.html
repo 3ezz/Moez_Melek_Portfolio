@@ -1,154 +1,236 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Moez Melek — Portfolio</title>
-<meta name="description" content="Portfolio of Moez Melek — Game Designer working with Unity & Unreal Engine." />
-<link rel="stylesheet" href="styles.css?v=2">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Moez Melek — Portfolio</title>
+  <meta name="description" content="Portfolio of Moez Melek — Game Designer working with Unity & Unreal Engine." />
+  <link rel="stylesheet" href="styles.css?v=3">
 </head>
 
 <body>
   <div class="cinematic-bg"></div>
-<header>
-  <div class="wrap">
-    <div class="nav">
-      <div class="brand">
-        Moez Melek
-        <small>Game Designer | Unity & Unreal Engine</small>
+
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand">
+          Moez Melek
+          <small>Game Designer | Unity & Unreal Engine</small>
+        </div>
+        <nav class="links">
+          <a href="#projects">Projects</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
       </div>
-      <nav class="links">
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
     </div>
-  </div>
-</header>
+  </header>
 
-<main>
-  <div class="wrap">
+  <main>
+    <div class="wrap">
 
-    <section class="hero reveal">
-      <h1>Game Designer working in Unity & Unreal Engine</h1>
-      <p class="sub">I create interactive and educational experiences focused on gameplay, UI/UX, and augmented reality.</p>
-      <div class="cta">
-        <a class="btn primary" href="#projects">View Projects</a>
-        <a class="btn" href="#contact">Contact</a>
-      </div>
-    </section>
+      <!-- HERO (split layout) -->
+      <section class="hero">
+        <div class="heroSplit">
+          <div class="heroLeft">
+            <h1>Game Designer building in Unity & UE5</h1>
+            <p class="sub">
+              I create interactive and educational experiences focused on gameplay, UI/UX, and augmented reality.
+            </p>
 
-    <section id="projects" class="reveal">
-      <!-- UNITY -->
-    <div class="sectionHeader">
-  <span class="iconBadge">
-  <img src="assets/icons/unity.png" alt="Unity">
-</span>
-  <h2 class="sectionTitle">Unity Projects</h2>
-</div>
+            <div class="cta">
+              <a class="btn primary" href="#projects">View Projects</a>
+              <a class="btn" href="#contact">Contact</a>
+            </div>
+          </div>
 
+          <aside class="panelCard heroRight">
+            <div class="panelHead">
+              <div class="panelTitle">Highlights</div>
+              <div class="panelHint">Quick snapshot</div>
+            </div>
 
-      <div class="grid">
-        <a class="card reval" href="projects/hannibal.html">
-          <div class="thumb"><span class="thumbLabel">UNITY</span></div>
-          <h3>Hannibal</h3>
-          <p>Educational AR experience for kids (6–12). UI, mechanics, 3D integration, AR modules, audio.</p>
-          <div class="pillRow"><span class="pill">Unity</span><span class="pill">AR</span><span class="pill">UI/UX</span></div>
-        </a>
+            <div class="kpiGrid">
+              <div class="kpi">
+                <div class="kpiBig">Unity</div>
+                <div class="kpiSmall">AR • UI/UX • Mobile</div>
+              </div>
+              <div class="kpi">
+                <div class="kpiBig">UE5</div>
+                <div class="kpiSmall">Blueprint • Modules • Prototypes</div>
+              </div>
+            </div>
 
-        <a class="card reveal" href="projects/djerba.html">
-          <div class="thumb"><span class="thumbLabel">UNITY</span></div>
-          <h3>Djerba View AR</h3>
-          <p>Tourism-focused AR app. UI + 3D + AR integration + gallery module.</p>
-          <div class="pillRow"><span class="pill">Unity</span><span class="pill">AR</span><span class="pill">Mobile</span></div>
-        </a>
+            <div class="miniList">
+              <div class="miniItem">AR educational experiences (kids & culture)</div>
+              <div class="miniItem">Reusable systems + clean interaction design</div>
+              <div class="miniItem">Strong UI hierarchy & readability</div>
+            </div>
+          </aside>
+        </div>
+      </section>
 
-        <a class="card reveal" href="projects/ar-memory.html">
-          <div class="thumb"><span class="thumbLabel">UNITY</span></div>
-          <h3>AR Memory</h3>
-          <p>Postcards come to life in AR. UI integration, 3D + AR modules, gallery module.</p>
-          <div class="pillRow"><span class="pill">Unity</span><span class="pill">AR</span><span class="pill">Prototype</span></div>
-        </a>
+      <!-- FEATURED STRIP (horizontal break) -->
+      <section class="featuredStrip">
+        <div class="featuredCard">
+          <div>
+            <div class="chip">Featured Case Study</div>
+            <h2 class="featuredTitle">Hannibal — Educational AR Game</h2>
+            <p class="sectionNote" style="margin:8px 0 0;">
+              UI design + mechanics + AR modules + audio pipeline. Designed for children (6–12).
+            </p>
+          </div>
+          <a class="btn primary" href="projects/hannibal.html">Open Case Study</a>
+        </div>
+      </section>
 
-        <a class="card reveal" href="projects/bartdo.html">
-          <div class="thumb"><span class="thumbLabel">UNITY</span></div>
-          <h3>B.ART.DO</h3>
-          <p>Guided museum visit prototype. UI, 3D integration, mechanics, quizzes.</p>
-          <div class="pillRow"><span class="pill">Unity</span><span class="pill">AR</span><span class="pill">Serious Game</span></div>
-        </a>
-      </div>
+      <!-- PROJECTS (side-by-side, breaks vertical) -->
+      <section id="projects">
+        <div class="projectsSplit">
 
-      <!-- UNREAL -->
-      <div style="height:34px;"></div>
-     <div class="sectionHeader">
-  <span class="iconBadge">
-  <img src="assets/icons/unreal.png" alt="Unreal Engine">
-</span>
+          <!-- LEFT: UNITY -->
+          <div class="col">
+            <div class="sectionHeader">
+              <span class="iconBadge">
+                <img src="assets/icons/unity.png" alt="Unity">
+              </span>
+              <h2 class="sectionTitle">Unity Projects</h2>
+            </div>
 
-  <h2 class="sectionTitle">Unreal Engine — Modules & Prototypes</h2>
-</div>
+            <div class="grid gridTight">
+              <a class="card" href="projects/hannibal.html">
+                <div class="thumb"><span class="thumbLabel">UNITY</span></div>
+                <h3>Hannibal</h3>
+                <p>Educational AR experience for kids (6–12). UI, mechanics, 3D integration, AR modules, audio.</p>
+                <div class="pillRow"><span class="pill">AR</span><span class="pill">UI/UX</span><span class="pill">Mobile</span></div>
+              </a>
 
-      <p class="sectionNote">
-        I’m building my Unreal portfolio through focused modules (Blueprint systems, interaction prototypes, and environment studies).
-        Full projects will be added as they are completed.
-      </p>
+              <a class="card" href="projects/djerba.html">
+                <div class="thumb"><span class="thumbLabel">UNITY</span></div>
+                <h3>Djerba View AR</h3>
+                <p>Tourism-focused AR app. UI + 3D + AR integration + gallery module.</p>
+                <div class="pillRow"><span class="pill">AR</span><span class="pill">3D</span><span class="pill">Mobile</span></div>
+              </a>
 
-      <div class="grid" style="margin-top:14px;">
-        <a class="card" href="projects/ue-interaction.html">
-          <div class="thumb"><span class="thumbLabel">UE5</span></div>
-          <h3>Blueprint Interaction Module</h3>
-          <p>Reusable pickup / inspect / use system built for fast prototyping.</p>
-          <div class="pillRow"><span class="pill">UE5</span><span class="pill">Blueprint</span><span class="pill">Systems</span></div>
-        </a>
+              <a class="card" href="projects/ar-memory.html">
+                <div class="thumb"><span class="thumbLabel">UNITY</span></div>
+                <h3>AR Memory</h3>
+                <p>Postcards come to life in AR. UI integration, 3D + AR modules, gallery module.</p>
+                <div class="pillRow"><span class="pill">AR</span><span class="pill">Prototype</span><span class="pill">UI</span></div>
+              </a>
 
-        <a class="card" href="projects/ue-lighting.html">
-          <div class="thumb"><span class="thumbLabel">UE5</span></div>
-          <h3>Lighting & Mood Study</h3>
-          <p>Environment mood exploration focusing on lighting, composition, and atmosphere.</p>
-          <div class="pillRow"><span class="pill">UE5</span><span class="pill">Lighting</span><span class="pill">Environment</span></div>
-        </a>
+              <a class="card" href="projects/bartdo.html">
+                <div class="thumb"><span class="thumbLabel">UNITY</span></div>
+                <h3>B.ART.DO</h3>
+                <p>Guided museum visit prototype. UI, 3D integration, mechanics, quizzes.</p>
+                <div class="pillRow"><span class="pill">Serious Game</span><span class="pill">UI</span><span class="pill">Quiz</span></div>
+              </a>
+            </div>
+          </div>
 
-        <a class="card" href="projects/ue-hud.html">
-          <div class="thumb"><span class="thumbLabel">UE5</span></div>
-          <h3>HUD Prototype</h3>
-          <p>Readability + feedback tests (health/interaction prompts/notifications).</p>
-          <div class="pillRow"><span class="pill">UE5</span><span class="pill">UI</span><span class="pill">Prototype</span></div>
-        </a>
+          <!-- RIGHT: UNREAL -->
+          <div class="col">
+            <div class="sectionHeader">
+              <span class="iconBadge">
+                <img src="assets/icons/unreal.png" alt="Unreal Engine">
+              </span>
+              <h2 class="sectionTitle">UE5 Modules</h2>
+            </div>
 
-        <a class="card" href="projects/ue-mechanics.html">
-          <div class="thumb"><span class="thumbLabel">UE5</span></div>
-          <h3>Mechanics Prototype</h3>
-          <p>Small mechanics experiments to explore feel, responsiveness, and player control.</p>
-          <div class="pillRow"><span class="pill">UE5</span><span class="pill">Blueprint</span><span class="pill">Gameplay</span></div>
-        </a>
-      </div>
-    </section>
+            <p class="sectionNote" style="margin-top:2px;">
+              Focused Unreal exploration through reusable Blueprint modules, interaction prototypes, and environment studies.
+            </p>
 
-    <section id="about" class="reveal">
-      <h2 class="sectionTitle">About</h2>
-      <div class="aboutBox">
-        <p>
-          I’m a game designer specializing in interactive and augmented reality experiences. I focus on gameplay systems, UI/UX,
-          and immersive educational interaction using Unity and Unreal Engine.
-        </p>
-      </div>
-    </section>
+            <div class="grid gridTight">
+              <a class="card" href="projects/ue-interaction.html">
+                <div class="thumb"><span class="thumbLabel">UE5</span></div>
+                <h3>Blueprint Interaction Module</h3>
+                <p>Reusable pickup / inspect / use system built for fast prototyping.</p>
+                <div class="pillRow"><span class="pill">Blueprint</span><span class="pill">Systems</span><span class="pill">UX</span></div>
+              </a>
 
-    <section id="contact" class="reveal">
-      <h2 class="sectionTitle">Contact</h2>
-      <div class="aboutBox">
-        <p>
-          Add your email + links here (LinkedIn / ArtStation / Itch.io).<br>
-          Example: <b>your@email.com</b>
-        </p>
-      </div>
-    </section>
+              <a class="card" href="projects/ue-lighting.html">
+                <div class="thumb"><span class="thumbLabel">UE5</span></div>
+                <h3>Lighting & Mood Study</h3>
+                <p>Environment mood exploration focusing on lighting, composition, and atmosphere.</p>
+                <div class="pillRow"><span class="pill">Lighting</span><span class="pill">Environment</span><span class="pill">Mood</span></div>
+              </a>
 
-    <footer>© <span id="y"></span> Moez Melek — Portfolio</footer>
-    <script src ="main.js"></script>
-  </div>
-</main>
+              <a class="card" href="projects/ue-hud.html">
+                <div class="thumb"><span class="thumbLabel">UE5</span></div>
+                <h3>HUD Prototype</h3>
+                <p>Readability + feedback tests (prompts, notifications, basic HUD layout).</p>
+                <div class="pillRow"><span class="pill">UI</span><span class="pill">Prototype</span><span class="pill">Feedback</span></div>
+              </a>
 
+              <a class="card" href="projects/ue-mechanics.html">
+                <div class="thumb"><span class="thumbLabel">UE5</span></div>
+                <h3>Mechanics Prototype</h3>
+                <p>Small mechanics experiments to explore feel, responsiveness, and player control.</p>
+                <div class="pillRow"><span class="pill">Gameplay</span><span class="pill">Blueprint</span><span class="pill">Tuning</span></div>
+              </a>
+            </div>
+          </div>
 
+        </div>
+      </section>
+
+      <!-- ABOUT (split) -->
+      <section id="about">
+        <div class="aboutSplit">
+          <div>
+            <h2 class="sectionTitle">About</h2>
+            <div class="aboutBox">
+              <p>
+                I’m a game designer specializing in interactive and augmented reality experiences. I focus on gameplay systems,
+                UI/UX, and immersive educational interaction using Unity and Unreal Engine.
+              </p>
+            </div>
+          </div>
+
+          <aside class="panelCard">
+            <div class="panelHead">
+              <div class="panelTitle">Core Skills</div>
+              <div class="panelHint">What I bring</div>
+            </div>
+
+            <div class="tagCloud">
+              <span class="pill">Gameplay Systems</span>
+              <span class="pill">UI/UX</span>
+              <span class="pill">AR Integration</span>
+              <span class="pill">3D Integration</span>
+              <span class="pill">Sound (SFX/Music)</span>
+              <span class="pill">Prototyping</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- CONTACT (horizontal break) -->
+      <section id="contact">
+        <div class="contactRow">
+          <div>
+            <h2 class="sectionTitle">Contact</h2>
+            <p class="sectionNote">
+              Replace with your real email + links (LinkedIn / ArtStation / Itch.io).
+            </p>
+          </div>
+
+          <div class="contactCard panelCard">
+            <div class="contactLine"><span class="muted">Email:</span> your@email.com</div>
+            <div class="contactLine"><span class="muted">LinkedIn:</span> your-link</div>
+            <div class="contactLine"><span class="muted">ArtStation:</span> your-link</div>
+          </div>
+        </div>
+      </section>
+
+      <footer>© <span id="y"></span> Moez Melek — Portfolio</footer>
+
+    </div>
+  </main>
+
+  <script src="main.js?v=3" defer></script>
 </body>
 </html>
+
