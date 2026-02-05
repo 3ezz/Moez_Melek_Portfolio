@@ -148,24 +148,6 @@
   </div>
 </main>
 
-<script>
-  document.getElementById('y').textContent = new Date().getFullYear();
-  // Scroll reveal for sections + cards
-  const targets = document.querySelectorAll("section, .card");
 
-  targets.forEach(el => el.classList.add("reveal"));
-
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("in");
-        io.unobserve(entry.target); // animate once
-      }
-    });
-  }, { threshold: 0.12 });
-
-  targets.forEach(el => io.observe(el));
-
-</script>
 </body>
 </html>
