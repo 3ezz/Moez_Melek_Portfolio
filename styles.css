@@ -17,18 +17,21 @@
   inset:0;
   z-index:-1;
 
-  background:
+  background-image:
     linear-gradient(
-      rgba(5,6,10,.72),
-      rgba(5,6,10,.92)
+      rgba(5,6,10,.55),
+      rgba(5,6,10,.9)
     ),
-    url("https://images.unsplash.com/photo-1519608487953-e999c86e7455?q=80&w=2000");
+    url("https://images.unsplash.com/photo-1549692520-acc6669e2f0c?q=80&w=2000");
 
   background-size:cover;
   background-position:center;
   background-attachment:fixed;
 
-  filter: saturate(1.2) contrast(1.1);
+  filter:
+    saturate(1.5)
+    contrast(1.2)
+    brightness(.85);
 }
 
 
