@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Moez Melek — Game Designer</title>
+  <meta name="description" content="Portfolio of Moez Melek — Game Designer working in Unity & Unreal Engine." />
+  <style>
+    :root{
+      --bg:#05060a;
+      --panel:#0b0d14;
+      --text:#f3f4f6;
+      --muted:#b6bcc8;
+      --line:rgba(255,255,255,.10);
+      --max:1100px;
+      --r:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:radial-gradient(1200px 700px at 50% -20%, #161a4a 0%, var(--bg) 50%);
+      color:var(--text);
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+    header{
+      position:sticky;top:0;z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(5,6,10,.65);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{font-weight:700;letter-spacing:.2px}
+    .brand small{display:block;font-weight:500;color:var(--muted);margin-top:2px}
+    .links{display:flex;gap:16px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+    .links a:hover{color:var(--text)}
+    .hero{padding:92px 0 56px}
+    h1{
+      margin:0;
+      font-size: clamp(34px, 5vw, 58px);
+      line-height:1.05;
+      letter-spacing:-.6px;
+    }
+    .sub{
+      margin:16px 0 0;
+      color:var(--muted);
+      max-width:720px;
+      font-size: clamp(16px, 1.8vw, 18px);
+      line-height:1.6;
+    }
+    .cta{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:12px 14px;border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      font-weight:600;font-size:14px;
+    }
+    .btn:hover{background:rgba(255,255,255,.08)}
+    .btn.primary{background:rgba(99,102,241,.18);border-color:rgba(99,102,241,.35)}
+    section{padding:40px 0}
+    .sectionTitle{
+      margin:0 0 16px;
+      font-size:18px;
+      letter-spacing:.2px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+    }
+    .card{
+      grid-column: span 6;
+      background: rgba(255,255,255,.03);
+      border:1px solid var(--line);
+      border-radius: var(--r);
+      padding:16px;
+      min-height: 140px;
+    }
+    .card h3{margin:0 0 8px;font-size:16px}
+    .card p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
+    .pillRow{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+    .pill{
+      font-size:12px;color:var(--muted);
+      border:1px solid var(--line);
+      padding:6px 10px;border-radius:999px;
+      background:rgba(0,0,0,.15);
+    }
+    .aboutBox{
+      background: rgba(255,255,255,.03);
+      border:1px solid var(--line);
+      border-radius: var(--r);
+      padding:18px;
+      max-width: 860px;
+    }
+    footer{
+      padding:34px 0 60px;
+      color:var(--muted);
+      border-top:1px solid var(--line);
+      margin-top:40px;
+      font-size:13px;
+    }
+    @media (max-width: 820px){
+      .card{grid-column: span 12}
+      .links{gap:12px}
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand">
+          Moez Melek
+          <small>Game Designer | Unity & Unreal Engine</small>
+        </div>
+        <nav class="links">
+          <a href="#projects">Projects</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="hero">
+        <h1>Game Designer working in Unity & Unreal Engine</h1>
+        <p class="sub">
+          I create interactive and educational experiences focused on gameplay, UI/UX, and augmented reality.
+        </p>
+        <div class="cta">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn" href="#contact">Contact</a>
+        </div>
+      </section>
+
+      <section id="projects">
+        <h2 class="sectionTitle">Featured Projects</h2>
+        <div class="grid">
+          <a class="card" href="#contact" aria-label="Hannibal project">
+            <h3>Hannibal</h3>
+            <p>Educational AR experience for kids (6–12). UI design, mechanics, 3D integration, AR modules, audio.</p>
+            <div class="pillRow">
+              <span class="pill">Unity</span><span class="pill">AR</span><span class="pill">UI/UX</span>
+            </div>
+          </a>
+
+          <a class="card" href="#contact" aria-label="Djerba View AR project">
+            <h3>Djerba View AR</h3>
+            <p>Tourism-focused AR app showcasing places and activities. UI + 3D + AR + gallery module.</p>
+            <div class="pillRow">
+              <span class="pill">Unity</span><span class="pill">AR</span><span class="pill">Mobile</span>
+            </div>
+          </a>
+
+          <a class="card" href="#contact" aria-label="AR Memory project">
+            <h3>AR Memory</h3>
+            <p>Postcards come to life in AR. UI integration, 3D + AR modules, gallery module.</p>
+            <div class="pillRow">
+              <span class="pill">Unity</span><span class="pill">AR</span><span class="pill">Prototype</span>
+            </div>
+          </a>
+
+          <a class="card" href="#contact" aria-label="B.ART.DO project">
+            <h3>B.ART.DO</h3>
+            <p>Guided museum visit prototype. UI design, 3D integration, mechanics, quizzes.</p>
+            <div class="pillRow">
+              <span class="pill">Unity</span><span class="pill">AR</span><span class="pill">Serious Game</span>
+            </div>
+          </a>
+        </div>
+        <p style="color:var(--muted);font-size:13px;margin-top:12px;">
+          (We’ll replace these cards with real pages + screenshots/videos next.)
+        </p>
+      </section>
+
+      <section id="about">
+        <h2 class="sectionTitle">About</h2>
+        <div class="aboutBox">
+          <p style="margin:0;color:var(--muted);line-height:1.7;">
+            I’m a game designer specializing in interactive and augmented reality experiences. With a background in multimedia communication and media engineering, I focus on blending gameplay systems, UI/UX, and immersive storytelling. I work across Unity and Unreal Engine to build clear, engaging player interactions—often in educational and serious-game contexts.
+          </p>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2 class="sectionTitle">Contact</h2>
+        <div class="aboutBox">
+          <p style="margin:0;color:var(--muted);line-height:1.7;">
+            Add your email + links here (LinkedIn / ArtStation / Itch.io).<br/>
+            Example: <b>moez@email.com</b>
+          </p>
+        </div>
+      </section>
+
+      <footer>
+        <div class="wrap" style="padding:0;">
+          © <span id="y"></span> Moez Melek — Portfolio
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
