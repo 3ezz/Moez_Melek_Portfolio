@@ -47,9 +47,6 @@
 }
 
 /* Respect reduced motion */
-@media (prefers-reduced-motion: reduce){
-  .reveal{opacity:1; transform:none; transition:none;}
-}
 
 
 
