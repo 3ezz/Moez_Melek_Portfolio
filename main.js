@@ -1,14 +1,6 @@
-// ===== Portfolio JS =====
-
-// footer year
-document.getElementById("y").textContent = new Date().getFullYear();
-
-// scroll reveal animations
 document.addEventListener("DOMContentLoaded", () => {
 
-  const targets = document.querySelectorAll("section, .card");
-
-  targets.forEach(el => el.classList.add("reveal"));
+  const targets = document.querySelectorAll(".reveal");
 
   const observer = new IntersectionObserver(entries => {
 
@@ -16,17 +8,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (entry.isIntersecting) {
 
-        // slight delay = visible transition
-        setTimeout(() => {
+        requestAnimationFrame(() => {
           entry.target.classList.add("in");
-        }, 80);
+        });
 
         observer.unobserve(entry.target);
       }
 
     });
 
-  }, { threshold: 0.15 });
+  }, { threshold: 0.12 });
 
   targets.forEach(el => observer.observe(el));
 
