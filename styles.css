@@ -212,13 +212,22 @@ section{padding:40px 0}
   margin-bottom:12px;
 }
 .thumbLabel{
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.15);
+  padding:4px 10px;
+  border-radius:20px;
   font-size:12px;
-  color:rgba(255,255,255,.72);
-  border:1px solid rgba(255,255,255,.14);
-  background:rgba(0,0,0,.22);
-  padding:6px 10px;
-  border-radius:999px;
+  letter-spacing:.5px;
 }
+
+.thumbLabel:contains("UNITY"){
+  border-color: rgba(120,180,255,.4);
+}
+
+.thumbLabel:contains("UE5"){
+  border-color: rgba(170,120,255,.4);
+}
+
 
 /* About/Contact panel */
 .aboutBox{
