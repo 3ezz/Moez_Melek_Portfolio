@@ -303,9 +303,65 @@ footer{
 }
 
 /* Responsive */
+/* ===== Project pages ===== */
+.projectHero{padding:46px 0 10px}
+.backLink{
+  display:inline-block;
+  margin-bottom:14px;
+  color:var(--muted);
+  font-size:14px;
+}
+.backLink:hover{color:var(--text)}
+
+.projectTitleRow{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap;
+}
+.projectTitle{
+  margin:0;
+  font-size: clamp(30px, 4vw, 44px);
+  letter-spacing:-.4px;
+}
+.projectLead{
+  margin:14px 0 0;
+  color:var(--muted);
+  font-size:16px;
+  line-height:1.7;
+  max-width:900px;
+}
+
+.projectGrid{
+  padding-top:20px;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:16px;
+}
+.bullet{margin:8px 0 0;padding-left:18px;color:var(--muted);line-height:1.8}
+.bullet li{margin:6px 0}
+
+.mediaGrid{
+  margin-top:12px;
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap:12px;
+}
+.mediaBox{
+  grid-column: span 6;
+  height:160px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background: rgba(0,0,0,.18);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:rgba(255,255,255,.60);
+  font-size:13px;
+}
+
 @media (max-width: 980px){
-  .projectsSplit{grid-template-columns:1fr}
-  .heroSplit{grid-template-columns:1fr}
-  .aboutSplit{grid-template-columns:1fr}
-  .contactRow{grid-template-columns:1fr}
+  .projectGrid{grid-template-columns:1fr}
+  .mediaBox{grid-column: span 12}
 }
