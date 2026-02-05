@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+console.log("main.js loaded ✅");
 
   const targets = document.querySelectorAll(".reveal");
 
