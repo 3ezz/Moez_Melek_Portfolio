@@ -141,6 +141,24 @@ section{padding:40px 0}
   width:32px;height:32px;object-fit:contain;
   filter: drop-shadow(0 6px 18px rgba(0,0,0,.35));
 }
+.iconBadge{
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.25);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.sectionHeader img{
+  width:22px;
+  height:22px;
+  object-fit:contain;
+  filter: invert(1) brightness(1.2);
+  opacity: .9;
+}
 
 /* Grid/cards */
 .grid{
