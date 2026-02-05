@@ -1,12 +1,17 @@
 console.log("main.js running ✅");
 
 document.addEventListener("DOMContentLoaded", () => {
-  const targets = document.querySelectorAll("section, .card");
+  // Footer year
+  const y = document.getElementById("y");
+  if (y) y.textContent = new Date().getFullYear();
 
-  // Make sure they start in the hidden state
+  // Reveal targets
+  const targets = document.querySelectorAll("section, .card, .featuredCard");
+
+  // Start hidden
   targets.forEach(el => el.classList.add("reveal"));
 
-  const observer = new IntersectionObserver((entries) => {
+  const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       const el = entry.target;
 
@@ -19,9 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }, {
-    threshold: 0.15,
+    threshold: 0.18,
     rootMargin: "0px 0px -10% 0px"
   });
 
-  targets.forEach(el => observer.observe(el));
+  targets.forEach(el => io.observe(el));
 });
