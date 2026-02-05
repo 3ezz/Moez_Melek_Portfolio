@@ -12,6 +12,19 @@
   --max:1100px;
   --r:18px;
 }
+.cinematic-bg{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+
+  background:
+    linear-gradient(rgba(5,6,10,.65), rgba(5,6,10,.9)),
+    url("https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000");
+
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+}
 
 
 *{box-sizing:border-box}
