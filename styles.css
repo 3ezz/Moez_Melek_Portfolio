@@ -18,13 +18,19 @@
   z-index:-1;
 
   background:
-    linear-gradient(rgba(5,6,10,.75), rgba(5,6,10,.95)),
-    url("https://images.unsplash.com/photo-1535223289827-42f1e9919769?q=80&w=2000");
+    linear-gradient(
+      rgba(5,6,10,.72),
+      rgba(5,6,10,.92)
+    ),
+    url("https://images.unsplash.com/photo-1519608487953-e999c86e7455?q=80&w=2000");
 
   background-size:cover;
   background-position:center;
   background-attachment:fixed;
+
+  filter: saturate(1.2) contrast(1.1);
 }
+
 
 
 
