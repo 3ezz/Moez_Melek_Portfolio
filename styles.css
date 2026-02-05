@@ -84,7 +84,12 @@ h1{
   transition: transform .15s ease, background .15s ease, border-color .15s ease;
 }
 .btn:hover{background:rgba(255,255,255,.08);transform: translateY(-1px)}
-.btn.primary{background:rgba(99,102,241,.18);border-color:rgba(99,102,241,.35)}
+.btn.primary{
+  background:var(--accent);
+  border-color:var(--accent);
+  box-shadow: 0 0 12px var(--accentGlow);
+}
+
 .btn.primary:hover{border-color:rgba(99,102,241,.55)}
 
 /* Sections */
