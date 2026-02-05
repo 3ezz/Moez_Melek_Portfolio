@@ -155,10 +155,13 @@ section{padding:40px 0}
   transition: transform .18s ease, border-color .18s ease, background .18s ease;
 }
 .card:hover{
-  transform: translateY(-4px);
-  border-color: rgba(99,102,241,.35);
-  background: rgba(255,255,255,.045);
+  transform: translateY(-6px);
+  border-color:#9d4edd;
+  box-shadow:
+    0 0 12px rgba(157,78,221,.6),
+    0 0 30px rgba(255,0,150,.25);
 }
+
 .card h3{margin:0 0 8px;font-size:16px;letter-spacing:.1px}
 .card p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
 .pillRow{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
