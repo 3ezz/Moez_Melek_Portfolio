@@ -2,12 +2,17 @@
   --bg:#05060a;
   --panel:#0b0d14;
   --text:#f3f4f6;
-  --muted:#b6bcc8;
-  --line:rgba(255,255,255,.10);
+  --muted:#9aa3b2;
+  --line:rgba(255,255,255,.08);
+
+  /* accent colors */
+  --accent:#6c7cff;
+  --accentGlow:rgba(108,124,255,.45);
+
   --max:1100px;
   --r:18px;
-  --accent: rgba(99,102,241,.55);
 }
+
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
