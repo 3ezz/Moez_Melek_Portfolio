@@ -365,3 +365,144 @@ footer{
   .projectGrid{grid-template-columns:1fr}
   .mediaBox{grid-column: span 12}
 }
+/* ===== Hero mega ===== */
+.heroMega{
+  display:grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap:18px;
+  align-items:start;
+  padding: 22px;
+  border-radius: var(--r);
+  border:1px solid rgba(255,255,255,.12);
+  background:
+    radial-gradient(800px 260px at 10% 0%, rgba(255,0,170,.18), transparent 60%),
+    radial-gradient(700px 240px at 95% 110%, rgba(140,0,255,.14), transparent 60%),
+    rgba(255,255,255,.03);
+}
+
+.heroTag{
+  display:inline-flex;
+  padding:7px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.18);
+  color: rgba(255,255,255,.80);
+  font-size:12px;
+  letter-spacing:.6px;
+}
+
+.heroTitle{
+  margin:14px 0 0;
+  font-size: clamp(40px, 5.4vw, 74px);
+  line-height:1.02;
+  letter-spacing:-.9px;
+}
+
+.grad{
+  background: linear-gradient(90deg, #ff00aa, #8c00ff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.grad2{
+  background: linear-gradient(90deg, #8c00ff, #00d4ff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.heroSub{ margin:14px 0 0; color:var(--muted); font-size:16px; line-height:1.7; }
+.heroStats{ margin-top:18px; display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; }
+.stat{ border:1px solid var(--line); border-radius:14px; padding:12px; background: rgba(0,0,0,.14); }
+.statBig{ font-weight:800; font-size:16px; }
+.statSmall{ margin-top:4px; color:var(--muted); font-size:12px; }
+
+.heroShowcase .btn{ margin-top:12px; width: fit-content; }
+
+/* ===== Cute carousel ===== */
+.carousel{
+  position:relative;
+  border-radius: var(--r);
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.18);
+  overflow:hidden;
+  min-height: 320px;
+}
+.carTrack{
+  display:flex;
+  transition: transform .45s ease;
+}
+.carSlide{ min-width:100%; padding:16px; }
+.carCard{
+  height: 100%;
+  border-radius: 16px;
+  border:1px solid rgba(255,255,255,.10);
+  background:
+    radial-gradient(520px 220px at 20% -10%, rgba(255,0,170,.18), transparent 55%),
+    radial-gradient(520px 220px at 90% 120%, rgba(140,0,255,.14), transparent 60%),
+    rgba(255,255,255,.03);
+  padding:16px;
+}
+.carLabel{ color: rgba(255,255,255,.75); font-size:12px; letter-spacing:.6px; }
+.carTitle{ margin-top:10px; font-weight:850; font-size:18px; }
+.carDesc{ margin-top:8px; color: var(--muted); line-height:1.6; font-size:14px; }
+
+.carBtn{
+  position:absolute;
+  top:50%;
+  transform: translateY(-50%);
+  width:42px;height:42px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.25);
+  color: rgba(255,255,255,.9);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+}
+.carBtn:hover{ background: rgba(0,0,0,.35); }
+.carBtn.prev{ left:10px; }
+.carBtn.next{ right:10px; }
+
+.carDots{
+  position:absolute;
+  left:0; right:0; bottom:10px;
+  display:flex;
+  justify-content:center;
+  gap:7px;
+}
+.dot{
+  width:8px;height:8px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.25);
+  background: rgba(255,255,255,.10);
+}
+.dot.on{
+  background: linear-gradient(90deg, #ff00aa, #8c00ff);
+  border-color: rgba(255,255,255,.35);
+}
+
+/* Featured row */
+.rowHead{ display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+.featuredGrid .card{ grid-column: span 4; }
+@media (max-width: 980px){
+  .heroMega{ grid-template-columns:1fr; }
+  .heroStats{ grid-template-columns:1fr; }
+  .featuredGrid .card{ grid-column: span 12; }
+}
+
+/* Projects page title + filters */
+.pageTitle{ margin:0 0 10px; font-size: clamp(26px, 3.2vw, 40px); letter-spacing:-.4px; }
+.filterPills{ display:flex; gap:8px; flex-wrap:wrap; }
+.pillBtn{
+  border:1px solid var(--line);
+  background: rgba(0,0,0,.18);
+  color: rgba(255,255,255,.8);
+  padding:7px 10px;
+  border-radius:999px;
+  cursor:pointer;
+  font-size:12px;
+}
+.pillBtn.isOn{
+  border-color: rgba(255,0,170,.55);
+  background: rgba(255,0,170,.12);
+}
+
