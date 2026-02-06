@@ -421,6 +421,7 @@ footer{
 
 /* ===== Cute carousel ===== */
 .carousel{
+  max-height:260px;
   overflow:visible;
   position:relative;
   border-radius: var(--r);
