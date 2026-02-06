@@ -436,7 +436,7 @@ footer{
   min-width:100%;
 
   /* reserve space for arrows */
-  padding:20px 72px;
+  padding:20px ;
 }
 
 
@@ -448,7 +448,7 @@ footer{
     radial-gradient(520px 220px at 20% -10%, rgba(255,0,170,.18), transparent 55%),
     radial-gradient(520px 220px at 90% 120%, rgba(140,0,255,.14), transparent 60%),
     rgba(255,255,255,.03);
-  padding:16px;
+ padding:22px 72px 22px 22px;
 }
 .carLabel{ color: rgba(255,255,255,.75); font-size:12px; letter-spacing:.6px; }
 .carTitle{ margin-top:10px; font-weight:850; font-size:18px; }
@@ -458,6 +458,7 @@ footer{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
+  z-index:10;
 
   width:44px;
   height:44px;
@@ -476,8 +477,8 @@ footer{
   z-index:3;
 }
 
-.carBtn.prev{ left:10px; }
-.carBtn.next{ right:10px; }
+.carBtn.prev{ left:-10px; }
+.carBtn.next{ right:-10px; }
 
 .carBtn:hover{ background: rgba(0,0,0,.35); }
 .carBtn.prev{ left:10px; }
