@@ -243,15 +243,29 @@ section{padding:36px 0}
     radial-gradient(520px 220px at 20% -10%, rgba(255,0,170,.18), transparent 55%),
     radial-gradient(520px 220px at 90% 120%, rgba(140,0,255,.14), transparent 60%),
     rgba(255,255,255,.03);
-  /* give room so Open button never collides with arrows */
-  padding:18px 84px 18px 18px;
+
+  /* 🔑 reserve space for arrows */
+  padding:18px 96px 18px 96px;
+
   display:flex;
   flex-direction:column;
   justify-content:center;
 }
+
 .carLabel{color:rgba(255,255,255,.75);font-size:12px;letter-spacing:.6px}
-.carTitle{margin-top:10px;font-weight:850;font-size:18px}
-.carDesc{margin-top:8px;color:var(--muted);line-height:1.6;font-size:14px}
+.carTitle{
+  margin-top:8px;
+  font-weight:800;
+  font-size:17px; /* was 18px */
+}
+
+.carDesc{
+  margin-top:6px;
+  color:var(--muted);
+  line-height:1.55;
+  font-size:13.5px; /* was 14px */
+}
+
 .carCard .btn{margin-top:14px;align-self:flex-start}
 
 .carBtn{
@@ -259,16 +273,23 @@ section{padding:36px 0}
   top:50%;
   transform:translateY(-50%);
   z-index:5;
-  width:42px;height:42px;
+
+  width:42px;
+  height:42px;
   border-radius:14px;
   border:1px solid rgba(255,255,255,.14);
   background:rgba(0,0,0,.45);
   backdrop-filter:blur(8px);
-  display:flex;align-items:center;justify-content:center;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
   cursor:pointer;
 }
-.carBtn.prev{left:12px}
-.carBtn.next{right:12px}
+
+.carBtn.prev{ left:10px; }
+.carBtn.next{ right:10px; }
+
 .carBtn:hover{background:rgba(0,0,0,.60)}
 
 .carDots{
