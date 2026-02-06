@@ -37,12 +37,12 @@ a{color:inherit;text-decoration:none}
   inset:0;
   z-index:-1;
   background:
-    linear-gradient(rgba(5,6,10,.7), rgba(5,6,10,.92)),
+    linear-gradient(rgba(5,6,10,.70), rgba(5,6,10,.92)),
     url("https://images.unsplash.com/photo-1549692520-acc6669e2f0c?q=80&w=2000");
   background-size:cover;
   background-position:center;
   background-attachment:fixed;
-  filter:saturate(1.3) contrast(1.1) brightness(.85);
+  filter:saturate(1.30) contrast(1.10) brightness(.85);
 }
 
 /* ========================= */
@@ -54,7 +54,7 @@ header{
   top:0;
   z-index:10;
   backdrop-filter:blur(12px);
-  background:rgba(5,6,10,.6);
+  background:rgba(5,6,10,.60);
   border-bottom:1px solid var(--line);
 }
 .nav{
@@ -179,6 +179,12 @@ section{padding:36px 0}
   background-clip:text;
   color:transparent;
 }
+.grad2{
+  background:linear-gradient(90deg,#8c00ff,#00d4ff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
 
 .heroSub{
   margin:14px 0 0;
@@ -205,7 +211,7 @@ section{padding:36px 0}
 .heroShowcase{max-width:460px;width:100%;margin-left:auto}
 
 /* ========================= */
-/* CAROUSEL (FIXED)          */
+/* CAROUSEL                  */
 /* ========================= */
 
 .carousel{
@@ -237,7 +243,8 @@ section{padding:36px 0}
     radial-gradient(520px 220px at 20% -10%, rgba(255,0,170,.18), transparent 55%),
     radial-gradient(520px 220px at 90% 120%, rgba(140,0,255,.14), transparent 60%),
     rgba(255,255,255,.03);
-  padding:18px 64px 18px 18px;
+  /* give room so Open button never collides with arrows */
+  padding:18px 84px 18px 18px;
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -245,6 +252,7 @@ section{padding:36px 0}
 .carLabel{color:rgba(255,255,255,.75);font-size:12px;letter-spacing:.6px}
 .carTitle{margin-top:10px;font-weight:850;font-size:18px}
 .carDesc{margin-top:8px;color:var(--muted);line-height:1.6;font-size:14px}
+.carCard .btn{margin-top:14px;align-self:flex-start}
 
 .carBtn{
   position:absolute;
@@ -283,6 +291,45 @@ section{padding:36px 0}
 }
 
 /* ========================= */
+/* FEATURED ROW + STRIP      */
+/* ========================= */
+
+.featuredRow{padding-top:10px}
+.rowHead{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:12px;
+}
+
+.featuredStrip{padding:0 0 10px}
+.featuredCard{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding:16px;
+  border-radius:var(--r);
+  border:1px solid rgba(255,255,255,.12);
+  background:
+    radial-gradient(700px 200px at 10% 0%, rgba(255,0,170,.20), transparent 60%),
+    radial-gradient(700px 200px at 90% 120%, rgba(140,0,255,.16), transparent 60%),
+    rgba(255,255,255,.03);
+}
+.chip{
+  display:inline-flex;
+  border:1px solid rgba(255,255,255,.14);
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:12px;
+  color:rgba(255,255,255,.80);
+  background:rgba(0,0,0,.18);
+}
+.featuredTitle{margin:10px 0 0;font-size:18px;letter-spacing:.1px}
+
+/* ========================= */
 /* SECTION HEADER ICONS      */
 /* ========================= */
 
@@ -302,6 +349,18 @@ section{padding:36px 0}
 .iconBadge img{width:22px;height:22px;object-fit:contain;filter:brightness(1.15)}
 
 /* ========================= */
+/* PROJECTS SPLIT (BREAK VERTICAL) */
+/* ========================= */
+
+.projectsSplit{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  align-items:start;
+}
+.col{min-width:0}
+
+/* ========================= */
 /* GRID / CARDS              */
 /* ========================= */
 
@@ -310,7 +369,9 @@ section{padding:36px 0}
   grid-template-columns:repeat(12,1fr);
   gap:14px;
 }
+.gridTight{gap:12px}
 
+/* default: stacked */
 .card{
   grid-column:span 12;
   background:rgba(255,255,255,.03);
@@ -329,7 +390,7 @@ section{padding:36px 0}
 .card h3{margin:0 0 8px;font-size:16px;letter-spacing:.1px}
 .card p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
 
-/* THUMBNAILS (used by your project cards) */
+/* Thumbs */
 .thumb{
   height:140px;
   border-radius:14px;
@@ -357,8 +418,15 @@ section{padding:36px 0}
 }
 
 /* ========================= */
-/* PANELS / ABOUT / CONTACT  */
+/* ABOUT SPLIT + PANELS      */
 /* ========================= */
+
+.aboutSplit{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:16px;
+  align-items:start;
+}
 
 .panelCard{
   background:rgba(255,255,255,.03);
@@ -480,16 +548,6 @@ footer{
 /* ========================= */
 /* RESPONSIVE                */
 /* ========================= */
-/* Desktop: 2 cards per row */
-@media (min-width: 780px){
-  #projects .grid .card{ grid-column: span 6; }
-}
-
-/* Large desktop: 3 cards per row (optional) */
-@media (min-width: 1120px){
-  #projects .grid .card{ grid-column: span 4; }
-}
-
 
 @media (max-width:980px){
   .heroMega{grid-template-columns:1fr}
@@ -497,7 +555,19 @@ footer{
   .heroShowcase{max-width:100%}
   .carousel{height:240px}
 
+  .projectsSplit{grid-template-columns:1fr}
+  .aboutSplit{grid-template-columns:1fr}
+  .contactRow{grid-template-columns:1fr}
+
   .projectGrid{grid-template-columns:1fr}
   .mediaBox{grid-column:span 12}
-  .contactRow{grid-template-columns:1fr}
+}
+
+/* Desktop grid behavior:
+   - Featured row: 3 across
+   - Inside each Unity/UE column: keep cards 1 per row (cleaner), but columns sit side-by-side */
+@media (min-width:981px){
+  .featuredGrid .card{grid-column:span 4;}
+  /* keep .gridTight stacked inside each column */
+  #projects .gridTight .card{grid-column:span 12;}
 }
