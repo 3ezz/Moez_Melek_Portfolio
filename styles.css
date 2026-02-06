@@ -435,9 +435,10 @@ footer{
 .carSlide{
   min-width:100%;
 
-  /* safe space for arrows */
-  padding:16px 56px;
+  /* reserve space for arrows */
+  padding:20px 72px;
 }
+
 
 .carCard{
   height: 100%;
