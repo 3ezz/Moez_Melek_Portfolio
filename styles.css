@@ -266,7 +266,7 @@ section{padding:36px 0}
   font-size:13.5px; /* was 14px */
 }
 
-.carCard .btn{margin-top:14px;align-self:flex-start}
+.carCard .btn{margin-top:12px;align-self:flex-start}
 
 .carBtn{
   position:absolute;
