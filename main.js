@@ -1,26 +1,20 @@
 console.log("main.js running ✅");
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Footer year
+  // ===== Footer year =====
   const y = document.getElementById("y");
   if (y) y.textContent = new Date().getFullYear();
 
-  // Reveal targets
+  // ===== Reveal (scroll down + up) =====
   const targets = document.querySelectorAll("section, .card, .featuredCard");
-
-  // Start hidden
   targets.forEach(el => el.classList.add("reveal"));
 
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      const el = entry.target;
-
       if (entry.isIntersecting) {
-        // entering viewport -> animate in
-        el.classList.add("in");
+        entry.target.classList.add("in");
       } else {
-        // leaving viewport -> reset so it can animate again
-        el.classList.remove("in");
+        entry.target.classList.remove("in");
       }
     });
   }, {
@@ -29,20 +23,35 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   targets.forEach(el => io.observe(el));
+
   // ===== Cute carousel =====
-(function(){
+  initCarousel();
+
+  // ===== Projects filters (projects.html) =====
+  initFilters();
+});
+
+function initCarousel(){
   const root = document.querySelector("[data-carousel]");
-  if(!root) return;
+  if (!root) return;
 
   const track = root.querySelector("[data-track]");
   const prev = root.querySelector("[data-prev]");
   const next = root.querySelector("[data-next]");
   const dotsWrap = root.querySelector("[data-dots]");
+
+  if (!track || !prev || !next || !dotsWrap) {
+    console.warn("Carousel: missing elements");
+    return;
+  }
+
   const slides = Array.from(track.children);
+  if (slides.length === 0) return;
 
   let i = 0;
 
-  // dots
+  // Build dots
+  dotsWrap.innerHTML = "";
   slides.forEach((_, idx) => {
     const d = document.createElement("div");
     d.className = "dot" + (idx === 0 ? " on" : "");
@@ -56,6 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
     track.style.transform = `translateX(${-i * 100}%)`;
     dots.forEach((d, idx) => d.classList.toggle("on", idx === i));
   }
+
   function go(idx){
     i = (idx + slides.length) % slides.length;
     render();
@@ -64,18 +74,24 @@ document.addEventListener("DOMContentLoaded", () => {
   prev.addEventListener("click", () => go(i - 1));
   next.addEventListener("click", () => go(i + 1));
 
-  // auto-play (gentle)
+  // Auto-play (pause on hover)
   let t = setInterval(() => go(i + 1), 5000);
   root.addEventListener("mouseenter", () => clearInterval(t));
-  root.addEventListener("mouseleave", () => t = setInterval(() => go(i + 1), 5000));
-})();
+  root.addEventListener("mouseleave", () => {
+    clearInterval(t);
+    t = setInterval(() => go(i + 1), 5000);
+  });
 
-// ===== Projects filters (projects.html) =====
-(function(){
+  render();
+}
+
+function initFilters(){
   const list = document.getElementById("allProjects");
-  if(!list) return;
+  if (!list) return;
 
   const btns = document.querySelectorAll("[data-filter]");
+  if (btns.length === 0) return;
+
   btns.forEach(b => b.addEventListener("click", () => {
     btns.forEach(x => x.classList.remove("isOn"));
     b.classList.add("isOn");
@@ -87,6 +103,4 @@ document.addEventListener("DOMContentLoaded", () => {
       card.style.display = ok ? "" : "none";
     });
   }));
-})();
-
-});
+}
