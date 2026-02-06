@@ -1,72 +1,112 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>AR Memory — Moez Melek</title>
-<link rel="stylesheet" href="../styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AR Memory — Moez Melek</title>
+  <meta name="description" content="AR Memory — Postcards come to life in augmented reality." />
+  <link rel="stylesheet" href="../styles.css?v=3">
 </head>
+
 <body>
-<header>
-  <div class="wrap">
-    <div class="nav">
-      <div class="brand">Moez Melek <small>Game Designer | Unity & Unreal Engine</small></div>
-      <nav class="links">
-        <a href="../index.html#projects">Projects</a>
-        <a href="../index.html#about">About</a>
-        <a href="../index.html#contact">Contact</a>
-      </nav>
-    </div>
-  </div>
-</header>
+  <div class="cinematic-bg"></div>
 
-<main class="page">
-  <div class="wrap">
-    <a class="backlink" href="../index.html#projects">← Back to Projects</a>
-
-    <h1 class="pageTitle">AR Memory</h1>
-    <p class="sub">Mobile AR experience where postcards and monuments come to life through augmented reality.</p>
-
-    <div class="panel">
-      <h2>Overview</h2>
-      <p class="sub" style="margin:0;">
-        Designed as a playful AR discovery experience: scan postcards and reveal animated/interactive AR content.
-      </p>
-      <div class="tagRow">
-        <span class="tag">Unity</span><span class="tag">AR</span><span class="tag">Mobile</span><span class="tag">UI/UX</span>
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand">
+          Moez Melek
+          <small>Game Designer | Unity & Unreal Engine</small>
+        </div>
+        <nav class="links">
+          <a href="../index.html#projects">Projects</a>
+          <a href="../index.html#about">About</a>
+          <a href="../index.html#contact">Contact</a>
+        </nav>
       </div>
     </div>
+  </header>
 
-    <div class="meta">
-      <div class="panel">
-        <h2>My Role</h2>
-        <ul>
-          <li>UI integration</li>
-          <li>3D integration</li>
-          <li>AR module integration</li>
-          <li>Gallery module development</li>
-        </ul>
-      </div>
-      <div class="panel">
-        <h2>Key Features</h2>
-        <ul>
-          <li>Postcard AR scanning</li>
-          <li>Interactive monument reveal</li>
-          <li>Gallery browsing</li>
-        </ul>
-      </div>
-    </div>
+  <main>
+    <div class="wrap">
 
-    <div class="panel">
-      <h2>Media</h2>
-      <div class="gallery">
-        <div class="video">Video (later)</div>
-        <div class="shot">Screenshot</div>
-        <div class="shot">Screenshot</div>
-        <div class="shot">Screenshot</div>
-      </div>
+      <section class="projectHero">
+        <a class="backLink" href="../index.html#projects">← Back to Projects</a>
+
+        <div class="projectTitleRow">
+          <h1 class="projectTitle">AR Memory</h1>
+          <div class="pillRow">
+            <span class="pill">Unity</span>
+            <span class="pill">AR</span>
+            <span class="pill">Mobile</span>
+            <span class="pill">UI/UX</span>
+          </div>
+        </div>
+
+        <p class="projectLead">
+          Postcards come to life in AR. A lightweight mobile prototype focused on clean UI flow, AR triggers, and 3D presentation.
+        </p>
+      </section>
+
+      <section class="projectGrid">
+
+        <div class="panelCard">
+          <h2 class="sectionTitle">Overview</h2>
+          <p class="sectionNote">
+            AR Memory is an AR prototype where printed cards trigger 3D content. It’s designed to feel simple, magical, and quick to understand.
+          </p>
+
+          <div style="height:10px;"></div>
+
+          <h2 class="sectionTitle">Key Features</h2>
+          <ul class="bullet">
+            <li>Card/marker detection → AR content reveal</li>
+            <li>Gallery-style flow to browse experiences</li>
+            <li>UI focus: readability + minimal steps to launch AR</li>
+          </ul>
+        </div>
+
+        <div class="panelCard">
+          <h2 class="sectionTitle">My Role</h2>
+          <ul class="bullet">
+            <li>UI design + integration</li>
+            <li>AR module integration</li>
+            <li>3D asset integration + scene setup</li>
+            <li>Gallery module + navigation flow</li>
+          </ul>
+
+          <div style="height:14px;"></div>
+
+          <h2 class="sectionTitle">Tools</h2>
+          <div class="tagCloud">
+            <span class="pill">Unity</span>
+            <span class="pill">AR</span>
+            <span class="pill">C#</span>
+            <span class="pill">Photoshop</span>
+            <span class="pill">Illustrator</span>
+          </div>
+        </div>
+
+      </section>
+
+      <section>
+        <div class="panelCard">
+          <h2 class="sectionTitle">Media</h2>
+          <p class="sectionNote">Add 1 short demo video + 6–10 best screenshots here.</p>
+
+          <div class="mediaGrid">
+            <div class="mediaBox">Video (later)</div>
+            <div class="mediaBox">Screenshot</div>
+            <div class="mediaBox">Screenshot</div>
+            <div class="mediaBox">Screenshot</div>
+          </div>
+        </div>
+      </section>
+
+      <footer>© <span id="y"></span> Moez Melek — Portfolio</footer>
     </div>
-  </div>
-</main>
+  </main>
+
+  <script src="../main.js?v=3" defer></script>
 </body>
 </html>
