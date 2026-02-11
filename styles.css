@@ -815,17 +815,6 @@ html, body{
   overflow-x:hidden;
 }
 
-main{
-  width:100%;
-  display:flex;
-  justify-content:center;   /* centers the .wrap */
-}
-
-header .wrap,
-main .wrap{
-  width:min(100%, var(--max));
-  margin-inline:auto;       /* real centering */
-}
 
 @media (max-width:700px){
   header, main{
@@ -835,3 +824,67 @@ main .wrap{
     padding-inline:16px !important;
   }
 }
+/* ===================================== */
+/* HERO: stop overflow + keep centered   */
+/* ===================================== */
+
+.heroMega{
+  max-width:100%;
+  overflow:hidden;          /* ✅ prevents hero glass from spilling */
+}
+
+.heroMega > *{
+  min-width:0;              /* ✅ critical: allows grid children to shrink */
+}
+
+/* Make sure hero children don't exceed container */
+.heroText,
+.heroShowcase,
+.carousel{
+  max-width:100%;
+}
+
+/* Tighten carousel gutters on mobile to avoid pushing width */
+@media (max-width:700px){
+
+  .heroMega{
+    text-align:center;
+    justify-items:center;
+  }
+
+  .heroTitle,
+  .heroSub{
+    max-width:100%;
+    overflow-wrap:anywhere; /* ✅ prevents long words from forcing width */
+    word-break:break-word;
+  }
+
+  .cta{
+    width:100%;
+    max-width:100%;
+    justify-content:center;
+  }
+
+  .cta .btn{
+    max-width:100%;
+    white-space:normal;     /* ✅ prevents button text overflow */
+  }
+
+  /* Carousel: reduce gutters so slide doesn't overflow hero */
+  .carSlide{
+    padding-left:42px !important;
+    padding-right:42px !important;
+    justify-content:center;
+  }
+
+  .carCard{
+    max-width:100%;
+    text-align:center;
+    align-items:center;
+  }
+
+  .carCard .btn{
+    align-self:center;
+  }
+}
+
