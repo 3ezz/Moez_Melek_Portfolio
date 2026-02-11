@@ -1,3 +1,4 @@
+// main.js (FULL)
 console.log("main.js running ✅");
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -11,11 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("in");
-      } else {
-        entry.target.classList.remove("in");
-      }
+      if (entry.isIntersecting) entry.target.classList.add("in");
+      else entry.target.classList.remove("in");
     });
   }, {
     threshold: 0.18,
@@ -24,11 +22,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   targets.forEach(el => io.observe(el));
 
-  // ===== Cute carousel =====
+  // ===== Carousel =====
   initCarousel();
 
   // ===== Projects filters (projects.html) =====
   initFilters();
+
+  // ===== Burger menu =====
+  initBurgerMenu();
 });
 
 function initCarousel(){
@@ -97,10 +98,54 @@ function initFilters(){
     b.classList.add("isOn");
 
     const f = b.dataset.filter;
+
     list.querySelectorAll(".card").forEach(card => {
       const tags = (card.dataset.tags || "");
-      const ok = f === "all" || tags.includes(f);
+      // ✅ FIX: safer exact tag matching (no accidental substring matches)
+      const ok = f === "all" || tags.split(" ").includes(f);
       card.style.display = ok ? "" : "none";
     });
   }));
+}
+
+function initBurgerMenu(){
+  const burger = document.querySelector(".burger");
+  const menu = document.getElementById("mobileMenu");
+  if(!burger || !menu) return;
+
+  const root = document.documentElement;
+
+  function closeMenu(){
+    root.classList.remove("menuOpen");
+    burger.setAttribute("aria-expanded", "false");
+    burger.setAttribute("aria-label", "Open menu");
+  }
+
+  function openMenu(){
+    root.classList.add("menuOpen");
+    burger.setAttribute("aria-expanded", "true");
+    burger.setAttribute("aria-label", "Close menu");
+  }
+
+  burger.addEventListener("click", () => {
+    const isOpen = root.classList.contains("menuOpen");
+    isOpen ? closeMenu() : openMenu();
+  });
+
+  // Close when clicking a link
+  menu.querySelectorAll("a").forEach(a => {
+    a.addEventListener("click", () => closeMenu());
+  });
+
+  // Close on outside click
+  document.addEventListener("click", (e) => {
+    if(!root.classList.contains("menuOpen")) return;
+    const clickedInside = menu.contains(e.target) || burger.contains(e.target);
+    if(!clickedInside) closeMenu();
+  });
+
+  // Close on Escape
+  document.addEventListener("keydown", (e) => {
+    if(e.key === "Escape") closeMenu();
+  });
 }
