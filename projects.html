@@ -1,10 +1,11 @@
+<!-- projects.html (FULL) -->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Projects — Moez Melek</title>
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=1001">
 </head>
 <body>
   <div class="cinematic-bg"></div>
@@ -13,7 +14,12 @@
     <div class="wrap">
       <div class="nav">
         <div class="brand">Moez Melek<small>Game Designer | Unity & Unreal Engine</small></div>
-        <nav class="links">
+
+        <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav class="links" id="mobileMenu">
           <a href="index.html">Home</a>
           <a href="projects.html">Projects</a>
           <a href="index.html#about">About</a>
@@ -28,12 +34,13 @@
       <section>
         <div class="rowHead">
           <h1 class="pageTitle">All Projects</h1>
+
           <div class="filterPills">
-            <button class="pillBtn isOn" data-filter="all">All</button>
-            <button class="pillBtn" data-filter="unity">Unity</button>
-            <button class="pillBtn" data-filter="ue5">UE5</button>
-            <button class="pillBtn" data-filter="ar">AR</button>
-            <button class="pillBtn" data-filter="ui">UI/UX</button>
+            <button class="pillBtn isOn" data-filter="all" type="button">All</button>
+            <button class="pillBtn" data-filter="unity" type="button">Unity</button>
+            <button class="pillBtn" data-filter="ue5" type="button">UE5</button>
+            <button class="pillBtn" data-filter="ar" type="button">AR</button>
+            <button class="pillBtn" data-filter="ui" type="button">UI/UX</button>
           </div>
         </div>
 
@@ -95,6 +102,6 @@
     </div>
   </main>
 
-  <script src="main.js?v=3" defer></script>
+  <script src="main.js?v=1001" defer></script>
 </body>
 </html>
