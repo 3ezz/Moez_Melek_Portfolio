@@ -1,4 +1,5 @@
-/* styles.css (FULL) */
+/* styles.css (FULL - fixed carousel clipping + burger + filters + responsive) */
+
 :root{
   --bg:#05060a;
   --text:#f3f4f6;
@@ -58,14 +59,16 @@ header{
   background:rgba(5,6,10,.60);
   border-bottom:1px solid var(--line);
 }
+
 .nav{
   display:flex;
   align-items:center;
   justify-content:space-between;
   padding:14px 0;
   gap:14px;
-  position:relative; /* for dropdown menu on mobile */
+  position:relative; /* mobile dropdown anchor */
 }
+
 .brand{font-weight:800;letter-spacing:.2px}
 .brand small{display:block;color:var(--muted);font-weight:500;font-size:12px;margin-top:2px}
 
@@ -213,7 +216,7 @@ section{padding:36px 0}
 .heroShowcase{max-width:460px;width:100%;margin-left:auto}
 
 /* ========================= */
-/* CAROUSEL                  */
+/* CAROUSEL (FIXED: NO LEAK) */
 /* ========================= */
 
 .carousel{
@@ -223,18 +226,20 @@ section{padding:36px 0}
   border-radius:var(--r);
   border:1px solid rgba(255,255,255,.12);
   background:rgba(0,0,0,.18);
-  overflow:visible; /* arrows can sit outside on desktop */
+
+  overflow:hidden;    /* ✅ clips moving slides */
+  isolation:isolate;  /* ✅ z-index sanity */
 }
 
 .carTrack{
   display:flex;
   height:100%;
   transition:transform .45s ease;
-  overflow:hidden;
-  border-radius:var(--r);
+  will-change:transform;
 }
+
 .carSlide{
-  min-width:100%;
+  flex:0 0 100%;
   height:100%;
   padding:18px;
   display:flex;
@@ -250,7 +255,7 @@ section{padding:36px 0}
     radial-gradient(520px 220px at 90% 120%, rgba(140,0,255,.14), transparent 60%),
     rgba(255,255,255,.03);
 
-  /* safe zone for arrows + lighter content */
+  /* ✅ safe zone: arrows breathe without overlaying text */
   padding:16px 88px 16px 22px;
 
   display:flex;
@@ -258,35 +263,17 @@ section{padding:36px 0}
   justify-content:center;
 }
 
-.carLabel{
-  color:rgba(255,255,255,.75);
-  font-size:11px;
-  letter-spacing:.5px;
-}
-.carTitle{
-  margin-top:8px;
-  font-weight:800;
-  font-size:16.5px;
-}
-.carDesc{
-  margin-top:6px;
-  color:var(--muted);
-  line-height:1.55;
-  font-size:13.5px;
-}
-.carCard .btn{
-  margin-top:12px;
-  align-self:flex-start;
-  padding:10px 14px;
-  font-size:13px;
-}
+.carLabel{color:rgba(255,255,255,.75);font-size:11px;letter-spacing:.5px}
+.carTitle{margin-top:8px;font-weight:800;font-size:16.5px}
+.carDesc{margin-top:6px;color:var(--muted);line-height:1.55;font-size:13.5px}
+.carCard .btn{margin-top:12px;align-self:flex-start;padding:10px 14px;font-size:13px}
 
-/* arrows */
+/* arrows (inside the clipped carousel) */
 .carBtn{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
-  z-index:6;
+  z-index:10;
   width:40px;height:40px;
   border-radius:14px;
   border:1px solid rgba(255,255,255,.14);
@@ -295,8 +282,8 @@ section{padding:36px 0}
   display:flex;align-items:center;justify-content:center;
   cursor:pointer;
 }
-.carBtn.prev{left:-18px}
-.carBtn.next{right:-18px}
+.carBtn.prev{left:12px}
+.carBtn.next{right:12px}
 .carBtn:hover{background:rgba(0,0,0,.68)}
 
 .carDots{
@@ -305,7 +292,7 @@ section{padding:36px 0}
   display:flex;
   justify-content:center;
   gap:8px;
-  z-index:5;
+  z-index:10;
 }
 .dot{
   width:8px;height:8px;border-radius:999px;
@@ -417,6 +404,7 @@ section{padding:36px 0}
 .card h3{margin:0 0 8px;font-size:16px;letter-spacing:.1px}
 .card p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
 
+/* Thumbs */
 .thumb{
   height:140px;
   border-radius:14px;
@@ -632,7 +620,7 @@ footer{
 }
 
 /* ========================= */
-/* BURGER MENU + MOBILE      */
+/* BURGER MENU               */
 /* ========================= */
 
 .burger{
@@ -661,6 +649,10 @@ footer{
 .menuOpen .burger span:nth-child(2){ opacity:0; }
 .menuOpen .burger span:nth-child(3){ transform:translateY(-8px) rotate(-45deg); }
 
+/* ========================= */
+/* RESPONSIVE                */
+/* ========================= */
+
 @media (max-width:700px){
   .wrap{ padding:0 16px; }
   section{ padding:26px 0; }
@@ -671,7 +663,7 @@ footer{
     filter:saturate(1.20) contrast(1.08) brightness(.82);
   }
 
-  /* burger visible */
+  /* header */
   .burger{ display:inline-flex; }
 
   /* dropdown menu */
@@ -729,18 +721,13 @@ footer{
   /* stats stacked */
   .heroStats{ grid-template-columns:1fr; }
 
-  /* carousel in hero */
+  /* carousel stays in hero, arrows inside */
   .heroShowcase{ max-width:100%; }
-  .carousel{
-    height:220px;
-    overflow:hidden;
-  }
+  .carousel{ height:220px; }
   .carSlide{ padding:14px; }
   .carCard{ padding:14px 72px 14px 16px; }
   .carTitle{ font-size:15.5px; }
   .carDesc{ font-size:13px; line-height:1.5; }
-
-  /* arrows inside */
   .carBtn.prev{ left:10px; }
   .carBtn.next{ right:10px; }
 
@@ -755,7 +742,7 @@ footer{
   .card{ min-height:auto; padding:14px; }
   .thumb{ height:120px; margin-bottom:10px; }
 
-  /* filter pills: one-line scroll (premium) */
+  /* filter pills: one-line scroll */
   .filterPills{
     flex-wrap:nowrap;
     overflow:auto;
