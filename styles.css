@@ -1,3 +1,4 @@
+/* styles.css (FULL) */
 :root{
   --bg:#05060a;
   --text:#f3f4f6;
@@ -63,6 +64,7 @@ header{
   justify-content:space-between;
   padding:14px 0;
   gap:14px;
+  position:relative; /* for dropdown menu on mobile */
 }
 .brand{font-weight:800;letter-spacing:.2px}
 .brand small{display:block;color:var(--muted);font-weight:500;font-size:12px;margin-top:2px}
@@ -221,12 +223,15 @@ section{padding:36px 0}
   border-radius:var(--r);
   border:1px solid rgba(255,255,255,.12);
   background:rgba(0,0,0,.18);
-  overflow:hidden;
+  overflow:visible; /* arrows can sit outside on desktop */
 }
+
 .carTrack{
   display:flex;
   height:100%;
   transition:transform .45s ease;
+  overflow:hidden;
+  border-radius:var(--r);
 }
 .carSlide{
   min-width:100%;
@@ -234,6 +239,7 @@ section{padding:36px 0}
   padding:18px;
   display:flex;
 }
+
 .carCard{
   width:100%;
   height:100%;
@@ -244,53 +250,54 @@ section{padding:36px 0}
     radial-gradient(520px 220px at 90% 120%, rgba(140,0,255,.14), transparent 60%),
     rgba(255,255,255,.03);
 
-  /* 🔑 reserve space for arrows */
-  padding:18px 96px 18px 96px;
+  /* safe zone for arrows + lighter content */
+  padding:16px 88px 16px 22px;
 
   display:flex;
   flex-direction:column;
   justify-content:center;
 }
 
-.carLabel{color:rgba(255,255,255,.75);font-size:12px;letter-spacing:.6px}
+.carLabel{
+  color:rgba(255,255,255,.75);
+  font-size:11px;
+  letter-spacing:.5px;
+}
 .carTitle{
   margin-top:8px;
   font-weight:800;
-  font-size:17px; /* was 18px */
+  font-size:16.5px;
 }
-
 .carDesc{
   margin-top:6px;
   color:var(--muted);
   line-height:1.55;
-  font-size:13.5px; /* was 14px */
+  font-size:13.5px;
+}
+.carCard .btn{
+  margin-top:12px;
+  align-self:flex-start;
+  padding:10px 14px;
+  font-size:13px;
 }
 
-.carCard .btn{margin-top:12px;align-self:flex-start}
-
+/* arrows */
 .carBtn{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
-  z-index:5;
-
-  width:42px;
-  height:42px;
+  z-index:6;
+  width:40px;height:40px;
   border-radius:14px;
   border:1px solid rgba(255,255,255,.14);
-  background:rgba(0,0,0,.45);
-  backdrop-filter:blur(8px);
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  background:rgba(0,0,0,.55);
+  backdrop-filter:blur(10px);
+  display:flex;align-items:center;justify-content:center;
   cursor:pointer;
 }
-
-.carBtn.prev{ left:10px; }
-.carBtn.next{ right:10px; }
-
-.carBtn:hover{background:rgba(0,0,0,.60)}
+.carBtn.prev{left:-18px}
+.carBtn.next{right:-18px}
+.carBtn:hover{background:rgba(0,0,0,.68)}
 
 .carDots{
   position:absolute;
@@ -370,7 +377,7 @@ section{padding:36px 0}
 .iconBadge img{width:22px;height:22px;object-fit:contain;filter:brightness(1.15)}
 
 /* ========================= */
-/* PROJECTS SPLIT (BREAK VERTICAL) */
+/* PROJECTS SPLIT            */
 /* ========================= */
 
 .projectsSplit{
@@ -392,7 +399,6 @@ section{padding:36px 0}
 }
 .gridTight{gap:12px}
 
-/* default: stacked */
 .card{
   grid-column:span 12;
   background:rgba(255,255,255,.03);
@@ -411,7 +417,6 @@ section{padding:36px 0}
 .card h3{margin:0 0 8px;font-size:16px;letter-spacing:.1px}
 .card p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
 
-/* Thumbs */
 .thumb{
   height:140px;
   border-radius:14px;
@@ -567,28 +572,211 @@ footer{
 }
 
 /* ========================= */
-/* RESPONSIVE                */
+/* DESKTOP GRID BEHAVIOR     */
 /* ========================= */
 
-@media (max-width:980px){
-  .heroMega{grid-template-columns:1fr}
-  .heroStats{grid-template-columns:1fr}
-  .heroShowcase{max-width:100%}
-  .carousel{height:240px}
-
-  .projectsSplit{grid-template-columns:1fr}
-  .aboutSplit{grid-template-columns:1fr}
-  .contactRow{grid-template-columns:1fr}
-
-  .projectGrid{grid-template-columns:1fr}
-  .mediaBox{grid-column:span 12}
-}
-
-/* Desktop grid behavior:
-   - Featured row: 3 across
-   - Inside each Unity/UE column: keep cards 1 per row (cleaner), but columns sit side-by-side */
 @media (min-width:981px){
   .featuredGrid .card{grid-column:span 4;}
-  /* keep .gridTight stacked inside each column */
   #projects .gridTight .card{grid-column:span 12;}
+}
+
+/* ========================= */
+/* PROJECTS PAGE FILTER UI   */
+/* ========================= */
+
+.pageTitle{
+  margin:0;
+  font-size:clamp(26px, 3.2vw, 40px);
+  letter-spacing:-.4px;
+}
+
+.filterPills{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+
+.pillBtn{
+  -webkit-tap-highlight-color: transparent;
+  appearance:none;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.04);
+  color:rgba(255,255,255,.78);
+  padding:10px 12px;
+  border-radius:999px;
+  font-weight:650;
+  font-size:13px;
+  line-height:1;
+  cursor:pointer;
+  transition:transform .15s ease, background .15s ease, border-color .15s ease, box-shadow .15s ease, color .15s ease;
+}
+
+.pillBtn:hover{
+  background:rgba(255,255,255,.07);
+  border-color:rgba(255,255,255,.22);
+  transform:translateY(-1px);
+  color:rgba(255,255,255,.92);
+}
+
+.pillBtn.isOn{
+  color:var(--text);
+  border-color:rgba(255,0,170,.55);
+  background:linear-gradient(90deg,rgba(255,0,170,.22),rgba(140,0,255,.18));
+  box-shadow:0 0 14px rgba(255,0,170,.18);
+}
+
+.pillBtn:focus-visible{
+  outline:none;
+  box-shadow:0 0 0 3px rgba(140,0,255,.25);
+}
+
+/* ========================= */
+/* BURGER MENU + MOBILE      */
+/* ========================= */
+
+.burger{
+  display:none;
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(0,0,0,.35);
+  backdrop-filter:blur(10px);
+  cursor:pointer;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  padding:10px;
+}
+.burger span{
+  display:block;
+  width:18px;
+  height:2px;
+  border-radius:999px;
+  background:rgba(255,255,255,.85);
+  transition:transform .18s ease, opacity .18s ease;
+}
+.menuOpen .burger span:nth-child(1){ transform:translateY(8px) rotate(45deg); }
+.menuOpen .burger span:nth-child(2){ opacity:0; }
+.menuOpen .burger span:nth-child(3){ transform:translateY(-8px) rotate(-45deg); }
+
+@media (max-width:700px){
+  .wrap{ padding:0 16px; }
+  section{ padding:26px 0; }
+
+  /* background perf */
+  .cinematic-bg{
+    background-attachment:scroll;
+    filter:saturate(1.20) contrast(1.08) brightness(.82);
+  }
+
+  /* burger visible */
+  .burger{ display:inline-flex; }
+
+  /* dropdown menu */
+  .links{
+    position:absolute;
+    top:62px;
+    right:20px;
+    left:20px;
+
+    display:none;
+    flex-direction:column;
+    gap:8px;
+
+    padding:12px;
+    border-radius:16px;
+    border:1px solid rgba(255,255,255,.14);
+    background:rgba(5,6,10,.82);
+    backdrop-filter:blur(12px);
+
+    box-shadow:0 12px 40px rgba(0,0,0,.45);
+  }
+
+  .links a{
+    padding:12px 12px;
+    border-radius:14px;
+    color:rgba(255,255,255,.85);
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.10);
+  }
+
+  .links a:hover{
+    color:var(--text);
+    background:rgba(255,255,255,.07);
+  }
+
+  .menuOpen .links{ display:flex; }
+
+  /* hero */
+  .hero{ padding:56px 0 18px; }
+  .heroMega{
+    grid-template-columns:1fr;
+    padding:16px;
+    gap:14px;
+  }
+  .heroTitle{
+    font-size:clamp(32px, 9vw, 44px);
+    line-height:1.06;
+    letter-spacing:-.6px;
+  }
+  .heroSub{ font-size:14px; line-height:1.65; }
+
+  /* CTA full width */
+  .btn{ width:100%; padding:13px 14px; border-radius:14px; }
+
+  /* stats stacked */
+  .heroStats{ grid-template-columns:1fr; }
+
+  /* carousel in hero */
+  .heroShowcase{ max-width:100%; }
+  .carousel{
+    height:220px;
+    overflow:hidden;
+  }
+  .carSlide{ padding:14px; }
+  .carCard{ padding:14px 72px 14px 16px; }
+  .carTitle{ font-size:15.5px; }
+  .carDesc{ font-size:13px; line-height:1.5; }
+
+  /* arrows inside */
+  .carBtn.prev{ left:10px; }
+  .carBtn.next{ right:10px; }
+
+  /* stacks */
+  .projectsSplit{ grid-template-columns:1fr; gap:14px; }
+  .aboutSplit{ grid-template-columns:1fr; }
+  .contactRow{ grid-template-columns:1fr; }
+  .projectGrid{ grid-template-columns:1fr; }
+  .mediaBox{ height:140px; }
+
+  /* cards tighter */
+  .card{ min-height:auto; padding:14px; }
+  .thumb{ height:120px; margin-bottom:10px; }
+
+  /* filter pills: one-line scroll (premium) */
+  .filterPills{
+    flex-wrap:nowrap;
+    overflow:auto;
+    padding-bottom:6px;
+    margin-top:8px;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .filterPills::-webkit-scrollbar{ display:none; }
+  .pillBtn{ flex:0 0 auto; }
+}
+
+@media (min-width:701px) and (max-width:980px){
+  .btn{ width:auto; }
+  .heroMega{ grid-template-columns:1fr; }
+  .heroStats{ grid-template-columns:1fr; }
+  .heroShowcase{ max-width:100%; }
+  .carousel{ height:240px; }
+  .projectsSplit{ grid-template-columns:1fr; }
+  .aboutSplit{ grid-template-columns:1fr; }
+  .contactRow{ grid-template-columns:1fr; }
+  .projectGrid{ grid-template-columns:1fr; }
+  .mediaBox{ grid-column:span 12; }
 }
