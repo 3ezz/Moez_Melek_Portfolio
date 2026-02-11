@@ -237,7 +237,8 @@ section{padding:26px 0}
   border-radius:var(--r);
   border:1px solid rgba(255,255,255,.12);
   background:rgba(0,0,0,.18);
-  overflow:hidden; 
+  overflow:hidden;
+}
 
 .carTrack{
   display:flex;
@@ -760,7 +761,7 @@ html, body{
 
 .heroMega > *{
   min-width:0;             
-
+}
 
 .heroText,
 .heroShowcase,
