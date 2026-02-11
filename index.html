@@ -1,3 +1,4 @@
+<!-- index.html (FULL) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Moez Melek — Portfolio</title>
   <meta name="description" content="Portfolio of Moez Melek — Game Designer working with Unity & Unreal Engine." />
-  <link rel="stylesheet" href="styles.css?v=9999">
+  <link rel="stylesheet" href="styles.css?v=1001">
 </head>
 
 <body>
@@ -18,13 +19,18 @@
           Moez Melek
           <small>Game Designer | Unity & Unreal Engine</small>
         </div>
-       <nav class="links">
-  <a href="index.html">Home</a>
-  <a href="#projects">Projects</a>
-  <a href="#about">About</a>
-  <a href="#contact">Contact</a>
-      </nav>
 
+        <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav class="links" id="mobileMenu">
+          <a href="index.html">Home</a>
+          <!-- ✅ FIX: go to projects page (not #projects section) -->
+          <a href="projects.html">Projects</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
       </div>
     </div>
   </header>
@@ -32,113 +38,112 @@
   <main>
     <div class="wrap">
 
-      <!-- HERO (split layout) -->
-     <section class="hero">
-  <div class="heroMega">
-    <div class="heroText">
-      <div class="heroTag">Game Designer • Unity • UE5</div>
-      <h1 class="heroTitle">
-        I build <span class="grad">playful</span> and <span class="grad2">cinematic</span> interactive experiences.
-      </h1>
-      <p class="heroSub">
-        Gameplay systems, UI/UX, and AR experiences — Unity projects + UE5 Blueprint modules.
-      </p>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="heroMega">
+          <div class="heroText">
+            <div class="heroTag">Game Designer • Unity • UE5</div>
+            <h1 class="heroTitle">
+              I build <span class="grad">playful</span> and <span class="grad2">cinematic</span> interactive experiences.
+            </h1>
+            <p class="heroSub">
+              Gameplay systems, UI/UX, and AR experiences — Unity projects + UE5 Blueprint modules.
+            </p>
 
-      <div class="cta">
-        <a class="btn primary" href="projects.html">View All Projects</a>
-        <a class="btn" href="#contact">Contact</a>
-      </div>
+            <div class="cta">
+              <a class="btn primary" href="projects.html">View All Projects</a>
+              <a class="btn" href="#contact">Contact</a>
+            </div>
 
-      <div class="heroStats">
-        <div class="stat">
-          <div class="statBig">Unity</div>
-          <div class="statSmall">AR • UI/UX • Mobile</div>
-        </div>
-        <div class="stat">
-          <div class="statBig">UE5</div>
-          <div class="statSmall">Blueprint • Systems</div>
-        </div>
-        <div class="stat">
-          <div class="statBig">Focus</div>
-          <div class="statSmall">Education • Game Feel</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Cute mini carousel -->
-    <aside class="heroShowcase">
-      <div class="carousel" data-carousel>
-        <button class="carBtn prev" data-prev aria-label="Previous">‹</button>
-
-        <div class="carTrack" data-track>
-          <div class="carSlide">
-            <div class="carCard">
-              <div class="carLabel">Featured</div>
-              <div class="carTitle">Hannibal (Unity AR)</div>
-              <div class="carDesc">Educational AR for kids (6–12): UI, mechanics, AR modules, audio.</div>
-              <a class="btn primary" href="projects/hannibal.html">Open</a>
+            <div class="heroStats">
+              <div class="stat">
+                <div class="statBig">Unity</div>
+                <div class="statSmall">AR • UI/UX • Mobile</div>
+              </div>
+              <div class="stat">
+                <div class="statBig">UE5</div>
+                <div class="statSmall">Blueprint • Systems</div>
+              </div>
+              <div class="stat">
+                <div class="statBig">Focus</div>
+                <div class="statSmall">Education • Game Feel</div>
+              </div>
             </div>
           </div>
 
-          <div class="carSlide">
-            <div class="carCard">
-              <div class="carLabel">UE5 Module</div>
-              <div class="carTitle">Interaction System</div>
-              <div class="carDesc">Pickup / inspect / use module built for fast prototyping.</div>
-              <a class="btn primary" href="projects/ue-interaction.html">Open</a>
-            </div>
-          </div>
+          <!-- Carousel -->
+          <aside class="heroShowcase">
+            <div class="carousel" data-carousel>
+              <button class="carBtn prev" data-prev aria-label="Previous">‹</button>
 
-          <div class="carSlide">
-            <div class="carCard">
-              <div class="carLabel">Unity AR</div>
-              <div class="carTitle">AR Memory</div>
-              <div class="carDesc">Postcards come to life: clean UI flow + AR trigger moments.</div>
-              <a class="btn primary" href="projects/ar-memory.html">Open</a>
+              <div class="carTrack" data-track>
+                <div class="carSlide">
+                  <div class="carCard">
+                    <div class="carLabel">Featured</div>
+                    <div class="carTitle">Hannibal (Unity AR)</div>
+                    <div class="carDesc">Educational AR for kids (6–12): UI, mechanics, AR modules, audio.</div>
+                    <a class="btn primary" href="projects/hannibal.html">Open</a>
+                  </div>
+                </div>
+
+                <div class="carSlide">
+                  <div class="carCard">
+                    <div class="carLabel">UE5 Module</div>
+                    <div class="carTitle">Interaction System</div>
+                    <div class="carDesc">Pickup / inspect / use module built for fast prototyping.</div>
+                    <a class="btn primary" href="projects/ue-interaction.html">Open</a>
+                  </div>
+                </div>
+
+                <div class="carSlide">
+                  <div class="carCard">
+                    <div class="carLabel">Unity AR</div>
+                    <div class="carTitle">AR Memory</div>
+                    <div class="carDesc">Postcards come to life: clean UI flow + AR trigger moments.</div>
+                    <a class="btn primary" href="projects/ar-memory.html">Open</a>
+                  </div>
+                </div>
+              </div>
+
+              <button class="carBtn next" data-next aria-label="Next">›</button>
+              <div class="carDots" data-dots></div>
             </div>
-          </div>
+          </aside>
         </div>
+      </section>
 
-        <button class="carBtn next" data-next aria-label="Next">›</button>
-
-        <div class="carDots" data-dots></div>
-      </div>
-    </aside>
-  </div>
-</section>
+      <!-- FEATURED ROW -->
       <section class="featuredRow">
-  <div class="rowHead">
-    <h2 class="sectionTitle">Featured Projects</h2>
-    <a class="btn" href="projects.html">View More</a>
-  </div>
+        <div class="rowHead">
+          <h2 class="sectionTitle">Featured Projects</h2>
+          <a class="btn" href="projects.html">View More</a>
+        </div>
 
-  <div class="grid featuredGrid">
-    <a class="card" href="projects/hannibal.html">
-      <div class="thumb"><span class="thumbLabel">UNITY</span></div>
-      <h3>Hannibal</h3>
-      <p>Educational AR experience for kids (6–12). UI, mechanics, AR modules, audio.</p>
-      <div class="pillRow"><span class="pill">AR</span><span class="pill">UI/UX</span><span class="pill">Serious Game</span></div>
-    </a>
+        <div class="grid featuredGrid">
+          <a class="card" href="projects/hannibal.html">
+            <div class="thumb"><span class="thumbLabel">UNITY</span></div>
+            <h3>Hannibal</h3>
+            <p>Educational AR experience for kids (6–12). UI, mechanics, AR modules, audio.</p>
+            <div class="pillRow"><span class="pill">AR</span><span class="pill">UI/UX</span><span class="pill">Serious Game</span></div>
+          </a>
 
-    <a class="card" href="projects/djerba.html">
-      <div class="thumb"><span class="thumbLabel">UNITY</span></div>
-      <h3>Djerba View AR</h3>
-      <p>Tourism-focused AR app. UI + 3D + AR integration + gallery module.</p>
-      <div class="pillRow"><span class="pill">AR</span><span class="pill">Mobile</span><span class="pill">3D</span></div>
-    </a>
+          <a class="card" href="projects/djerba.html">
+            <div class="thumb"><span class="thumbLabel">UNITY</span></div>
+            <h3>Djerba View AR</h3>
+            <p>Tourism-focused AR app. UI + 3D + AR integration + gallery module.</p>
+            <div class="pillRow"><span class="pill">AR</span><span class="pill">Mobile</span><span class="pill">3D</span></div>
+          </a>
 
-    <a class="card" href="projects/ue-interaction.html">
-      <div class="thumb"><span class="thumbLabel">UE5</span></div>
-      <h3>Blueprint Interaction Module</h3>
-      <p>Reusable pickup / inspect / use system for fast prototyping.</p>
-      <div class="pillRow"><span class="pill">Blueprint</span><span class="pill">Systems</span><span class="pill">UX</span></div>
-    </a>
-  </div>
-</section>
+          <a class="card" href="projects/ue-interaction.html">
+            <div class="thumb"><span class="thumbLabel">UE5</span></div>
+            <h3>Blueprint Interaction Module</h3>
+            <p>Reusable pickup / inspect / use system for fast prototyping.</p>
+            <div class="pillRow"><span class="pill">Blueprint</span><span class="pill">Systems</span><span class="pill">UX</span></div>
+          </a>
+        </div>
+      </section>
 
-
-
-      <!-- FEATURED STRIP (horizontal break) -->
+      <!-- FEATURED STRIP -->
       <section class="featuredStrip">
         <div class="featuredCard">
           <div>
@@ -152,11 +157,10 @@
         </div>
       </section>
 
-      <!-- PROJECTS (side-by-side, breaks vertical) -->
+      <!-- PROJECTS PREVIEW (optional section remains for homepage scroll) -->
       <section id="projects">
         <div class="projectsSplit">
 
-          <!-- LEFT: UNITY -->
           <div class="col">
             <div class="sectionHeader">
               <span class="iconBadge">
@@ -180,23 +184,15 @@
                 <div class="pillRow"><span class="pill">AR</span><span class="pill">3D</span><span class="pill">Mobile</span></div>
               </a>
 
-              <a class="card" href="projects/ar_memory.html">
+              <a class="card" href="projects/ar-memory.html">
                 <div class="thumb"><span class="thumbLabel">UNITY</span></div>
                 <h3>AR Memory</h3>
                 <p>Postcards come to life in AR. UI integration, 3D + AR modules, gallery module.</p>
                 <div class="pillRow"><span class="pill">AR</span><span class="pill">Prototype</span><span class="pill">UI</span></div>
               </a>
-
-              <a class="card" href="projects/bartdo.html">
-                <div class="thumb"><span class="thumbLabel">UNITY</span></div>
-                <h3>B.ART.DO</h3>
-                <p>Guided museum visit prototype. UI, 3D integration, mechanics, quizzes.</p>
-                <div class="pillRow"><span class="pill">Serious Game</span><span class="pill">UI</span><span class="pill">Quiz</span></div>
-              </a>
             </div>
           </div>
 
-          <!-- RIGHT: UNREAL -->
           <div class="col">
             <div class="sectionHeader">
               <span class="iconBadge">
@@ -210,7 +206,7 @@
             </p>
 
             <div class="grid gridTight">
-              <a class="card" href="projects/ue_interaction.html">
+              <a class="card" href="projects/ue-interaction.html">
                 <div class="thumb"><span class="thumbLabel">UE5</span></div>
                 <h3>Blueprint Interaction Module</h3>
                 <p>Reusable pickup / inspect / use system built for fast prototyping.</p>
@@ -243,7 +239,7 @@
         </div>
       </section>
 
-      <!-- ABOUT (split) -->
+      <!-- ABOUT -->
       <section id="about">
         <div class="aboutSplit">
           <div>
@@ -274,7 +270,7 @@
         </div>
       </section>
 
-      <!-- CONTACT (horizontal break) -->
+      <!-- CONTACT -->
       <section id="contact">
         <div class="contactRow">
           <div>
@@ -297,7 +293,6 @@
     </div>
   </main>
 
-  <script src="main.js?v=3" defer></script>
+  <script src="main.js?v=1001" defer></script>
 </body>
 </html>
-
