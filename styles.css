@@ -805,6 +805,28 @@ footer{
   }
 
 }
+/* ========================= */
+/* HARD CENTER THE WHOLE PAGE */
+/* ========================= */
+
+html, body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden;
+}
+
+main{
+  width:100%;
+  display:flex;
+  justify-content:center;   /* centers the .wrap */
+}
+
+header .wrap,
+main .wrap{
+  width:min(100%, var(--max));
+  margin-inline:auto;       /* real centering */
+}
+
 @media (max-width:700px){
   header, main{
     padding-inline:0 !important;
