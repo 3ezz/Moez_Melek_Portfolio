@@ -1,7 +1,4 @@
-/* ========================================= */
-/* COMPLETE styles.css (mobile-first)         */
-/* Burger • Filters • Carousel gutters • Full */
-/* ========================================= */
+
 
 :root{
   --bg:#05060a;
@@ -731,4 +728,82 @@ footer{
 @media (min-width:981px){
   /* if you use a featured grid */
   .featuredGrid .card{grid-column:span 4;}
+}
+/* ========================= */
+/* MOBILE CENTERING FIX      */
+/* ========================= */
+
+@media (max-width:700px){
+
+  /* Center hero content */
+  .heroMega{
+    text-align:center;
+    justify-items:center;
+  }
+
+  .heroTag{
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .heroTitle{
+    text-align:center;
+  }
+
+  .heroSub{
+    text-align:center;
+    max-width:520px;
+  }
+
+  /* Center CTA buttons */
+  .cta{
+    justify-content:center;
+  }
+
+  .btn{
+    width:100%;
+    max-width:420px;
+  }
+
+  /* Center stats */
+  .heroStats{
+    justify-items:center;
+    text-align:center;
+  }
+
+  .stat{
+    width:100%;
+    max-width:420px;
+  }
+
+  /* Center carousel content */
+  .carSlide{
+    justify-content:center;
+  }
+
+  .carCard{
+    text-align:center;
+    align-items:center;
+  }
+
+  .carCard .btn{
+    align-self:center;
+  }
+
+  /* Center featured strip */
+  .featuredCard{
+    text-align:center;
+    align-items:center;
+  }
+
+  /* Center section headers */
+  .rowHead{
+    justify-content:center;
+    text-align:center;
+  }
+
+  .sectionHeader{
+    justify-content:center;
+  }
+
 }
