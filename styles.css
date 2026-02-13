@@ -397,6 +397,7 @@ section{padding:26px 0}
 .thumb{
   height:120px;
   border-radius:14px;
+  position:relative;
   border:1px solid rgba(255,255,255,.12);
   background:
     radial-gradient(500px 240px at 20% -10%, rgba(255,0,170,.20), transparent 55%),
@@ -404,11 +405,18 @@ section{padding:26px 0}
     rgba(255,255,255,.02);
   display:flex;
   align-items:flex-end;
+  justify-content:space-between;
   padding:12px;
   margin-bottom:10px;
   transition:transform .18s ease;
 }
 .card:hover .thumb{transform:translateY(-2px)}
+
+.thumbPlaceholder{
+  font-size:11px;
+  color:rgba(255,255,255,.6);
+  letter-spacing:.3px;
+}
 
 .thumbLabel{
   font-size:12px;
@@ -812,4 +820,3 @@ html, body{
     align-self:center;
   }
 }
-
