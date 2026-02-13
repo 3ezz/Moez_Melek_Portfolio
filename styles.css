@@ -418,9 +418,31 @@ section{padding:26px 0}
   height:100%;
   object-fit:cover;
   object-position:center;
+  z-index:0;
+}
+
+.thumb::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,.35), rgba(0,0,0,.1) 45%, rgba(0,0,0,0));
+  pointer-events:none;
+  z-index:1;
 }
 
 .card:hover .thumb{transform:translateY(-2px)}
+
+.thumbPlaceholder,
+.thumbLabel{
+  position:relative;
+  z-index:2;
+}
+
+.thumbPlaceholder{
+  font-size:11px;
+  color:rgba(255,255,255,.6);
+  letter-spacing:.3px;
+}
 
 .thumbLabel{
   position:relative;
