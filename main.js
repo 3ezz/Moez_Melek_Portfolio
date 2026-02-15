@@ -163,23 +163,35 @@ function createProjectCard(project, includeTags = false){
   card.className = "card";
   card.href = project.href;
 
+  const tags = [...(project.tags || [])];
+  if (project.category) tags.push(project.category);
+
   if (includeTags) {
-    card.dataset.tags = (project.tags || []).join(" ");
+    card.dataset.tags = tags.join(" ");
   }
 
   const pills = (project.pills || []).map(pill => `<span class="pill">${pill}</span>`).join("");
+  const thumbSrc = project.thumbnail || "assets/icons/card-thumbnail-placeholder.svg";
+  const statusText = project.status || "WIP";
 
   card.innerHTML = `
     <div class="thumb">
-      <img class="thumbImg" src="assets/icons/card-thumbnail-placeholder.svg" alt="${project.title} thumbnail" loading="lazy" decoding="async">
+      <img class="thumbImg" src="${thumbSrc}" alt="${project.title} thumbnail" loading="lazy" decoding="async">
       <span class="thumbLabel">${project.thumbLabel || "PROJECT"}</span>
     </div>
-    <h3>${project.title}</h3>
+    <div class="cardTitleRow">
+      <h3>${project.title}</h3>
+      <span class="statusBadge">${statusText}</span>
+    </div>
     <p>${project.description}</p>
     <div class="pillRow">${pills}</div>
   `;
 
   return card;
+}
+
+function sortByOrder(items, key){
+  return [...items].sort((a, b) => (a[key] ?? 999) - (b[key] ?? 999));
 }
 
 function renderCards(container, items, includeTags = false){
@@ -198,18 +210,18 @@ function initProjectCards(){
   const allProjectsGrid = document.getElementById("allProjects");
 
   if (featuredGrid) {
-    renderCards(featuredGrid, data.filter(p => p.showFeaturedRow));
+    renderCards(featuredGrid, sortByOrder(data.filter(p => p.showFeaturedRow), "featuredOrder"));
   }
 
   if (homeUnityGrid) {
-    renderCards(homeUnityGrid, data.filter(p => p.showHomeUnity));
+    renderCards(homeUnityGrid, sortByOrder(data.filter(p => p.showHomeUnity), "homeUnityOrder"));
   }
 
   if (homeUeGrid) {
-    renderCards(homeUeGrid, data.filter(p => p.showHomeUe));
+    renderCards(homeUeGrid, sortByOrder(data.filter(p => p.showHomeUe), "homeUeOrder"));
   }
 
   if (allProjectsGrid) {
-    renderCards(allProjectsGrid, data.filter(p => p.showProjectsPage), true);
+    renderCards(allProjectsGrid, sortByOrder(data.filter(p => p.showProjectsPage), "projectsOrder"), true);
   }
 }

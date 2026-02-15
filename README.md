@@ -29,13 +29,44 @@ Copy an existing object and edit fields:
 - `title`: card title
 - `href`: link to the project page
 - `description`: short card description
+- `thumbnail`: thumbnail path (e.g. `assets/media/my-project/thumb.jpg`)
 - `thumbLabel`: small badge text (e.g. `UNITY`, `UE5`)
+- `status`: small status badge (e.g. `Prototype`, `Case Study`, `Published`)
+- `category`: category keyword (e.g. `education`, `ui`, `systems`)
 - `pills`: array of visible pills
 - `tags`: array used by filters on `projects.html` (`unity`, `ue5`, `ar`, `ui`)
 - `showFeaturedRow`: `true/false` (home featured row)
+- `featuredOrder`: number order for featured row
 - `showHomeUnity`: `true/false` (home Unity column)
+- `homeUnityOrder`: number order for home Unity list
 - `showHomeUe`: `true/false` (home UE column)
+- `homeUeOrder`: number order for home UE list
 - `showProjectsPage`: `true/false` (all projects page)
+- `projectsOrder`: number order for all projects page
+
+#### Full object example
+```js
+{
+  slug: "my-project",
+  title: "My Project",
+  href: "projects/my-project.html",
+  description: "One-line value proposition.",
+  thumbnail: "assets/media/my-project/thumb.jpg",
+  thumbLabel: "UNITY",
+  status: "Prototype",
+  category: "education",
+  pills: ["Unity", "AR", "UI/UX"],
+  tags: ["unity", "ar", "ui"],
+  showFeaturedRow: true,
+  featuredOrder: 5,
+  showHomeUnity: true,
+  homeUnityOrder: 4,
+  showHomeUe: false,
+  homeUeOrder: 99,
+  showProjectsPage: true,
+  projectsOrder: 8
+}
+```
 
 ### Step 4) Save and reload
 No extra HTML card editing is needed.
@@ -84,9 +115,31 @@ tags: ["unity", "ar", "ui"]
 ## Thumbnail behavior
 
 Each generated card uses:
-- `assets/icons/card-thumbnail-placeholder.svg`
+- `project.thumbnail` if provided
+- fallback: `assets/icons/card-thumbnail-placeholder.svg`
 
-If you want unique thumbnails per project later, you can add a `thumbnail` field in `projects-data.js` and use it in `createProjectCard()` in `main.js`.
+So the fastest media flow is:
+1. Add files in `assets/media/<project-slug>/`
+2. Set `thumbnail` in that project object
+3. Refresh the page
+
+---
+
+
+## Fast media implementation workflow (recommended)
+
+1. Create project media folder:
+   - `assets/media/<slug>/`
+2. Add files with predictable names:
+   - `thumb.jpg` (card thumbnail)
+   - `cover.jpg` (hero image)
+   - `shot-01.jpg`, `shot-02.jpg`, ...
+   - `demo.mp4` (optional)
+3. In `projects-data.js`, set:
+   - `thumbnail: "assets/media/<slug>/thumb.jpg"`
+4. In the project page (`projects/<slug>.html`), replace media placeholders with those files.
+
+This keeps card updates data-driven and media assets organized by project.
 
 ---
 
