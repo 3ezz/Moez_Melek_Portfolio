@@ -16,7 +16,7 @@ This portfolio now uses a **single source of truth** for project cards so you ca
 Create a new file in `projects/`, for example:
 - `projects/my-new-project.html`
 
-Use one of the existing project pages as a template.
+Use `projects/_template.html` as the base template for every new project page.
 
 ### Step 2) Add media assets (optional)
 Put images/videos inside:
