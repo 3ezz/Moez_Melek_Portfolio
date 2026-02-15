@@ -413,6 +413,18 @@ section{padding:26px 0}
 
 .card:hover .thumb{transform:translateY(-2px)}
 
+.thumbPlaceholder,
+.thumbLabel{
+  position:relative;
+  z-index:2;
+}
+
+.thumbPlaceholder{
+  font-size:11px;
+  color:rgba(255,255,255,.6);
+  letter-spacing:.3px;
+}
+
 .thumbLabel{
   position:relative;
   z-index:1;
