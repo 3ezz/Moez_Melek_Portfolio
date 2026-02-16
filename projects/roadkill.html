@@ -90,42 +90,51 @@
 
         <div class="panelCard" style="grid-column:1 / -1;">
           <h2 class="sectionTitle">Media</h2>
-         
+          <p class="sectionNote">
+            Roadkill media currently uses available files from <code>assets/media/steamhouse/</code>. Replace paths with your Roadkill exports when ready.
+          </p>
           <div class="mediaGrid" style="margin-top:10px;">
-            <figure class="mediaBox" style="grid-column:span 12; height:auto; padding:0; overflow:hidden;">
-              <video controls playsinline preload="metadata" style="width:100%;height:auto;display:block;" src="../assets/media/roadkill/demo.mp4"></video>
-              <p class="sectionNote" style="padding:10px 12px; margin:0;">Demo clip: in-game playthrough and cinematic sequence with typewriter timing and menu visualisation.</figcaption>
-            </figure>
+            <div class="mediaItem mediaItemWide">
+              <div class="mediaBox mediaFrame">
+                <video controls playsinline preload="metadata" src="../assets/media/steamhouse/dialoguesystem.mp4"></video>
+              </div>
+              <p class="mediaDescription">Demo clip: in-game dialogue/cinematic sequence with typewriter timing and UI feedback pacing.</p>
+            </div>
 
-            <figure class="mediaBox" style="grid-column:span 6; height:auto; padding:0; overflow:hidden;">
-              <img src="../assets/media/roadkill/shot-01.jpg" alt="Roadkill screenshot 1" style="width:100%;height:auto;display:block;" loading="lazy">
-              <p class="sectionNote" style="padding:10px 12px; margin:0;">Screenshot 1: Main menu UI.</p>
-            </figure>
-            <figure class="mediaBox" style="grid-column:span 6; height:auto; padding:0; overflow:hidden;">
-              <img src="../assets/media/roadkill/shot-02.jpg" alt="Roadkill screenshot 2" style="width:100%;height:auto;display:block;" loading="lazy">
-              <p class="sectionNote" style="padding:10px 12px; margin:0;">Screenshot 2: Settings Ui.</p>
-            </figure>
-            <figure class="mediaBox" style="grid-column:span 6; height:auto; padding:0; overflow:hidden;">
-              <img src="../assets/media/roadkill/shot-03.jpg" alt="Roadkill screenshot 3" style="width:100%;height:auto;display:block;" loading="lazy">
-              <p class="sectionNote" style="padding:10px 12px; margin:0;">Screenshot 3: Settings view in depth.</p>
-            </figure>
-            <figure class="mediaBox" style="grid-column:span 6; height:auto; padding:0; overflow:hidden;">
-              <img src="../assets/media/roadkill/shot-04.jpg" alt="Roadkill screenshot 4" style="width:100%;height:auto;display:block;" loading="lazy">
-              <p class="sectionNote" style="padding:10px 12px; margin:0;">Screenshot 4: in-game typewriter cinematic text with UI readability pass.</p>
-            </figure>
-            <figure class="mediaBox" style="grid-column:span 12; height:auto; padding:0; overflow:hidden;">
-              <img src="../assets/media/roadkill/shot-05.jpg" alt="Roadkill screenshot 5" style="width:100%;height:auto;display:block;" loading="lazy">
-              <p class="sectionNote" style="padding:10px 12px; margin:0;">Screenshot 5: In Game screenshot.</p>
-            </figure>
-             <figure class="mediaBox" style="grid-column:span 12; height:auto; padding:0; overflow:hidden;">
-              <img src="../assets/media/roadkill/shot-06.jpg" alt="Roadkill screenshot 6" style="width:100%;height:auto;display:block;" loading="lazy">
-              <p class="sectionNote" style="padding:10px 12px; margin:0;">Screenshot 6: Ability Blueprint.</p>
-            </figure>
-            </figure>
-             <figure class="mediaBox" style="grid-column:span 12; height:auto; padding:0; overflow:hidden;">
-              <img src="../assets/media/roadkill/shot-07.jpg" alt="Roadkill screenshot 7" style="width:100%;height:auto;display:block;" loading="lazy">
-              <p class="sectionNote" style="padding:10px 12px; margin:0;">Screenshot 6:Torch Blueprint.</p>
-            </figure>
+            <div class="mediaItem mediaItemHalf">
+              <div class="mediaBox mediaFrame">
+                <img src="../assets/media/steamhouse/bt.png" alt="Roadkill screenshot 1" loading="lazy">
+              </div>
+              <p class="mediaDescription">Screenshot 1: blueprint graph used to structure core gameplay event flow.</p>
+            </div>
+
+            <div class="mediaItem mediaItemHalf">
+              <div class="mediaBox mediaFrame">
+                <img src="../assets/media/steamhouse/bp_dialogue.png" alt="Roadkill screenshot 2" loading="lazy">
+              </div>
+              <p class="mediaDescription">Screenshot 2: dialogue UI/state blueprint driving cinematic text progression.</p>
+            </div>
+
+            <div class="mediaItem mediaItemHalf">
+              <div class="mediaBox mediaFrame">
+                <img src="../assets/media/steamhouse/bp_blackboard.png" alt="Roadkill screenshot 3" loading="lazy">
+              </div>
+              <p class="mediaDescription">Screenshot 3: decision/logic variables used to coordinate level and interaction state.</p>
+            </div>
+
+            <div class="mediaItem mediaItemHalf">
+              <div class="mediaBox mediaFrame">
+                <img src="../assets/media/steamhouse/dialogue_06s.png" alt="Roadkill screenshot 4" loading="lazy">
+              </div>
+              <p class="mediaDescription">Screenshot 4: in-game typewriter cinematic text with UI readability pass.</p>
+            </div>
+
+            <div class="mediaItem mediaItemWide">
+              <div class="mediaBox mediaFrame">
+                <img src="../assets/media/steamhouse/bt.png" alt="Roadkill screenshot 5" loading="lazy">
+              </div>
+              <p class="mediaDescription">Screenshot 5: additional gameplay/logic setup snapshot for current iteration build.</p>
+            </div>
           </div>
         </div>
       </section>
