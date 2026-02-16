@@ -18,23 +18,6 @@ Create a new file in `projects/`, for example:
 
 Use `projects/_template.html` as the base template for every new project page.
 
-
-### Step 1.1) Use the no-hardcode project page template (recommended)
-If you want the **same layout as Roadkill + Steam House** without manually editing HTML sections, use:
-
-- `projects/new-project.html` → ready page shell
-- `projects/new-project.content.js` → file you fill with your project content
-- `projects/_project-content-template.js` → blank template you can copy
-- `project-page-renderer.js` → renders the full page from your content object
-
-Quick workflow:
-1. Copy `projects/new-project.html` to `projects/<your-slug>.html`.
-2. Copy `projects/_project-content-template.js` to `projects/<your-slug>.content.js`.
-3. Fill `window.PROJECT_PAGE_DATA` in that content file (title, overview, features, role, tools, media notes, screenshots/videos).
-4. In `projects/<your-slug>.html`, update script include from `new-project.content.js` to `./<your-slug>.content.js`.
-5. Add your card entry in `projects-data.js` with `href: "projects/<your-slug>.html"`.
-
-
 ### Step 2) Add media assets (optional)
 Put images/videos inside:
 - `assets/media/<your-project-folder>/...`
