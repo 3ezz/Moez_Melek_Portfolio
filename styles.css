@@ -424,6 +424,7 @@ section{padding:26px 0}
 
 .card:hover .thumb{transform:translateY(-2px)}
 
+.thumbPlaceholder,
 .thumbLabel{
   position:relative;
   z-index:1;
