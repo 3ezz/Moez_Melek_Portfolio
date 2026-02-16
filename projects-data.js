@@ -145,7 +145,7 @@ window.PROJECTS_DATA = [
     slug: "roadkill",
     title: "Roadkill",
     href: "projects/roadkill.html",
-    description: "End-of-year 2.5D project built in UE5 with Blueprint gameplay systems, camera travelling logic, UI/UX flows, and cinematic typewriter sequences.",
+    description: "End-of-year 2.5D project built in UE5 with Blueprint gameplay systems, climbing system,special ability, camera travelling logic, UI/UX flows, and cinematic typewriter sequences.",
     thumbnail: "assets/icons/card-thumbnail-placeholder.svg",
     thumbLabel: "UE5",
     status: "In Progress",
