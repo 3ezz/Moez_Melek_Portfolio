@@ -424,6 +424,7 @@ section{padding:26px 0}
 
 .card:hover .thumb{transform:translateY(-2px)}
 
+.thumbPlaceholder,
 .thumbLabel{
   position:relative;
   z-index:1;
@@ -670,6 +671,7 @@ footer{
   .contactRow{grid-template-columns:1fr 1fr;gap:16px}
   .projectGrid{grid-template-columns:1fr 1fr;gap:16px}
   .mediaBox{grid-column:span 6;height:160px}
+  .mediaItemHalf{grid-column:span 6;}
 
   .featuredCard{
     flex-direction:row;
