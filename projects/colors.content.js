@@ -10,7 +10,7 @@ window.PROJECT_PAGE_DATA = {
   demo: {
     title: "Prototype Demo",
     note: "Gameplay capture will be added here once the latest build recording is exported.",
-    videoSrc: "",
+    videoSrc: "../assets/media/roadkill/demo.mp4",
     poster: "",
     mimeType: "video/mp4",
     pills: ["Color Shooting", "Environment Shift", "Prototype"]
