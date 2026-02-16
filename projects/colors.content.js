@@ -1,65 +1,64 @@
 window.PROJECT_PAGE_DATA = {
-  title: "colors",
-  metaDescription: "splatoon bootleg edition",
+  title: "Colors — Prototype FPS",
+  metaDescription: "Prototype FPS inspired by color-based territory control: shoot paint balloons, reclaim space, and dynamically change the environment.",
   backHref: "../index.html#projects",
   backLabel: "← Back to Projects",
 
-  heroPills: ["[Engine]", "[Genre/Type]", "[Status]"],
-  lead: "[2-3 lines that summarize what the project is, what you built, and why it matters.]",
+  heroPills: ["Unreal Engine 5", "FPS Prototype", "Gameplay Systems"],
+  lead: "Colors is a prototype FPS inspired by Splatoon-style territory control. The core loop is simple: shoot color balloons, spread your color through space, and use that visual control of the map as a gameplay advantage.",
 
   demo: {
-    title: "Dialogue Demo",
-    note: "[Short explanation of what this demo video showcases.]",
-    videoSrc: "../assets/media/[project-slug]/demo.mp4",
-    poster: "../assets/media/[project-slug]/demo-poster.jpg",
+    title: "Gameplay Demo",
+    note: "Early prototype footage showing color-balloon shooting and environment color takeover.",
+    videoSrc: "../assets/media/roadkill/demo.mp4",
+    poster: "../assets/media/roadkill/shot-01.jpg",
     mimeType: "video/mp4",
-    pills: ["[Keyword 1]", "[Keyword 2]", "[Keyword 3]"]
+    pills: ["Color Shooting", "Environment Shift", "Prototype"]
   },
 
   overviewTitle: "Overview",
-  overview: "[Project context, challenge, and design/technical goals.]",
+  overview: "This project explores how color can directly drive FPS gameplay feedback. Instead of color being just visual polish, each shot modifies the world state and readability of the arena, which changes how players move, aim, and prioritize zones.",
 
   featuresTitle: "Key Features",
   features: [
-    "[Feature 1]",
-    "[Feature 2]",
-    "[Feature 3]"
+    "FPS shooting mechanic focused on color balloons as projectiles",
+    "Color spread logic that updates surfaces and environment state",
+    "Immediate visual feedback loop to support player decision-making"
   ],
 
   roleTitle: "My Role",
   roles: [
-    "[Responsibility 1]",
-    "[Responsibility 2]",
-    "[Responsibility 3]"
+    "Designed and prototyped the main gameplay loop",
+    "Implemented core shooting and impact mechanics in UE5",
+    "Built environment color-change behavior and tested game feel"
   ],
 
   toolsTitle: "Tools",
-  tools: ["[Tool 1]", "[Tool 2]", "[Tool 3]"],
+  tools: ["Unreal Engine 5", "Blueprint", "Gameplay Prototyping"],
 
   mediaTitle: "Media",
-  mediaNote: "[Optional note about the screenshots/videos section.]",
+  mediaNote: "Current media uses placeholders until final gameplay captures are exported from the prototype build.",
   mediaItems: [
     {
       type: "image",
-      title: "Screenshot 1",
-      note: "[Describe what this screenshot proves.]",
-      src: "../assets/media/[project-slug]/screenshot-01.jpg",
-      alt: "[Alt text for screenshot 1]"
+      title: "Gameplay Placeholder — Shooting Loop",
+      note: "Will be replaced by an in-game shot showing balloon firing and hit feedback.",
+      src: "../assets/icons/card-thumbnail-placeholder.svg",
+      alt: "Colors prototype gameplay placeholder"
     },
     {
       type: "image",
-      title: "Screenshot 2",
-      note: "[Describe what this screenshot proves.]",
-      src: "../assets/media/[project-slug]/screenshot-02.jpg",
-      alt: "[Alt text for screenshot 2]"
+      title: "Gameplay Placeholder — Environment Change",
+      note: "Will be replaced by a before/after capture of the environment color transformation.",
+      src: "../assets/icons/card-thumbnail-placeholder.svg",
+      alt: "Colors prototype environment shift placeholder"
     },
     {
-      type: "video",
-      title: "Secondary Demo",
-      note: "[Optional extra clip explanation.]",
-      src: "../assets/media/[project-slug]/secondary-demo.mp4",
-      poster: "../assets/media/[project-slug]/secondary-demo-poster.jpg",
-      mimeType: "video/mp4"
+      type: "image",
+      title: "Gameplay Placeholder — Prototype Arena",
+      note: "Will be replaced by an arena readability screenshot used for iteration notes.",
+      src: "../assets/icons/card-thumbnail-placeholder.svg",
+      alt: "Colors prototype arena placeholder"
     }
   ]
 };
