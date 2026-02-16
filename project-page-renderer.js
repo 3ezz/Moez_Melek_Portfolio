@@ -112,9 +112,7 @@
       demoCard.appendChild(createEl('h2', 'sectionTitle', data.demo.title || 'Demo'));
       if (data.demo.note) demoCard.appendChild(createEl('p', 'sectionNote', data.demo.note));
 
-      const demoVideoSource = resolveVideoSource(data.demo);
-
-      if (demoVideoSource) {
+      if (data.demo.videoSrc) {
         const video = document.createElement('video');
         video.controls = true;
         video.playsInline = true;
@@ -127,15 +125,12 @@
         video.style.marginTop = '8px';
 
         const source = document.createElement('source');
-        source.src = demoVideoSource;
-        const sourceType = data.demo.mimeType || inferVideoMimeType(demoVideoSource);
-        if (sourceType) source.type = sourceType;
+        source.src = data.demo.videoSrc;
+        source.type = data.demo.mimeType || 'video/mp4';
         video.appendChild(source);
-        video.appendChild(document.createTextNode('Your browser does not support the video tag.'));
         demoCard.appendChild(video);
-        appendVideoLoadHint(demoCard, demoVideoSource);
       } else {
-        const missingDemo = createEl('p', 'sectionNote', 'Add demo.videoSrc (or demo.src) to display gameplay footage in this section.');
+        const missingDemo = createEl('p', 'sectionNote', 'Add demo.videoSrc to display gameplay footage in this section.');
         missingDemo.style.marginTop = '8px';
         demoCard.appendChild(missingDemo);
       }

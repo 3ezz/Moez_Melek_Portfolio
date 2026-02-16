@@ -8,10 +8,10 @@ window.PROJECT_PAGE_DATA = {
   lead: "Colors is a prototype FPS inspired by Splatoon-style territory control. The core loop is simple: shoot color balloons, spread your color through space, and use that visual control of the map as a gameplay advantage.",
 
   demo: {
-    title: "Gameplay Demo",
-    note: "Early prototype footage showing color-balloon shooting and environment color takeover.",
+    title: "Prototype Demo",
+    note: "Gameplay capture will be added here once the latest build recording is exported.",
     videoSrc: "../assets/media/roadkill/demo.mp4",
-    poster: "../assets/media/roadkill/shot-01.jpg",
+    poster: "",
     mimeType: "video/mp4",
     pills: ["Color Shooting", "Environment Shift", "Prototype"]
   },
