@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>[PROJECT TITLE] — Moez Melek</title>
-  <meta name="description" content="[1 short sentence describing the project]." />
+  <title>New Project Template — Moez Melek</title>
+  <meta name="description" content="Fillable template project page." />
   <link rel="stylesheet" href="../styles.css?v=3">
 </head>
 
@@ -30,75 +30,13 @@
 
   <main>
     <div class="wrap">
-      <section class="projectHero">
-        <a class="backLink" href="../index.html#projects">← Back to Projects</a>
-
-        <div class="projectTitleRow">
-          <h1 class="projectTitle">[PROJECT TITLE]</h1>
-          <div class="pillRow">
-            <span class="pill">[Engine]</span>
-            <span class="pill">[Category]</span>
-            <span class="pill">[Platform]</span>
-          </div>
-        </div>
-
-        <p class="projectLead">
-          [2–3 lines summary: goal, player/user, and what you built.]
-        </p>
-      </section>
-
-      <section class="projectGrid">
-        <div class="panelCard">
-          <h2 class="sectionTitle">Overview</h2>
-          <p class="sectionNote">
-            [Context of the project, design goals, and constraints.]
-          </p>
-
-          <div style="height:10px;"></div>
-
-          <h2 class="sectionTitle">Key Features</h2>
-          <ul class="bullet">
-            <li>[Feature 1]</li>
-            <li>[Feature 2]</li>
-            <li>[Feature 3]</li>
-          </ul>
-        </div>
-
-        <div class="panelCard">
-          <h2 class="sectionTitle">My Role</h2>
-          <ul class="bullet">
-            <li>[Responsibility 1]</li>
-            <li>[Responsibility 2]</li>
-            <li>[Responsibility 3]</li>
-          </ul>
-
-          <div style="height:14px;"></div>
-
-          <h2 class="sectionTitle">Tools</h2>
-          <div class="tagCloud">
-            <span class="pill">[Tool 1]</span>
-            <span class="pill">[Tool 2]</span>
-            <span class="pill">[Tool 3]</span>
-          </div>
-        </div>
-
-        <div class="panelCard" style="grid-column:1 / -1;">
-          <h2 class="sectionTitle">Media</h2>
-          <p class="sectionNote">
-            Add screenshots/videos in <code>assets/media/[your-project]/</code> and replace these placeholders.
-          </p>
-          <div class="projectMedia" style="margin-top:10px;">
-            <div class="mediaBox">Screenshot / Video Placeholder</div>
-            <div class="mediaBox">Screenshot Placeholder</div>
-            <div class="mediaBox">Screenshot Placeholder</div>
-          </div>
-        </div>
-      </section>
-
+      <div id="projectPageRoot"></div>
       <footer>© <span id="y"></span> Moez Melek — Portfolio</footer>
     </div>
   </main>
 
+  <script src="./colors.content.js" defer></script>
+  <script src="../project-page-renderer.js" defer></script>
   <script src="../main.js?v=3" defer></script>
 </body>
 </html>
