@@ -18,6 +18,17 @@ Create a new file in `projects/`, for example:
 
 Use `projects/_template.html` as the base template for every new project page.
 
+### Step 1.1) Use the `content.js` template (recommended, no hardcoded sections)
+If you want to keep the same Roadkill/Steam House layout and only fill content:
+
+1. Copy `projects/new-project.html` to `projects/<your-slug>.html`.
+2. Copy `projects/_project-content-template.js` to `projects/<your-slug>.content.js`.
+3. Fill `window.PROJECT_PAGE_DATA` in `projects/<your-slug>.content.js` (hero, demo, overview, features, role, tools, media).
+4. In `projects/<your-slug>.html`, update script include from `./new-project.content.js` to `./<your-slug>.content.js`.
+5. Keep `../project-page-renderer.js` in the page so content is rendered automatically.
+
+See detailed workflow in `docs/project-page-template.md`.
+
 ### Step 2) Add media assets (optional)
 Put images/videos inside:
 - `assets/media/<your-project-folder>/...`

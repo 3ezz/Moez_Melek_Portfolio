@@ -23,7 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function initReveal(){
-  const targets = document.querySelectorAll("section, .card, .featuredCard");
+  const rawTargets = document.querySelectorAll("section, .projectGrid > .panelCard, .card, .featuredCard");
+  const targets = Array.from(new Set(Array.from(rawTargets))).filter(el => !el.classList.contains("projectGrid"));
   if (targets.length === 0) return;
 
   const viewportH = window.innerHeight || document.documentElement.clientHeight || 0;
@@ -31,7 +32,7 @@ function initReveal(){
   targets.forEach(el => {
     const tooTall = viewportH > 0 && el.offsetHeight > viewportH * 2.4;
     if (tooTall) {
-      // Avoid hiding very tall sections (ex: long media pages) that can fail strict IO ratios.
+      // Avoid hiding very tall blocks that can fail strict IO ratios.
       el.classList.remove("reveal");
       el.classList.add("in");
       return;
@@ -55,7 +56,17 @@ function initReveal(){
   targets.forEach(el => {
     if (el.classList.contains("reveal")) io.observe(el);
   });
+
+  // Safety net: if a target never intersects (very tall/lazy media timing), make it visible.
+  window.setTimeout(() => {
+    targets.forEach(el => {
+      if (el.classList.contains("reveal") && !el.classList.contains("in")) {
+        el.classList.add("in");
+      }
+    });
+  }, 1800);
 }
+
 
 function initCarousel(){
   const root = document.querySelector("[data-carousel]");
