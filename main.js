@@ -238,19 +238,26 @@ function initProjectCards(){
   const homeUeGrid = document.getElementById("homeUeProjectsGrid");
   const allProjectsGrid = document.getElementById("allProjects");
 
+  data.forEach((project, idx) => {
+    if (!project?.title || !project?.href) {
+      console.warn(`Project entry #${idx} is missing title or href and may not render correctly.`, project);
+    }
+  });
+
   if (featuredGrid) {
-    renderCards(featuredGrid, sortByOrder(data.filter(p => p.showFeaturedRow), "featuredOrder"));
+    renderCards(featuredGrid, sortByOrder(data.filter(p => p.showFeaturedRow === true), "featuredOrder"));
   }
 
   if (homeUnityGrid) {
-    renderCards(homeUnityGrid, sortByOrder(data.filter(p => p.showHomeUnity), "homeUnityOrder"));
+    renderCards(homeUnityGrid, sortByOrder(data.filter(p => p.showHomeUnity === true), "homeUnityOrder"));
   }
 
   if (homeUeGrid) {
-    renderCards(homeUeGrid, sortByOrder(data.filter(p => p.showHomeUe), "homeUeOrder"));
+    renderCards(homeUeGrid, sortByOrder(data.filter(p => p.showHomeUe === true), "homeUeOrder"));
   }
 
   if (allProjectsGrid) {
-    renderCards(allProjectsGrid, sortByOrder(data.filter(p => p.showProjectsPage), "projectsOrder"), true);
+    // Default to visible on the all-projects page unless explicitly turned off.
+    renderCards(allProjectsGrid, sortByOrder(data.filter(p => p.showProjectsPage !== false), "projectsOrder"), true);
   }
 }

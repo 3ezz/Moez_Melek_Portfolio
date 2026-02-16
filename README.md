@@ -52,7 +52,7 @@ Copy an existing object and edit fields:
 - `homeUnityOrder`: number order for home Unity list
 - `showHomeUe`: `true/false` (home UE column)
 - `homeUeOrder`: number order for home UE list
-- `showProjectsPage`: `true/false` (all projects page)
+- `showProjectsPage`: `true/false` (all projects page, defaults to visible if omitted)
 - `projectsOrder`: number order for all projects page
 
 #### Full object example
@@ -78,6 +78,8 @@ Copy an existing object and edit fields:
   projectsOrder: 8
 }
 ```
+
+If `showProjectsPage` is not set, the project is shown by default on `projects.html`.
 
 ### Step 4) Save and reload
 No extra HTML card editing is needed.
