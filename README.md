@@ -143,6 +143,37 @@ This keeps card updates data-driven and media assets organized by project.
 
 ---
 
+
+## Detailed workflow: add a brand-new project (example: Roadkill)
+
+Follow these exact steps in order:
+
+1. **Create the page file**
+   - Copy `projects/_template.html`
+   - Save as `projects/roadkill.html`
+2. **Fill the page content**
+   - Update `<title>`, meta description, hero summary, features, role, tools, media placeholders.
+3. **Create media folder**
+   - `assets/media/roadkill/`
+4. **Prepare media files**
+   - `thumb.jpg` (card thumbnail)
+   - `cover.jpg` (optional hero/cover)
+   - `shot-01.jpg`, `shot-02.jpg`, ...
+   - `demo.mp4` (optional)
+5. **Add the project object in `projects-data.js`**
+   - Required keys: `slug`, `title`, `href`, `description`, `thumbnail`, `thumbLabel`, `status`, `pills`, `tags`
+   - Placement keys: `showFeaturedRow`, `showHomeUnity/showHomeUe`, `showProjectsPage`
+   - Ordering keys: `featuredOrder`, `homeUnityOrder/homeUeOrder`, `projectsOrder`
+6. **Verify filters**
+   - Ensure `tags` includes expected filter values (`ue5`, `ui`, `ar`, `unity`).
+7. **Run local preview**
+   - `python3 -m http.server 4173`
+   - Check `index.html`, `projects.html`, and `projects/roadkill.html`
+8. **Finalize**
+   - Confirm card appears in correct sections and links to the new page.
+
+---
+
 ## Quick checklist before publishing
 
 1. Card appears in the correct sections (`index.html` / `projects.html`)
