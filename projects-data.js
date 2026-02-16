@@ -69,7 +69,7 @@ window.PROJECTS_DATA = [
     showHomeUe: true,
     homeUeOrder: 1,
     showProjectsPage: true,
-    projectsOrder: 7
+    projectsOrder: 4
   },
   {
     slug: "steamhouse-dialogue-ui",
@@ -85,7 +85,7 @@ window.PROJECTS_DATA = [
     showFeaturedRow: true,
     featuredOrder: 4,
     showProjectsPage: false,
-    projectsOrder: 99
+    projectsOrder: 5
   },
   {
     slug: "ue-hud",
@@ -103,7 +103,7 @@ window.PROJECTS_DATA = [
     showHomeUe: true,
     homeUeOrder: 3,
     showProjectsPage: true,
-    projectsOrder: 4
+    projectsOrder: 6
   },
   {
     slug: "ue-lighting",
@@ -121,7 +121,7 @@ window.PROJECTS_DATA = [
     showHomeUe: true,
     homeUeOrder: 2,
     showProjectsPage: true,
-    projectsOrder: 5
+    projectsOrder: 7
   },
   {
     slug: "ue-mechanics",
@@ -139,7 +139,7 @@ window.PROJECTS_DATA = [
     showHomeUe: true,
     homeUeOrder: 4,
     showProjectsPage: true,
-    projectsOrder: 6
+    projectsOrder: 8
   }
   ,{
     slug: "roadkill",
@@ -157,7 +157,7 @@ window.PROJECTS_DATA = [
     showHomeUe: true,
     homeUeOrder: 5,
     showProjectsPage: true,
-    projectsOrder: 7
+    projectsOrder: 9
   }
   ,{
      slug: "colors",
@@ -175,7 +175,7 @@ window.PROJECTS_DATA = [
     showHomeUe: true,
     homeUeOrder: 5,
     showProjectsPage: true,
-    projectsOrder: 8
+    projectsOrder: 10
   
   }
 ];
