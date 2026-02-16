@@ -6,7 +6,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const y = document.getElementById("y");
   if (y) y.textContent = new Date().getFullYear();
 
+  // ===== Projects cards (home + projects) =====
+  initProjectCards();
+
   // ===== Reveal (scroll down + up) =====
+  initReveal();
+
+  // ===== Carousel =====
+  initCarousel();
+
+  // ===== Projects filters (projects.html) =====
+  initFilters();
+
+  // ===== Burger menu =====
+  initBurgerMenu();
+});
+
+function initReveal(){
   const targets = document.querySelectorAll("section, .card, .featuredCard");
   targets.forEach(el => el.classList.add("reveal"));
 
@@ -21,16 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   targets.forEach(el => io.observe(el));
-
-  // ===== Carousel =====
-  initCarousel();
-
-  // ===== Projects filters (projects.html) =====
-  initFilters();
-
-  // ===== Burger menu =====
-  initBurgerMenu();
-});
+}
 
 function initCarousel(){
   const root = document.querySelector("[data-carousel]");
@@ -148,4 +155,73 @@ function initBurgerMenu(){
   document.addEventListener("keydown", (e) => {
     if(e.key === "Escape") closeMenu();
   });
+}
+
+
+function createProjectCard(project, includeTags = false){
+  const card = document.createElement("a");
+  card.className = "card";
+  card.href = project.href;
+
+  const tags = [...(project.tags || [])];
+  if (project.category) tags.push(project.category);
+
+  if (includeTags) {
+    card.dataset.tags = tags.join(" ");
+  }
+
+  const pills = (project.pills || []).map(pill => `<span class="pill">${pill}</span>`).join("");
+  const thumbSrc = project.thumbnail || "assets/icons/card-thumbnail-placeholder.svg";
+  const statusText = project.status || "WIP";
+
+  card.innerHTML = `
+    <div class="thumb">
+      <img class="thumbImg" src="${thumbSrc}" alt="${project.title} thumbnail" loading="lazy" decoding="async">
+      <span class="thumbLabel">${project.thumbLabel || "PROJECT"}</span>
+    </div>
+    <div class="cardTitleRow">
+      <h3>${project.title}</h3>
+      <span class="statusBadge">${statusText}</span>
+    </div>
+    <p>${project.description}</p>
+    <div class="pillRow">${pills}</div>
+  `;
+
+  return card;
+}
+
+function sortByOrder(items, key){
+  return [...items].sort((a, b) => (a[key] ?? 999) - (b[key] ?? 999));
+}
+
+function renderCards(container, items, includeTags = false){
+  if (!container) return;
+  container.innerHTML = "";
+  items.forEach(item => container.appendChild(createProjectCard(item, includeTags)));
+}
+
+function initProjectCards(){
+  const data = Array.isArray(window.PROJECTS_DATA) ? window.PROJECTS_DATA : null;
+  if (!data) return;
+
+  const featuredGrid = document.getElementById("featuredProjectsGrid");
+  const homeUnityGrid = document.getElementById("homeUnityProjectsGrid");
+  const homeUeGrid = document.getElementById("homeUeProjectsGrid");
+  const allProjectsGrid = document.getElementById("allProjects");
+
+  if (featuredGrid) {
+    renderCards(featuredGrid, sortByOrder(data.filter(p => p.showFeaturedRow), "featuredOrder"));
+  }
+
+  if (homeUnityGrid) {
+    renderCards(homeUnityGrid, sortByOrder(data.filter(p => p.showHomeUnity), "homeUnityOrder"));
+  }
+
+  if (homeUeGrid) {
+    renderCards(homeUeGrid, sortByOrder(data.filter(p => p.showHomeUe), "homeUeOrder"));
+  }
+
+  if (allProjectsGrid) {
+    renderCards(allProjectsGrid, sortByOrder(data.filter(p => p.showProjectsPage), "projectsOrder"), true);
+  }
 }
