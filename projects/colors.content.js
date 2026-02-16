@@ -1,57 +1,65 @@
 window.PROJECT_PAGE_DATA = {
-  title: "New Project Template",
-  metaDescription: "Starter project page driven by a fillable data file so content can be updated without editing HTML structure.",
+  title: "[Project Title]",
+  metaDescription: "[One-sentence SEO description of the project]",
   backHref: "../index.html#projects",
   backLabel: "← Back to Projects",
 
-  heroPills: ["Template", "Reusable", "Draft"],
-  lead: "This page uses the same visual layout as Steam House and Roadkill, but all content is sourced from a single fillable data object.",
+  heroPills: ["[Engine]", "[Genre/Type]", "[Status]"],
+  lead: "[2-3 lines that summarize what the project is, what you built, and why it matters.]",
 
   demo: {
-    title: "Main Demo",
-    note: "Replace this with your project trailer or gameplay walkthrough.",
-    videoSrc: "../assets/media/steamhouse/dialoguesystem.mp4",
-    poster: "../assets/media/steamhouse/dialogue_06s.png",
+    title: "Dialogue Demo",
+    note: "[Short explanation of what this demo video showcases.]",
+    videoSrc: "../assets/media/[project-slug]/demo.mp4",
+    poster: "../assets/media/[project-slug]/demo-poster.jpg",
     mimeType: "video/mp4",
-    pills: ["Demo", "Typewriter", "UI Flow"]
+    pills: ["[Keyword 1]", "[Keyword 2]", "[Keyword 3]"]
   },
 
   overviewTitle: "Overview",
-  overview: "Use this template for faster implementation: edit this one file, keep your layout identical, and avoid hardcoding each section in HTML.",
+  overview: "[Project context, challenge, and design/technical goals.]",
 
   featuresTitle: "Key Features",
   features: [
-    "Single source of truth for project text and media",
-    "Demo block displayed before overview to match your preferred flow",
-    "Steam House / Roadkill style section notes + media blocks"
+    "[Feature 1]",
+    "[Feature 2]",
+    "[Feature 3]"
   ],
 
   roleTitle: "My Role",
   roles: [
-    "Replace this bullet list with your exact responsibilities",
-    "Add implementation details for systems, UI, and polish",
-    "Document what you designed vs integrated"
+    "[Responsibility 1]",
+    "[Responsibility 2]",
+    "[Responsibility 3]"
   ],
 
   toolsTitle: "Tools",
-  tools: ["Unreal Engine 5", "Blueprint", "UI/UX"],
+  tools: ["[Tool 1]", "[Tool 2]", "[Tool 3]"],
 
   mediaTitle: "Media",
-  mediaNote: "Swap each path with your own exported assets in assets/media/<your-project-slug>/.",
+  mediaNote: "[Optional note about the screenshots/videos section.]",
   mediaItems: [
     {
       type: "image",
       title: "Screenshot 1",
-      note: "Example screenshot block with note displayed outside the frame.",
-      src: "../assets/media/steamhouse/bt.png",
-      alt: "Template screenshot 1"
+      note: "[Describe what this screenshot proves.]",
+      src: "../assets/media/[project-slug]/screenshot-01.jpg",
+      alt: "[Alt text for screenshot 1]"
     },
     {
       type: "image",
       title: "Screenshot 2",
-      note: "Second screenshot description in the same polished layout.",
-      src: "../assets/media/steamhouse/bp_dialogue.png",
-      alt: "Template screenshot 2"
+      note: "[Describe what this screenshot proves.]",
+      src: "../assets/media/[project-slug]/screenshot-02.jpg",
+      alt: "[Alt text for screenshot 2]"
+    },
+    {
+      type: "video",
+      title: "Secondary Demo",
+      note: "[Optional extra clip explanation.]",
+      src: "../assets/media/[project-slug]/secondary-demo.mp4",
+      poster: "../assets/media/[project-slug]/secondary-demo-poster.jpg",
+      mimeType: "video/mp4"
     }
   ]
 };
