@@ -157,7 +157,7 @@ window.PROJECTS_DATA = [
     showHomeUe: true,
     homeUeOrder: 5,
     showProjectsPage: true,
-    projectsOrder: 8
+    projectsOrder: 7
   }
   ,{
      slug: "colors",
