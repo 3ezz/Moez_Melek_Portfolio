@@ -1,6 +1,6 @@
 window.PROJECT_PAGE_DATA = {
-  title: "[Project Title]",
-  metaDescription: "[One-sentence SEO description of the project]",
+  title: "colors",
+  metaDescription: "splatoon bootleg edition",
   backHref: "../index.html#projects",
   backLabel: "← Back to Projects",
 
