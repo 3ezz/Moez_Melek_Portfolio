@@ -528,28 +528,6 @@ section{padding:26px 0}
   font-size:13px;
 }
 
-.mediaFigure{
-  height:auto;
-  padding:0;
-  overflow:hidden;
-  display:block;
-}
-.mediaFigure img,
-.mediaFigure video{
-  width:100%;
-  height:auto;
-  display:block;
-}
-.mediaCaption{
-  margin:0;
-  padding:10px 12px;
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.6;
-  border-top:1px solid rgba(255,255,255,.08);
-  background:rgba(0,0,0,.18);
-}
-
 
 .pageTitle{
   margin:0;
