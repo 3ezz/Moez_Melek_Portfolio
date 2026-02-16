@@ -48,10 +48,15 @@
       video.style.borderRadius = '14px';
       video.style.border = '1px solid rgba(255,255,255,.12)';
       video.style.background = 'rgba(0,0,0,.18)';
+
+      const sourcePath = resolveVideoSource(item);
+      const sourceType = item.mimeType || inferVideoMimeType(sourcePath);
       const source = document.createElement('source');
-      source.src = item.src;
-      source.type = item.mimeType || 'video/mp4';
+      source.src = sourcePath;
+      if (sourceType) source.type = sourceType;
       video.appendChild(source);
+
+      video.appendChild(document.createTextNode('Your browser does not support the video tag.'));
       mediaBox.appendChild(video);
     } else {
       const img = document.createElement('img');
@@ -65,6 +70,27 @@
 
     mediaGrid.appendChild(mediaBox);
     return mediaGrid;
+  }
+
+  function resolveVideoSource(entry) {
+    return (entry && (entry.videoSrc || entry.src || entry.video || entry.url)) || '';
+  }
+
+  function inferVideoMimeType(src) {
+    if (!src || typeof src !== 'string') return '';
+    const clean = src.split('?')[0].split('#')[0].toLowerCase();
+    if (clean.endsWith('.webm')) return 'video/webm';
+    if (clean.endsWith('.ogg') || clean.endsWith('.ogv')) return 'video/ogg';
+    if (clean.endsWith('.mov')) return 'video/quicktime';
+    if (clean.endsWith('.mp4') || clean.endsWith('.m4v')) return 'video/mp4';
+    return '';
+  }
+
+  function appendVideoLoadHint(container, src) {
+    if (!src) return;
+    const hint = createEl('p', 'sectionNote', `If the video is not visible, verify the file path and format: ${src}`);
+    hint.style.marginTop = '8px';
+    container.appendChild(hint);
   }
 
   function renderProjectPage(data, target) {
