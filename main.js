@@ -24,19 +24,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function initReveal(){
   const targets = document.querySelectorAll("section, .card, .featuredCard");
-  targets.forEach(el => el.classList.add("reveal"));
+  if (targets.length === 0) return;
 
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add("in");
-      else entry.target.classList.remove("in");
-    });
-  }, {
-    threshold: 0.18,
-    rootMargin: "0px 0px -10% 0px"
+  const viewportH = window.innerHeight || document.documentElement.clientHeight || 0;
+
+  targets.forEach(el => {
+    const tooTall = viewportH > 0 && el.offsetHeight > viewportH * 2.4;
+    if (tooTall) {
+      // Avoid hiding very tall sections (ex: long media pages) that can fail strict IO ratios.
+      el.classList.remove("reveal");
+      el.classList.add("in");
+      return;
+    }
+
+    el.classList.add("reveal");
   });
 
-  targets.forEach(el => io.observe(el));
+  const io = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("in");
+      // One-way reveal keeps content visible and avoids re-triggering slow reanimations.
+      observer.unobserve(entry.target);
+    });
+  }, {
+    threshold: 0.08,
+    rootMargin: "0px 0px -5% 0px"
+  });
+
+  targets.forEach(el => {
+    if (el.classList.contains("reveal")) io.observe(el);
+  });
 }
 
 function initCarousel(){
