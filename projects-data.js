@@ -159,4 +159,23 @@ window.PROJECTS_DATA = [
     showProjectsPage: true,
     projectsOrder: 8
   }
+  ,{
+     slug: "colors",
+    title: "colors",
+    href: "projects/colors.html",
+    description: "End-of-year 2.5D project built in UE5 with Blueprint gameplay systems, camera travelling logic, UI/UX flows, and cinematic typewriter sequences.",
+    thumbnail: "assets/media/steamhouse/bt.png",
+    thumbLabel: "UE5",
+    status: "In Progress",
+    category: "gameplay",
+    pills: ["UE5", "Blueprint", "UI/UX"],
+    tags: ["ue5", "ui"],
+    showFeaturedRow: false,
+    featuredOrder: 99,
+    showHomeUe: true,
+    homeUeOrder: 5,
+    showProjectsPage: true,
+    projectsOrder: 8
+  
+  }
 ];
