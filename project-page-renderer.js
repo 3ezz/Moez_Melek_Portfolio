@@ -144,24 +144,22 @@
     projectGrid.appendChild(overviewCard);
     projectGrid.appendChild(roleCard);
 
-    const mediaCard = createEl('div', 'panelCard');
-    mediaCard.style.gridColumn = '1 / -1';
-    mediaCard.appendChild(createEl('h2', 'sectionTitle', data.mediaTitle || 'Media'));
-    if (data.mediaNote) mediaCard.appendChild(createEl('p', 'sectionNote', data.mediaNote));
+    const mediaSectionTitle = data.mediaTitle || 'Media';
 
     (data.mediaItems || []).forEach((item, index) => {
+      const mediaCard = createEl('div', 'panelCard');
+      mediaCard.style.gridColumn = '1 / -1';
+
+      if (index === 0) {
+        mediaCard.appendChild(createEl('h2', 'sectionTitle', mediaSectionTitle));
+        if (data.mediaNote) mediaCard.appendChild(createEl('p', 'sectionNote', data.mediaNote));
+      }
+
       mediaCard.appendChild(createEl('h2', 'sectionTitle', item.title || `Screenshot ${index + 1}`));
       if (item.note) mediaCard.appendChild(createEl('p', 'sectionNote', item.note));
       mediaCard.appendChild(createMediaNode(item));
-
-      if (index < data.mediaItems.length - 1) {
-        const spacer = createEl('div');
-        spacer.style.height = '10px';
-        mediaCard.appendChild(spacer);
-      }
+      projectGrid.appendChild(mediaCard);
     });
-
-    projectGrid.appendChild(mediaCard);
     target.appendChild(projectGrid);
   }
 
