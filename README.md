@@ -258,6 +258,30 @@ Expected payload shape:
 }
 ```
 
+
+### Data model (coherent visitor journey)
+The Cloudflare schema is now split into 3 tables:
+- `analytics_visitors`: one row per unique `visitor_id` (first seen / last seen)
+- `analytics_sessions`: one row per `session_id` tied to a visitor
+- `analytics_events`: one row per tracked action (`page_view`, click, scroll, exit)
+
+This lets you answer: "which visitor did what, in which session, and in what order?"
+
+Example query: full journey for one visitor
+```sql
+SELECT
+  e.timestamp,
+  e.event,
+  COALESCE(e.path, e.from_path) AS from_path,
+  e.to_path,
+  e.percent,
+  e.seconds_on_page,
+  e.session_id
+FROM analytics_events e
+WHERE e.visitor_id = 'visitor_xxx'
+ORDER BY e.timestamp ASC;
+```
+
 ### 3) View flow/journey
 Once your endpoint stores events, you can build tables/charts for:
 - Top pages (`page_view`)
@@ -311,7 +335,7 @@ git pull
    - Open your portfolio and click through pages.
    - Check Worker logs: `npx wrangler tail`
    - Query D1 for latest events:
-     - `npx wrangler d1 execute portfolio_analytics --remote --command "SELECT event, path, to_path, timestamp FROM analytics_events ORDER BY timestamp DESC LIMIT 20;"`
+     - `npx wrangler d1 execute portfolio_analytics --remote --command "SELECT event, visitor_id, session_id, path, to_path, timestamp FROM analytics_events ORDER BY timestamp DESC LIMIT 20;"`
 
 This gives you visitor flow (entry page → pages viewed → clicked destination), plus time-on-page and scroll depth.
 

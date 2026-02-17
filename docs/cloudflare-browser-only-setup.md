@@ -38,7 +38,9 @@ Important routes implemented by the Worker:
 Open D1 query editor and paste/run all SQL from:
 - `docs/cloudflare-d1-schema.sql`
 
-This creates table `analytics_events` and indexes.
+This creates visitor/session/event tables and indexes.
+
+If you already created the old single-table schema, run this script again so new `analytics_visitors` and `analytics_sessions` tables are created.
 
 ## 4) Deploy Worker
 In Worker editor, click **Deploy**.
@@ -64,7 +66,7 @@ Then redeploy your website.
 4. In D1 query editor run:
 
 ```sql
-SELECT event, path, to_path, timestamp
+SELECT event, visitor_id, session_id, path, to_path, timestamp
 FROM analytics_events
 ORDER BY timestamp DESC
 LIMIT 20;
