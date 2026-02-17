@@ -8,8 +8,8 @@ window.PROJECT_PAGE_DATA = {
   lead: "[2-3 lines that summarize what the project is, what you built, and why it matters.]",
 
   demo: {
-    title: "Dialogue Demo",
-    note: "[Short explanation of what this demo video showcases.]",
+    title: "Gameplay Demo",
+    note: "[Short explanation of what this gameplay video showcases.]",
     videoSrc: "../assets/media/[project-slug]/demo.mp4",
     poster: "../assets/media/[project-slug]/demo-poster.jpg",
     mimeType: "video/mp4",
@@ -37,7 +37,7 @@ window.PROJECT_PAGE_DATA = {
   tools: ["[Tool 1]", "[Tool 2]", "[Tool 3]"],
 
   mediaTitle: "Media",
-  mediaNote: "[Optional note about the screenshots/videos section.]",
+  mediaNote: "[Optional note about the screenshots/videos section. Each media item is rendered in a separate card.]",
   mediaItems: [
     {
       type: "image",
