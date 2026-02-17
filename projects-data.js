@@ -160,22 +160,21 @@ window.PROJECTS_DATA = [
     projectsOrder: 9
   }
   ,{
-     slug: "colors",
-    title: "colors",
+    slug: "colors",
+    title: "Colors — Prototype FPS",
     href: "projects/colors.html",
-    description: "End-of-year 2.5D project built in UE5 with Blueprint gameplay systems, camera travelling logic, UI/UX flows, and cinematic typewriter sequences.",
-    thumbnail: "assets/media/steamhouse/bt.png",
+    description: "UE5 FPS prototype inspired by color-control gameplay: shoot color balloons and dynamically transform the environment.",
+    thumbnail: "assets/icons/card-thumbnail-placeholder.svg",
     thumbLabel: "UE5",
-    status: "In Progress",
+    status: "Prototype",
     category: "gameplay",
-    pills: ["UE5", "Blueprint", "UI/UX"],
+    pills: ["UE5", "FPS", "Prototype"],
     tags: ["ue5", "ui"],
     showFeaturedRow: false,
     featuredOrder: 99,
     showHomeUe: true,
-    homeUeOrder: 5,
+    homeUeOrder: 6,
     showProjectsPage: true,
     projectsOrder: 10
-  
   }
 ];
