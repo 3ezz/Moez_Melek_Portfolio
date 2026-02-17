@@ -20,6 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ===== Burger menu =====
   initBurgerMenu();
+
+  // ===== Visitor analytics =====
+  initAnalytics();
 });
 
 function initReveal(){
@@ -260,4 +263,142 @@ function initProjectCards(){
     // Default to visible on the all-projects page unless explicitly turned off.
     renderCards(allProjectsGrid, sortByOrder(data.filter(p => p.showProjectsPage !== false), "projectsOrder"), true);
   }
+}
+
+
+function initAnalytics(){
+  const cfg = getAnalyticsConfig();
+  if (!cfg.endpoint) {
+    if (cfg.debug) console.warn("Analytics disabled: set ANALYTICS_ENDPOINT in main.js.");
+    return;
+  }
+
+  const sessionId = getSessionId();
+  const visitorId = getVisitorId();
+  const startPath = window.location.pathname + window.location.search + window.location.hash;
+
+  trackAnalyticsEvent("page_view", {
+    path: startPath,
+    title: document.title,
+    referrer: document.referrer || "direct",
+    visitorId,
+    sessionId
+  }, cfg);
+
+  trackScrollDepth(cfg, visitorId, sessionId);
+  trackNavigationClicks(cfg, visitorId, sessionId);
+
+  window.addEventListener("beforeunload", () => {
+    const secondsOnPage = Math.max(0, Math.round((Date.now() - sessionId.createdAt) / 1000));
+    trackAnalyticsEvent("page_exit", {
+      path: window.location.pathname + window.location.search + window.location.hash,
+      secondsOnPage,
+      visitorId,
+      sessionId: sessionId.id
+    }, cfg, true);
+  });
+}
+
+function getAnalyticsConfig(){
+  return {
+    endpoint: "",
+    debug: false,
+    site: "Moez_Melek_Portfolio"
+  };
+}
+
+function getVisitorId(){
+  const key = "mm_visitor_id";
+  const existing = localStorage.getItem(key);
+  if (existing) return existing;
+
+  const created = `visitor_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
+  localStorage.setItem(key, created);
+  return created;
+}
+
+function getSessionId(){
+  return {
+    id: `session_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+    createdAt: Date.now()
+  };
+}
+
+function trackNavigationClicks(cfg, visitorId, sessionId){
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("a[href]");
+    if (!link) return;
+
+    const href = link.getAttribute("href") || "";
+    if (!href || href.startsWith("javascript:")) return;
+
+    const isExternal = /^https?:\/\//i.test(href) && !href.includes(window.location.host);
+    trackAnalyticsEvent("navigation_click", {
+      fromPath: window.location.pathname + window.location.search + window.location.hash,
+      to: href,
+      text: (link.textContent || "").trim().slice(0, 120),
+      isExternal,
+      visitorId,
+      sessionId: sessionId.id
+    }, cfg);
+  });
+}
+
+function trackScrollDepth(cfg, visitorId, sessionId){
+  const marks = [25, 50, 75, 100];
+  const sent = new Set();
+
+  function onScroll(){
+    const scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
+    const viewport = window.innerHeight || document.documentElement.clientHeight || 0;
+    const fullHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, 1);
+    const percent = Math.min(100, Math.round(((scrollTop + viewport) / fullHeight) * 100));
+
+    marks.forEach((mark) => {
+      if (percent < mark || sent.has(mark)) return;
+      sent.add(mark);
+      trackAnalyticsEvent("scroll_depth", {
+        path: window.location.pathname + window.location.search + window.location.hash,
+        percent: mark,
+        visitorId,
+        sessionId: sessionId.id
+      }, cfg);
+    });
+
+    if (sent.size === marks.length) {
+      window.removeEventListener("scroll", onScroll);
+    }
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+}
+
+function trackAnalyticsEvent(eventName, data, cfg, preferBeacon = false){
+  const payload = {
+    event: eventName,
+    site: cfg.site,
+    timestamp: new Date().toISOString(),
+    userAgent: navigator.userAgent,
+    ...data
+  };
+
+  const body = JSON.stringify(payload);
+  if (cfg.debug) console.log("analytics", payload);
+
+  if (preferBeacon && navigator.sendBeacon) {
+    const blob = new Blob([body], { type: "application/json" });
+    navigator.sendBeacon(cfg.endpoint, blob);
+    return;
+  }
+
+  fetch(cfg.endpoint, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body,
+    keepalive: true,
+    mode: "cors"
+  }).catch((err) => {
+    if (cfg.debug) console.warn("analytics failed", err);
+  });
 }
