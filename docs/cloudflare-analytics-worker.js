@@ -1,5 +1,18 @@
 /**
  * Cloudflare Worker: portfolio analytics collector
+ *
+ * Deploy with:
+ *   npm create cloudflare@latest portfolio-analytics
+ *   (choose Worker only, JavaScript)
+ *   replace src/index.js with this file content
+ *   npx wrangler d1 create portfolio_analytics
+ *   npx wrangler deploy
+ *
+ * In wrangler.toml, bind D1:
+ * [[d1_databases]]
+ * binding = "DB"
+ * database_name = "portfolio_analytics"
+ * database_id = "<your-d1-id>"
  */
 
 export default {
