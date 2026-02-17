@@ -210,3 +210,62 @@ python3 -m http.server 4173
 Then open:
 - `http://127.0.0.1:4173/index.html`
 - `http://127.0.0.1:4173/projects.html`
+
+---
+
+## Visitor tracking (who visits + what they open)
+
+A built-in tracking system is now available in `main.js`.
+
+It records:
+- `page_view` (page path, title, referrer)
+- `navigation_click` (where a visitor clicked next)
+- `scroll_depth` (25/50/75/100)
+- `page_exit` (time spent before leaving)
+
+### 1) Turn it on
+Open `main.js` and set the analytics config in `getAnalyticsConfig()`:
+
+```js
+function getAnalyticsConfig(){
+  return {
+    endpoint: "https://YOUR-ENDPOINT.example.com/track",
+    debug: false,
+    site: "Moez_Melek_Portfolio"
+  };
+}
+```
+
+- `endpoint` must accept `POST` JSON.
+- Keep `debug: true` while testing to print events in the browser console.
+
+### 2) Create a receiver
+Use any webhook/data pipeline you like (for example: n8n webhook, Supabase Edge Function, Cloudflare Worker, custom backend).
+
+Expected payload shape:
+
+```json
+{
+  "event": "page_view",
+  "site": "Moez_Melek_Portfolio",
+  "timestamp": "2026-02-17T12:00:00.000Z",
+  "userAgent": "...",
+  "path": "/projects/colors.html",
+  "title": "Colors — Moez Melek",
+  "referrer": "direct",
+  "visitorId": "visitor_...",
+  "sessionId": "session_..."
+}
+```
+
+### 3) View flow/journey
+Once your endpoint stores events, you can build tables/charts for:
+- Top pages (`page_view`)
+- Entry pages (`referrer = direct`)
+- Visitor journey (`navigation_click.fromPath -> navigation_click.to`)
+- Engagement (`scroll_depth`, `page_exit.secondsOnPage`)
+
+### Notes
+- Visitor IDs are anonymous IDs stored in browser localStorage.
+- This is basic analytics, not user authentication/identity tracking.
+- Add a privacy notice/cookie notice if required for your region.
