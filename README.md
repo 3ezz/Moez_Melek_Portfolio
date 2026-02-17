@@ -316,3 +316,4 @@ git pull
 This gives you visitor flow (entry page → pages viewed → clicked destination), plus time-on-page and scroll depth.
 
 If deploy fails with "uploading a directory of assets", use the troubleshooting steps in `docs/cloudflare-browser-only-setup.md` (section 8) and remove `assets` from Wrangler config for this API-only Worker.
+If deploy fails with `Missing entry-point to Worker script or to assets directory`, use `docs/cloudflare-browser-only-setup.md` (section 9), or run `npx wrangler deploy src/index.js`.

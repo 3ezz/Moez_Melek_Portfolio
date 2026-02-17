@@ -122,3 +122,25 @@ npx wrangler deploy
 ```
 
 If it still fails, ensure you are running deploy from the Worker project folder (where `wrangler.jsonc` lives).
+
+
+## 9) Fix the "Missing entry-point to Worker script" error
+If deploy logs show:
+- `Missing entry-point to Worker script or to assets directory`
+
+this means Wrangler cannot find a Worker entry (`main`) in your current folder.
+
+### Quick fix
+- Run deploy from the folder that contains your Worker `wrangler.jsonc` + `src/index.js`.
+- Or deploy with explicit entry-point:
+
+```bash
+npx wrangler deploy src/index.js
+```
+
+### Repo-level fix included here
+This repo now includes:
+- `wrangler.jsonc` with `main: "src/index.js"`
+- `src/index.js` that exports the collector from `docs/cloudflare-analytics-worker.js`
+
+So `npx wrangler deploy` from repo root now has a valid entry-point.
