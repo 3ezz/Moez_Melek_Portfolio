@@ -16,14 +16,15 @@ This portfolio now uses a **single source of truth** for project cards so you ca
 Create a new file in `projects/`, for example:
 - `projects/my-new-project.html`
 
-Use `projects/_template.html` as the base template for every new project page.
+Use `projects/new-project.html` as the base template for every new project page.
+(`projects/_template.html` is deprecated and has been removed to avoid duplicate templates.)
 
 ### Step 1.1) Use the `content.js` template (recommended, no hardcoded sections)
 If you want to keep the same Roadkill/Steam House layout and only fill content:
 
 1. Copy `projects/new-project.html` to `projects/<your-slug>.html`.
 2. Copy `projects/_project-content-template.js` to `projects/<your-slug>.content.js`.
-3. Fill `window.PROJECT_PAGE_DATA` in `projects/<your-slug>.content.js` (hero, demo, overview, features, role, tools, media).
+3. Fill `window.PROJECT_PAGE_DATA` in `projects/<your-slug>.content.js` (hero, gameplay demo, overview, features, role, tools, media).
 4. In `projects/<your-slug>.html`, update script include from `./new-project.content.js` to `./<your-slug>.content.js`.
 5. Keep `../project-page-renderer.js` in the page so content is rendered automatically.
 
@@ -162,8 +163,9 @@ This keeps card updates data-driven and media assets organized by project.
 Follow these exact steps in order:
 
 1. **Create the page file**
-   - Copy `projects/_template.html`
+   - Copy `projects/new-project.html`
    - Save as `projects/roadkill.html`
+   - Replace `./new-project.content.js` with `./roadkill.content.js`
 2. **Fill the page content**
    - Update `<title>`, meta description, hero summary, features, role, tools, media placeholders.
 3. **Create media folder**
@@ -208,3 +210,107 @@ python3 -m http.server 4173
 Then open:
 - `http://127.0.0.1:4173/index.html`
 - `http://127.0.0.1:4173/projects.html`
+
+---
+
+## Visitor tracking (who visits + what they open)
+
+A built-in tracking system is now available in `main.js`.
+
+It records:
+- `page_view` (page path, title, referrer)
+- `navigation_click` (where a visitor clicked next)
+- `scroll_depth` (25/50/75/100)
+- `page_exit` (time spent before leaving)
+
+### 1) Turn it on
+Open `main.js` and set the analytics config in `getAnalyticsConfig()`:
+
+```js
+function getAnalyticsConfig(){
+  return {
+    endpoint: "https://YOUR-ENDPOINT.example.com/track",
+    debug: false,
+    site: "Moez_Melek_Portfolio"
+  };
+}
+```
+
+- `endpoint` must accept `POST` JSON.
+- Keep `debug: true` while testing to print events in the browser console.
+
+### 2) Create a receiver
+Use any webhook/data pipeline you like (for example: n8n webhook, Supabase Edge Function, Cloudflare Worker, custom backend).
+
+Expected payload shape:
+
+```json
+{
+  "event": "page_view",
+  "site": "Moez_Melek_Portfolio",
+  "timestamp": "2026-02-17T12:00:00.000Z",
+  "userAgent": "...",
+  "path": "/projects/colors.html",
+  "title": "Colors — Moez Melek",
+  "referrer": "direct",
+  "visitorId": "visitor_...",
+  "sessionId": "session_..."
+}
+```
+
+### 3) View flow/journey
+Once your endpoint stores events, you can build tables/charts for:
+- Top pages (`page_view`)
+- Entry pages (`referrer = direct`)
+- Visitor journey (`navigation_click.fromPath -> navigation_click.to`)
+- Engagement (`scroll_depth`, `page_exit.secondsOnPage`)
+
+### Notes
+- Visitor IDs are anonymous IDs stored in browser localStorage.
+- This is basic analytics, not user authentication/identity tracking.
+- Add a privacy notice/cookie notice if required for your region.
+
+
+### Cloudflare setup (recommended)
+
+If you're using Cloudflare, follow this exact flow:
+
+**Important:** you can manage this in **either** of these ways:
+- **Git-based workflow**: edit code locally, commit/push to GitHub, then deploy Worker with Wrangler.
+- **Cloudflare Dashboard workflow**: edit Worker directly in Cloudflare dashboard and run D1 commands via Wrangler/console.
+
+Use whichever is easier for you — both are valid.
+
+If you are using only the browser/dashboard (no local CLI), follow:
+- `docs/cloudflare-browser-only-setup.md`
+
+If you think you are one push behind, run:
+```bash
+git fetch origin
+git pull
+```
+
+1. **Create a Worker**
+   - `npm create cloudflare@latest portfolio-analytics`
+   - Choose **Worker only** + **JavaScript**.
+2. **Paste collector code**
+   - Replace your Worker file with `docs/cloudflare-analytics-worker.js`.
+3. **Create D1 database**
+   - `npx wrangler d1 create portfolio_analytics`
+   - Add the DB binding in `wrangler.toml` as shown in `docs/cloudflare-analytics-worker.js` comments.
+4. **Create analytics table**
+   - `npx wrangler d1 execute portfolio_analytics --remote --file=docs/cloudflare-d1-schema.sql`
+5. **Deploy Worker**
+   - `npx wrangler deploy`
+   - Your endpoint will be: `https://<worker-name>.<subdomain>.workers.dev/track`
+6. **Connect portfolio frontend**
+   - In `main.js` → `getAnalyticsConfig()`, set:
+     - `endpoint` to your `/track` URL
+     - `debug: true` for first tests, then `false`
+7. **Test events**
+   - Open your portfolio and click through pages.
+   - Check Worker logs: `npx wrangler tail`
+   - Query D1 for latest events:
+     - `npx wrangler d1 execute portfolio_analytics --remote --command "SELECT event, path, to_path, timestamp FROM analytics_events ORDER BY timestamp DESC LIMIT 20;"`
+
+This gives you visitor flow (entry page → pages viewed → clicked destination), plus time-on-page and scroll depth.
