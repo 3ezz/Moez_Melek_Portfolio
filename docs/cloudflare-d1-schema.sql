@@ -132,3 +132,30 @@ LEFT JOIN analytics_events e
 WHERE v.visitor_id = 'visitor_xxx'
 ORDER BY s.started_at_utc ASC, e.timestamp ASC;
 
+/*views 360:*/
+
+SELECT
+  v.visitor_id,
+  v.first_seen_utc AS visitor_first_seen_utc,
+  v.last_seen_utc  AS visitor_last_seen_utc,
+  v.first_referrer,
+  v.first_country,
+  s.session_id,
+  s.started_at_utc AS session_started_at_utc,
+  s.last_seen_utc  AS session_last_seen_utc,
+  s.landing_path,
+  s.landing_referrer,
+  e.timestamp      AS event_timestamp_utc,
+  e.event,
+  COALESCE(e.path, e.from_path) AS from_path,
+  e.to_path,
+  e.link_text,
+  e.percent,
+  e.seconds_on_page,
+  e.ip_country
+FROM analytics_visitors v
+LEFT JOIN analytics_sessions s ON s.visitor_id = v.visitor_id
+LEFT JOIN analytics_events e   ON e.session_id = s.session_id
+WHERE v.visitor_id = 'PASTE_REAL_VISITOR_ID_HERE'
+ORDER BY s.started_at_utc ASC, e.timestamp ASC;
+
