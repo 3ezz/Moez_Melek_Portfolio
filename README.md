@@ -314,3 +314,5 @@ git pull
      - `npx wrangler d1 execute portfolio_analytics --remote --command "SELECT event, path, to_path, timestamp FROM analytics_events ORDER BY timestamp DESC LIMIT 20;"`
 
 This gives you visitor flow (entry page → pages viewed → clicked destination), plus time-on-page and scroll depth.
+
+If deploy fails with "uploading a directory of assets", use the troubleshooting steps in `docs/cloudflare-browser-only-setup.md` (section 8) and remove `assets` from Wrangler config for this API-only Worker.

@@ -74,3 +74,51 @@ You should see events like:
 
 ## 7) Final production toggle
 After validation, set `debug: false` in `main.js` and redeploy.
+
+
+## 8) Fix the "uploading a directory of assets" deploy error
+If Wrangler shows this message:
+- "If you are uploading a directory of assets..."
+- then deploy fails
+
+you are likely deploying with an assets config on a Worker that should be API-only.
+
+### Fix A (recommended): remove assets config
+In your Worker project's `wrangler.jsonc` (or `wrangler.toml`), remove any `assets` block.
+For this analytics collector, you only need routes like `/track` and `/health`.
+
+### Fix B: force a clean Worker-only config
+Create/replace `wrangler.jsonc` with this minimal config (or copy from `docs/wrangler-worker-only.jsonc`):
+
+```jsonc
+{
+  "name": "portfolio-analytics",
+  "main": "src/index.js",
+  "compatibility_date": "2026-02-17"
+}
+```
+
+If using D1, keep/add your binding:
+
+```jsonc
+{
+  "name": "portfolio-analytics",
+  "main": "src/index.js",
+  "compatibility_date": "2026-02-17",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "portfolio_analytics",
+      "database_id": "<your-d1-id>"
+    }
+  ]
+}
+```
+
+Then run deploy again:
+
+```bash
+npx wrangler deploy
+```
+
+If it still fails, ensure you are running deploy from the Worker project folder (where `wrangler.jsonc` lives).
