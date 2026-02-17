@@ -302,9 +302,9 @@ function initAnalytics(){
 function getAnalyticsConfig(){
   return {
     // Example: "https://portfolio-analytics.<your-subdomain>.workers.dev/track"
-    endpoint: "",
+    endpoint: "https://moez-melek-portfolio.moezmaleksk.workers.dev/track",
     // Set to true while wiring Cloudflare Worker + browser debugging.
-    debug: false,
+    debug: true,
     site: "Moez_Melek_Portfolio"
   };
 }
