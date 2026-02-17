@@ -269,3 +269,48 @@ Once your endpoint stores events, you can build tables/charts for:
 - Visitor IDs are anonymous IDs stored in browser localStorage.
 - This is basic analytics, not user authentication/identity tracking.
 - Add a privacy notice/cookie notice if required for your region.
+
+
+### Cloudflare setup (recommended)
+
+If you're using Cloudflare, follow this exact flow:
+
+**Important:** you can manage this in **either** of these ways:
+- **Git-based workflow**: edit code locally, commit/push to GitHub, then deploy Worker with Wrangler.
+- **Cloudflare Dashboard workflow**: edit Worker directly in Cloudflare dashboard and run D1 commands via Wrangler/console.
+
+Use whichever is easier for you — both are valid.
+
+If you are using only the browser/dashboard (no local CLI), follow:
+- `docs/cloudflare-browser-only-setup.md`
+
+If you think you are one push behind, run:
+```bash
+git fetch origin
+git pull
+```
+
+1. **Create a Worker**
+   - `npm create cloudflare@latest portfolio-analytics`
+   - Choose **Worker only** + **JavaScript**.
+2. **Paste collector code**
+   - Replace your Worker file with `docs/cloudflare-analytics-worker.js`.
+3. **Create D1 database**
+   - `npx wrangler d1 create portfolio_analytics`
+   - Add the DB binding in `wrangler.toml` as shown in `docs/cloudflare-analytics-worker.js` comments.
+4. **Create analytics table**
+   - `npx wrangler d1 execute portfolio_analytics --remote --file=docs/cloudflare-d1-schema.sql`
+5. **Deploy Worker**
+   - `npx wrangler deploy`
+   - Your endpoint will be: `https://<worker-name>.<subdomain>.workers.dev/track`
+6. **Connect portfolio frontend**
+   - In `main.js` → `getAnalyticsConfig()`, set:
+     - `endpoint` to your `/track` URL
+     - `debug: true` for first tests, then `false`
+7. **Test events**
+   - Open your portfolio and click through pages.
+   - Check Worker logs: `npx wrangler tail`
+   - Query D1 for latest events:
+     - `npx wrangler d1 execute portfolio_analytics --remote --command "SELECT event, path, to_path, timestamp FROM analytics_events ORDER BY timestamp DESC LIMIT 20;"`
+
+This gives you visitor flow (entry page → pages viewed → clicked destination), plus time-on-page and scroll depth.

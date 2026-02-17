@@ -301,7 +301,9 @@ function initAnalytics(){
 
 function getAnalyticsConfig(){
   return {
+    // Example: "https://portfolio-analytics.<your-subdomain>.workers.dev/track"
     endpoint: "",
+    // Set to true while wiring Cloudflare Worker + browser debugging.
     debug: false,
     site: "Moez_Melek_Portfolio"
   };
