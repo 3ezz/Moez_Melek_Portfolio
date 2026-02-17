@@ -46,6 +46,10 @@ In Worker editor, click **Deploy**.
 Your endpoint will look like:
 `https://<worker-name>.<subdomain>.workers.dev/track`
 
+Quick check after deploy:
+- Open `https://<worker-name>.<subdomain>.workers.dev/` (should return a JSON "Worker is running" message)
+- Open `https://<worker-name>.<subdomain>.workers.dev/health` (should return `{ ok: true }`)
+
 ## 5) Connect site frontend
 In `main.js`, edit `getAnalyticsConfig()`:
 - set `endpoint` to your Worker `/track` URL

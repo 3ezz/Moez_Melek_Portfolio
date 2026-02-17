@@ -30,6 +30,22 @@ export default {
       return json({ ok: true, service: 'portfolio-analytics' });
     }
 
+
+    if (url.pathname === '/' && request.method === 'GET') {
+      return json({
+        ok: true,
+        service: 'portfolio-analytics',
+        message: 'Worker is running. Send POST requests to /track and GET /health for status.'
+      });
+    }
+
+    if (url.pathname === '/track' && request.method === 'GET') {
+      return json({
+        ok: true,
+        message: 'Use POST /track with analytics JSON payload.'
+      });
+    }
+
     if (url.pathname !== '/track' || request.method !== 'POST') {
       return json({ error: 'Not found' }, 404);
     }
