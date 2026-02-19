@@ -314,6 +314,27 @@ git fetch origin
 git pull
 ```
 
+### Avoid merge conflicts (quick routine)
+
+If conflicts keep happening, it usually means your branch has local commits while `main` moved forward.
+Use this routine before starting new edits:
+
+```bash
+git checkout main
+git pull origin main
+git checkout <your-branch>
+git rebase main
+```
+
+If this repository has no remote configured yet, add it first:
+
+```bash
+git remote add origin <your-github-repo-url>
+git fetch origin
+```
+
+Then continue with the rebase flow above.
+
 1. **Create a Worker**
    - `npm create cloudflare@latest portfolio-analytics`
    - Choose **Worker only** + **JavaScript**.
