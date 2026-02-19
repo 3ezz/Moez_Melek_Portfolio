@@ -48,10 +48,15 @@
       video.style.borderRadius = '14px';
       video.style.border = '1px solid rgba(255,255,255,.12)';
       video.style.background = 'rgba(0,0,0,.18)';
+
+      const sourcePath = resolveVideoSource(item);
+      const sourceType = item.mimeType || inferVideoMimeType(sourcePath);
       const source = document.createElement('source');
-      source.src = item.src;
-      source.type = item.mimeType || 'video/mp4';
+      source.src = sourcePath;
+      if (sourceType) source.type = sourceType;
       video.appendChild(source);
+
+      video.appendChild(document.createTextNode('Your browser does not support the video tag.'));
       mediaBox.appendChild(video);
     } else {
       const img = document.createElement('img');
@@ -67,6 +72,27 @@
     return mediaGrid;
   }
 
+  function resolveVideoSource(entry) {
+    return (entry && (entry.videoSrc || entry.src || entry.video || entry.url)) || '';
+  }
+
+  function inferVideoMimeType(src) {
+    if (!src || typeof src !== 'string') return '';
+    const clean = src.split('?')[0].split('#')[0].toLowerCase();
+    if (clean.endsWith('.webm')) return 'video/webm';
+    if (clean.endsWith('.ogg') || clean.endsWith('.ogv')) return 'video/ogg';
+    if (clean.endsWith('.mov')) return 'video/quicktime';
+    if (clean.endsWith('.mp4') || clean.endsWith('.m4v')) return 'video/mp4';
+    return '';
+  }
+
+  function appendVideoLoadHint(container, src) {
+    if (!src) return;
+    const hint = createEl('p', 'sectionNote', `If the video is not visible, verify the file path and format: ${src}`);
+    hint.style.marginTop = '8px';
+    container.appendChild(hint);
+  }
+
   function renderProjectPage(data, target) {
     const heroSection = createEl('section', 'projectHero');
     const backLink = createEl('a', 'backLink', data.backLabel || '← Back to Projects');
@@ -80,28 +106,39 @@
     heroSection.appendChild(createEl('p', 'projectLead', data.lead));
     target.appendChild(heroSection);
 
-    if (data.demo && data.demo.videoSrc) {
+    if (data.demo) {
       const demoSection = document.createElement('section');
       const demoCard = createEl('div', 'panelCard');
       demoCard.appendChild(createEl('h2', 'sectionTitle', data.demo.title || 'Demo'));
       if (data.demo.note) demoCard.appendChild(createEl('p', 'sectionNote', data.demo.note));
 
-      const video = document.createElement('video');
-      video.controls = true;
-      video.playsInline = true;
-      video.preload = 'metadata';
-      if (data.demo.poster) video.poster = data.demo.poster;
-      video.style.width = '100%';
-      video.style.borderRadius = '14px';
-      video.style.border = '1px solid rgba(255,255,255,.12)';
-      video.style.background = 'rgba(0,0,0,.18)';
-      video.style.marginTop = '8px';
+      const demoVideoSource = resolveVideoSource(data.demo);
 
-      const source = document.createElement('source');
-      source.src = data.demo.videoSrc;
-      source.type = data.demo.mimeType || 'video/mp4';
-      video.appendChild(source);
-      demoCard.appendChild(video);
+      if (demoVideoSource) {
+        const video = document.createElement('video');
+        video.controls = true;
+        video.playsInline = true;
+        video.preload = 'metadata';
+        if (data.demo.poster) video.poster = data.demo.poster;
+        video.style.width = '100%';
+        video.style.borderRadius = '14px';
+        video.style.border = '1px solid rgba(255,255,255,.12)';
+        video.style.background = 'rgba(0,0,0,.18)';
+        video.style.marginTop = '8px';
+
+        const source = document.createElement('source');
+        source.src = demoVideoSource;
+        const sourceType = data.demo.mimeType || inferVideoMimeType(demoVideoSource);
+        if (sourceType) source.type = sourceType;
+        video.appendChild(source);
+        video.appendChild(document.createTextNode('Your browser does not support the video tag.'));
+        demoCard.appendChild(video);
+        appendVideoLoadHint(demoCard, demoVideoSource);
+      } else {
+        const missingDemo = createEl('p', 'sectionNote', 'Add demo.videoSrc (or demo.src) to display gameplay footage in this section.');
+        missingDemo.style.marginTop = '8px';
+        demoCard.appendChild(missingDemo);
+      }
 
       if (Array.isArray(data.demo.pills) && data.demo.pills.length) {
         demoCard.appendChild(createPillRow(data.demo.pills));
@@ -144,24 +181,22 @@
     projectGrid.appendChild(overviewCard);
     projectGrid.appendChild(roleCard);
 
-    const mediaCard = createEl('div', 'panelCard');
-    mediaCard.style.gridColumn = '1 / -1';
-    mediaCard.appendChild(createEl('h2', 'sectionTitle', data.mediaTitle || 'Media'));
-    if (data.mediaNote) mediaCard.appendChild(createEl('p', 'sectionNote', data.mediaNote));
+    const mediaSectionTitle = data.mediaTitle || 'Media';
 
     (data.mediaItems || []).forEach((item, index) => {
+      const mediaCard = createEl('div', 'panelCard');
+      mediaCard.style.gridColumn = '1 / -1';
+
+      if (index === 0) {
+        mediaCard.appendChild(createEl('h2', 'sectionTitle', mediaSectionTitle));
+        if (data.mediaNote) mediaCard.appendChild(createEl('p', 'sectionNote', data.mediaNote));
+      }
+
       mediaCard.appendChild(createEl('h2', 'sectionTitle', item.title || `Screenshot ${index + 1}`));
       if (item.note) mediaCard.appendChild(createEl('p', 'sectionNote', item.note));
       mediaCard.appendChild(createMediaNode(item));
-
-      if (index < data.mediaItems.length - 1) {
-        const spacer = createEl('div');
-        spacer.style.height = '10px';
-        mediaCard.appendChild(spacer);
-      }
+      projectGrid.appendChild(mediaCard);
     });
-
-    projectGrid.appendChild(mediaCard);
     target.appendChild(projectGrid);
   }
 
