@@ -282,7 +282,7 @@ function initAnalytics(){
     title: document.title,
     referrer: document.referrer || "direct",
     visitorId,
-    sessionId
+    sessionId: sessionId.id
   }, cfg);
 
   trackScrollDepth(cfg, visitorId, sessionId);
