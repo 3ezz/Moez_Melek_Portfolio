@@ -4,53 +4,53 @@ window.PROJECT_PAGE_DATA = {
   backHref: "../index.html#projects",
   backLabel: "← Back to Projects",
 
-  heroPills: ["Template", "Reusable", "Draft"],
-  lead: "This page uses the same visual layout as Steam House and Roadkill, but all content is sourced from a single fillable data object.",
+  heroPills: ["Engine", "Prototype", "Status"],
+  lead: "Use this file as the new default page template: update only this data object to build a complete project page with hero, gameplay demo, overview, role, tools, and separated media cards.",
 
   demo: {
-    title: "Main Demo",
-    note: "Replace this with your project trailer or gameplay walkthrough.",
-    videoSrc: "../assets/media/steamhouse/dialoguesystem.mp4",
-    poster: "../assets/media/steamhouse/dialogue_06s.png",
+    title: "Gameplay Demo",
+    note: "Replace with your own captured gameplay clip.",
+    videoSrc: "../assets/media/roadkill/demo.mp4",
+    poster: "../assets/media/roadkill/shot-01.jpg",
     mimeType: "video/mp4",
-    pills: ["Demo", "Typewriter", "UI Flow"]
+    pills: ["Gameplay", "Prototype", "Iteration"]
   },
 
   overviewTitle: "Overview",
-  overview: "Use this template for faster implementation: edit this one file, keep your layout identical, and avoid hardcoding each section in HTML.",
+  overview: "Keep this section focused on what the project is, the core challenge, and your design/technical objective.",
 
   featuresTitle: "Key Features",
   features: [
-    "Single source of truth for project text and media",
-    "Demo block displayed before overview to match your preferred flow",
-    "Steam House / Roadkill style section notes + media blocks"
+    "Feature 1 — core mechanic or system",
+    "Feature 2 — user-facing interaction or feedback loop",
+    "Feature 3 — implementation detail or innovation"
   ],
 
   roleTitle: "My Role",
   roles: [
-    "Replace this bullet list with your exact responsibilities",
-    "Add implementation details for systems, UI, and polish",
-    "Document what you designed vs integrated"
+    "Responsibility 1 — design ownership",
+    "Responsibility 2 — implementation work",
+    "Responsibility 3 — testing and iteration"
   ],
 
   toolsTitle: "Tools",
   tools: ["Unreal Engine 5", "Blueprint", "UI/UX"],
 
   mediaTitle: "Media",
-  mediaNote: "Swap each path with your own exported assets in assets/media/<your-project-slug>/.",
+  mediaNote: "Each item below is rendered in its own separate panel card.",
   mediaItems: [
     {
       type: "image",
       title: "Screenshot 1",
-      note: "Example screenshot block with note displayed outside the frame.",
-      src: "../assets/media/steamhouse/bt.png",
+      note: "Show a key gameplay moment.",
+      src: "../assets/icons/card-thumbnail-placeholder.svg",
       alt: "Template screenshot 1"
     },
     {
       type: "image",
       title: "Screenshot 2",
-      note: "Second screenshot description in the same polished layout.",
-      src: "../assets/media/steamhouse/bp_dialogue.png",
+      note: "Show another system/feature view.",
+      src: "../assets/icons/card-thumbnail-placeholder.svg",
       alt: "Template screenshot 2"
     }
   ]

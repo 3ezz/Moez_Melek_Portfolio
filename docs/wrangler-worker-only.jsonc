@@ -1,0 +1,12 @@
+{
+  "name": "portfolio-analytics",
+  "main": "src/index.js",
+  "compatibility_date": "2026-02-17",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "portfolio_analytics",
+      "database_id": "<your-d1-id>"
+    }
+  ]
+}
