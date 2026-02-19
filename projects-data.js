@@ -3,12 +3,12 @@ window.PROJECTS_DATA = [
     slug: "hannibal",
     title: "Hannibal",
     href: "projects/hannibal.html",
-    description: "Educational AR experience for kids (6–12). UI, mechanics, AR modules, audio.",
+    description: "Educational AR game for kids (6–12) with story-driven progression, map missions, and AR interactions.",
     thumbnail: "assets/icons/card-thumbnail-placeholder.svg",
     thumbLabel: "UNITY",
     status: "Case Study",
     category: "education",
-    pills: ["Unity", "AR", "UI/UX"],
+    pills: ["Unity", "AR", "Educational"],
     tags: ["unity", "ar", "ui"],
     showFeaturedRow: true,
     featuredOrder: 1,
@@ -21,7 +21,7 @@ window.PROJECTS_DATA = [
     slug: "djerba",
     title: "Djerba View AR",
     href: "projects/djerba.html",
-    description: "Tourism-focused AR app. UI + 3D + AR integration + gallery module.",
+    description: "Tourism-focused AR app for Djerba: activities browsing, location details, gallery, and AR views.",
     thumbnail: "assets/icons/card-thumbnail-placeholder.svg",
     thumbLabel: "UNITY",
     status: "Published",
@@ -39,7 +39,7 @@ window.PROJECTS_DATA = [
     slug: "ar-memory",
     title: "AR Memory",
     href: "projects/ar-memory.html",
-    description: "Postcards come to life in AR. Clean UI flow + AR trigger moments.",
+    description: "Postcards and monuments come to life through AR scan flows, educational detail pages, and gallery UX.",
     thumbnail: "assets/icons/card-thumbnail-placeholder.svg",
     thumbLabel: "UNITY",
     status: "Prototype",
@@ -52,6 +52,24 @@ window.PROJECTS_DATA = [
     homeUnityOrder: 3,
     showProjectsPage: true,
     projectsOrder: 3
+  },
+  {
+    slug: "bartdo",
+    title: "B.ART.DO",
+    href: "projects/bartdo.html",
+    description: "Guided AR museum visit prototype for Bardo artifacts with tutorial-led navigation and educational interaction.",
+    thumbnail: "assets/icons/card-thumbnail-placeholder.svg",
+    thumbLabel: "UNITY",
+    status: "Prototype",
+    category: "education",
+    pills: ["Unity", "AR", "Museum"],
+    tags: ["unity", "ar", "ui"],
+    showFeaturedRow: false,
+    featuredOrder: 99,
+    showHomeUnity: true,
+    homeUnityOrder: 4,
+    showProjectsPage: true,
+    projectsOrder: 4
   },
   {
     slug: "ue-interaction",
@@ -69,7 +87,7 @@ window.PROJECTS_DATA = [
     showHomeUe: true,
     homeUeOrder: 1,
     showProjectsPage: true,
-    projectsOrder: 4
+    projectsOrder: 5
   },
   {
     slug: "steamhouse-dialogue-ui",
@@ -85,7 +103,7 @@ window.PROJECTS_DATA = [
     showFeaturedRow: true,
     featuredOrder: 4,
     showProjectsPage: false,
-    projectsOrder: 5
+    projectsOrder: 6
   },
   {
     slug: "ue-hud",
@@ -103,7 +121,7 @@ window.PROJECTS_DATA = [
     showHomeUe: true,
     homeUeOrder: 3,
     showProjectsPage: true,
-    projectsOrder: 6
+    projectsOrder: 7
   },
   {
     slug: "ue-lighting",
@@ -121,7 +139,7 @@ window.PROJECTS_DATA = [
     showHomeUe: true,
     homeUeOrder: 2,
     showProjectsPage: true,
-    projectsOrder: 7
+    projectsOrder: 8
   },
   {
     slug: "ue-mechanics",
@@ -139,9 +157,9 @@ window.PROJECTS_DATA = [
     showHomeUe: true,
     homeUeOrder: 4,
     showProjectsPage: true,
-    projectsOrder: 8
-  }
-  ,{
+    projectsOrder: 9
+  },
+  {
     slug: "roadkill",
     title: "Roadkill",
     href: "projects/roadkill.html",
@@ -157,25 +175,24 @@ window.PROJECTS_DATA = [
     showHomeUe: true,
     homeUeOrder: 5,
     showProjectsPage: true,
-    projectsOrder: 9
-  }
-  ,{
-     slug: "colors",
-    title: "colors",
+    projectsOrder: 10
+  },
+  {
+    slug: "colors",
+    title: "Colors — Prototype FPS",
     href: "projects/colors.html",
-    description: "End-of-year 2.5D project built in UE5 with Blueprint gameplay systems, camera travelling logic, UI/UX flows, and cinematic typewriter sequences.",
-    thumbnail: "assets/media/steamhouse/bt.png",
+    description: "UE5 FPS prototype inspired by color-control gameplay: shoot color balloons and dynamically transform the environment.",
+    thumbnail: "assets/icons/card-thumbnail-placeholder.svg",
     thumbLabel: "UE5",
-    status: "In Progress",
+    status: "Prototype",
     category: "gameplay",
-    pills: ["UE5", "Blueprint", "UI/UX"],
+    pills: ["UE5", "FPS", "Prototype"],
     tags: ["ue5", "ui"],
     showFeaturedRow: false,
     featuredOrder: 99,
     showHomeUe: true,
-    homeUeOrder: 5,
+    homeUeOrder: 6,
     showProjectsPage: true,
-    projectsOrder: 10
-  
+    projectsOrder: 11
   }
 ];

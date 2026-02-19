@@ -1,75 +1,42 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Djerba View AR — Moez Melek</title>
-<link rel="stylesheet" href="../styles.css?v=3">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Djerba View AR — Moez Melek</title>
+  <meta name="description" content="Djerba View AR tourism-focused mobile AR case study." />
+  <link rel="stylesheet" href="../styles.css?v=3">
 </head>
 
 <body>
-<header>
-  <div class="wrap">
-    <div class="nav">
-      <div class="brand">Moez Melek <small>Game Designer | Unity & Unreal Engine</small></div>
-      <nav class="links">
-        <a href="../index.html">Home</a>
-        <a href="../index.html#projects">Projects</a>
-        <a href="../index.html#about">About</a>
-        <a href="../index.html#contact">Contact</a>
-      </nav>
-    </div>
-  </div>
-</header>
+  <div class="cinematic-bg"></div>
 
-<main class="page">
-  <div class="wrap">
-    <a class="backlink" href="../index.html#projects">← Back to Projects</a>
-
-    <h1 class="pageTitle">Djerba View AR</h1>
-    <p class="sub">Mobile AR experience designed to help tourists discover Djerba through interactive content and a gallery module.</p>
-
-    <div class="panel">
-      <h2>Overview</h2>
-      <p class="sub" style="margin:0;">
-        Users browse places and activities, then view AR-enhanced content for selected locations.
-      </p>
-      <div class="tagRow">
-        <span class="tag">Unity</span><span class="tag">AR</span><span class="tag">Mobile</span><span class="tag">UI/UX</span>
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand">
+          Moez Melek
+          <small>Game Designer | Unity & Unreal Engine</small>
+        </div>
+        <nav class="links">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#projects">Projects</a>
+          <a href="../index.html#about">About</a>
+          <a href="../index.html#contact">Contact</a>
+        </nav>
       </div>
     </div>
+  </header>
 
-    <div class="meta">
-      <div class="panel">
-        <h2>My Role</h2>
-        <ul>
-          <li>UI elements integration</li>
-          <li>3D models integration</li>
-          <li>AR module integration</li>
-          <li>Gallery module development</li>
-        </ul>
-      </div>
-      <div class="panel">
-        <h2>Key Features</h2>
-        <ul>
-          <li>AR-based discovery experiences</li>
-          <li>Gallery / content browsing</li>
-          <li>Tourism-focused information design</li>
-        </ul>
-      </div>
+  <main>
+    <div class="wrap">
+      <div id="projectPageRoot"></div>
+      <footer>© <span id="y"></span> Moez Melek — Portfolio</footer>
     </div>
+  </main>
 
-    <div class="panel">
-      <h2>Media</h2>
-      <p class="sectionNote">Later: add gallery UI screenshots + AR view demo.</p>
-      <div class="gallery">
-        <div class="video">Video (later)</div>
-        <div class="shot">Screenshot</div>
-        <div class="shot">Screenshot</div>
-        <div class="shot">Screenshot</div>
-      </div>
-    </div>
-  </div>
-</main>
+  <script src="./djerba.content.js" defer></script>
+  <script src="../project-page-renderer.js" defer></script>
+  <script src="../main.js?v=3" defer></script>
 </body>
 </html>
