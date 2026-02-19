@@ -2,6 +2,17 @@
 
 This portfolio now uses a **single source of truth** for project cards so you can update content faster.
 
+## Always sync before making/suggesting changes
+
+Before any edits or change suggestions, pull latest updates first:
+
+```bash
+git checkout main
+git pull origin main
+git checkout <your-branch>
+git rebase main
+```
+
 ## Files you need
 
 1. `projects-data.js` → all project card content (title, description, tags, links, labels, where cards appear).
