@@ -46,7 +46,7 @@ window.PROJECT_PAGE_DATA = {
   mediaNote: "Based on the slides you shared. Replace placeholder image paths with exported files (recommended folder: assets/media/hannibal/).",
   mediaItems: [
     { type: "image", title: "Project Intro & Role", note: "Hero slide with project description, genre, and role.", src: "../assets/icons/card-thumbnail-placeholder.svg", alt: "Hannibal intro slide" },
-    { type: "image", title: "Onboarding & AR Activation", note: "Initial UI + AR character reveal from card scan.", src: "../assets/assets/media/hannibal/image_2026-02-26_122837812.png", alt: "Hannibal onboarding and AR" },
+    { type: "image", title: "Onboarding & AR Activation", note: "Initial UI + AR character reveal from card scan.", src: "../assets/media/hannibal/image_2026-02-26_122837812.png", alt: "Hannibal onboarding and AR" },
     { type: "image", title: "Main Menu & Games Screen", note: "Menu structure and mini-games entry points.", src: "../assets/media/hannibal/image_2026-02-26_122732342.png", alt: "Hannibal menu and games" },
     { type: "video", title: "World Map & Mission Unlocks", note: "Progression map with lock/unlock node system.", src: "../assets/media/hannibal/20260226-1144-46.5000449.mp4", alt: "Hannibal mission map" },
     { type: "image", title: "Chapter List & Story Popup", note: "Sequential chapter flow and in-context story panel.", src: "../assets/icons/card-thumbnail-placeholder.svg", alt: "Hannibal chapter screen" },
