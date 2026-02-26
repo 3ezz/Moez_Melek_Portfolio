@@ -1,11 +1,11 @@
 window.PROJECT_PAGE_DATA = {
   title: "Hannibal",
-  metaDescription: "Educational AR game for kids (6–12) about Carthage and Hannibal's heritage, built with Unity and Vuforia.",
+  metaDescription: "Solo-built Unity + Vuforia AR educational game for kids (6–12) about Carthage and Hannibal heritage.",
   backHref: "../index.html#projects",
   backLabel: "← Back to Projects",
 
-  heroPills: ["Unity", "AR", "Educational", "Puzzle", "Adventure"],
-  lead: "Hannibal is an educational AR game for children aged 6–12, created to teach Carthage and Hannibal's heritage through scanning, exploration, and mini-games.",
+  heroPills: ["Unity", "Vuforia", "AR", "Educational", "Kids 6–12"],
+  lead: "Hannibal is a solo-built educational AR game for children aged 6–12, designed to teach Carthage and Hannibal heritage through guided scanning, mini-games, and story-based exploration.",
 
   demo: {
     title: "Gameplay Demo",
@@ -16,27 +16,30 @@ window.PROJECT_PAGE_DATA = {
   pills: ["Kids Experience", "Story Flow", "AR Interaction"]
   },
 
+
   overviewTitle: "Overview",
-  overview: "Built in Unity with Vuforia for AR verification, Hannibal blends history learning with gameplay. Players start from a menu with mini-games (crosswords, family tree, and more), then move into a guided voyage flow where they scan cards in sequence (character, place, time, environment, then map). After validation, the map appears in 3D and can be explored to complete level objectives and unlock story episodes in chronological order.",
+  overview: "The experience starts in a menu containing mini-games such as crosswords and family tree activities. In the Intro section, the player scans the board-game cover and a miniature Hannibal appears to introduce the game. In the Voyage section, the player selects a level and scans cards in this order: character, place, time, environment, then map. After all scans are validated, the map appears in 3D with touch interaction. Players can inspect it or enter first-person exploration to collect required items. Completing each level unlocks a video in the Videos section, progressively revealing Hannibal's story in chronological order.",
 
   featuresTitle: "Key Features",
   features: [
-    "Built for kids 6–12 with child-friendly educational pacing",
-    "AR intro: scan the board game cover to spawn a miniature Hannibal guide",
-    "Menu mini-games including crosswords and family-tree activities",
-    "Voyage mode scanning sequence: character → place → time → environment → map",
-    "Interactive 3D map with pinch/zoom/rotate controls",
-    "Two exploration modes: closed map view or first-person collectible mission",
-    "Collect all required items in a level to unlock the related story video",
-    "Videos section unlocks episodes in chronological story order"
+    "Educational AR experience for kids aged 6–12",
+    "Built solo in Unity with Vuforia marker verification",
+    "Menu mini-games (including crosswords and family tree)",
+    "Intro flow: scan board-game cover to spawn miniature Hannibal guide",
+    "Voyage flow with required scan sequence: character → place → time → environment → map",
+    "3D map interaction using touch controls (pinch/zoom/rotate)",
+    "Two map options: closed-dome map view or first-person exploration mode",
+    "Collect all required level items to unlock story videos",
+    "Videos section unlocks episodes in chronological order"
   ],
 
   roleTitle: "My Role",
   roles: [
-    "Designed and integrated UI screens and kid-friendly user flows",
-    "Implemented AR scan flow and scene transitions in Unity",
-    "Integrated 3D assets, map interaction, and first-person exploration logic",
-    "Built progression systems for objectives, item collection, and video unlocks"
+    "Built the entire app solo (end-to-end) as the only Unity developer/designer",
+    "Designed and implemented UI/UX flows for menu, intro, voyage, and videos sections",
+    "Implemented Vuforia scan-validation logic and progression gating",
+    "Integrated 3D map interactions and first-person collectible gameplay",
+    "Implemented unlock system linking level completion to chronological video episodes"
   ],
 
   toolsTitle: "Tools",

@@ -29,6 +29,7 @@ window.PROJECT_PAGE_DATA = {
 
   roleTitle: "My Role",
   roles: [
+    "Built the entire app solo (end-to-end) as the only Unity developer/designer",
     "Designed and integrated the postcard-to-AR user journey",
     "Implemented Vuforia-based scan verification and AR activation",
     "Integrated 3D monument assets with touch interaction controls",

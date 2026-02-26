@@ -30,6 +30,7 @@ window.PROJECT_PAGE_DATA = {
 
   roleTitle: "My Role",
   roles: [
+    "Built the entire app solo (end-to-end) as the only Unity developer/designer",
     "Designed and integrated tourist-facing UI/navigation flows",
     "Implemented Vuforia-based scan flow for book and card markers",
     "Integrated 3D monument assets and AR scene behavior",
