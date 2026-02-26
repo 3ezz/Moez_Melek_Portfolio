@@ -107,12 +107,15 @@
   }
 
   function getHeroThumbnailSource(data) {
-    return data.heroThumbnail || data.thumbnail || getCardThumbnailForCurrentProject() || '../assets/icons/card-thumbnail-placeholder.svg';
+    return (
+      data.thumbnail ||
+      getCardThumbnailForCurrentProject() ||
+      '../assets/icons/card-thumbnail-placeholder.svg'
+    );
   }
 
   function renderProjectPage(data, target) {
     const heroSection = createEl('section', 'projectHero');
-    heroSection.style.setProperty('--project-hero-image', `url("${getHeroThumbnailSource(data)}")`);
 
     const heroMedia = createEl('div', 'projectHeroMedia');
     const heroImg = document.createElement('img');
