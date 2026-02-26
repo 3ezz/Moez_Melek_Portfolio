@@ -93,25 +93,9 @@
     container.appendChild(hint);
   }
 
-  function getProjectSlugFromPath() {
-    const path = window.location.pathname || '';
-    const fileName = path.split('/').pop() || '';
-    return fileName.replace(/\.html$/i, '');
-  }
-
-  function getCardThumbnailForCurrentProject() {
-    const slug = getProjectSlugFromPath();
-    const projects = Array.isArray(window.PROJECTS_DATA) ? window.PROJECTS_DATA : [];
-    const match = projects.find((project) => project.slug === slug);
-    return match && match.thumbnail ? `../${match.thumbnail}` : '';
-  }
-
   function getHeroThumbnailSource(data) {
-    return (
-      data.thumbnail ||
-      getCardThumbnailForCurrentProject() ||
-      '../assets/icons/card-thumbnail-placeholder.svg'
-    );
+    const firstImage = (data.mediaItems || []).find((item) => item && item.type !== 'video' && item.src);
+    return data.heroThumbnail || data.thumbnail || (firstImage && firstImage.src) || '../assets/icons/card-thumbnail-placeholder.svg';
   }
 
   function renderProjectPage(data, target) {
