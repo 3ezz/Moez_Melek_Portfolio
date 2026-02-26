@@ -116,6 +116,7 @@
 
   function renderProjectPage(data, target) {
     const heroSection = createEl('section', 'projectHero');
+    heroSection.style.setProperty('--project-hero-image', `url("${getHeroThumbnailSource(data)}")`);
 
     const heroMedia = createEl('div', 'projectHeroMedia');
     const heroImg = document.createElement('img');
