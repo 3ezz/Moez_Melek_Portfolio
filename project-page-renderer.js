@@ -95,6 +95,7 @@
 
   function renderProjectPage(data, target) {
     const heroSection = createEl('section', 'projectHero');
+
     const backLink = createEl('a', 'backLink', data.backLabel || '← Back to Projects');
     backLink.href = data.backHref || '../index.html#projects';
     heroSection.appendChild(backLink);
