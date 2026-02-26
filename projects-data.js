@@ -21,7 +21,7 @@ window.PROJECTS_DATA = [
     slug: "djerba",
     title: "Djerba View AR",
     href: "projects/djerba.html",
-    description: "Tourism-focused AR app for Djerba: activities browsing, location details, gallery, and AR views.",
+    description: "Unity + Vuforia tourism AR app for Djerba: scan a companion book/cards to explore monuments in 3D and read local traditions.",
     thumbnail: "assets/icons/card-thumbnail-placeholder.svg",
     thumbLabel: "UNITY",
     status: "Published",
