@@ -39,7 +39,7 @@ window.PROJECTS_DATA = [
     slug: "ar-memory",
     title: "AR Memory",
     href: "projects/ar-memory.html",
-    description: "Postcards and monuments come to life through AR scan flows, educational detail pages, and gallery UX.",
+    description: "Unity + Vuforia AR companion app where scanned postcards reveal interactive 3D historical monuments and photo capture.",
     thumbnail: "assets/icons/card-thumbnail-placeholder.svg",
     thumbLabel: "UNITY",
     status: "Prototype",
