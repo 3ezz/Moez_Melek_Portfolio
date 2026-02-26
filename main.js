@@ -30,6 +30,15 @@ function initReveal(){
   const targets = Array.from(new Set(Array.from(rawTargets))).filter(el => !el.classList.contains("projectGrid"));
   if (targets.length === 0) return;
 
+  const isProjectDetailPage = !!document.getElementById("projectPageRoot");
+  if (isProjectDetailPage) {
+    targets.forEach(el => {
+      el.classList.remove("reveal");
+      el.classList.add("in");
+    });
+    return;
+  }
+
   const viewportH = window.innerHeight || document.documentElement.clientHeight || 0;
 
   targets.forEach(el => {
