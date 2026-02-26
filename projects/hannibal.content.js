@@ -11,7 +11,9 @@ window.PROJECT_PAGE_DATA = {
     title: "Gameplay Demo",
     note: "Show the complete experience: intro scan, level setup, 3D map interaction, first-person exploration, and episode unlock progression.",
     videoSrc: "../assets/media/hannibal/AQNQ-Z801bqHRSdYGp89lQE4bzTg3Bvj2uJC4ODcWX4qaFO95H0FGgmxaSmqt0eRqyOC7plYbRiJoa1kpV-5nhKFEfKzitVAnBliCk0Ugac9IB-3cr-7vVTn_zjkwQ.mp4",
-    pills: ["Kids Experience", "Story Flow", "AR Interaction"]
+  poster: "../assets/media/hannibal/AQNQ-Z801bqHRSdYGp89lQE4bzTg3Bvj2uJC4ODcWX4qaFO95H0FGgmxaSmqt0eRqyOC7plYbRiJoa1kpV-5nhKFEfKzitVAnBliCk0Ugac9IB-3cr-7vVTn_zjkwQ.mp4",
+    mimeType: "video/mp4",
+  pills: ["Kids Experience", "Story Flow", "AR Interaction"]
   },
 
   overviewTitle: "Overview",
