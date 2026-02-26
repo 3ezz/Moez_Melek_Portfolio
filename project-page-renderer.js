@@ -107,11 +107,7 @@
   }
 
   function getHeroThumbnailSource(data) {
-    return (
-      data.thumbnail ||
-      getCardThumbnailForCurrentProject() ||
-      '../assets/icons/card-thumbnail-placeholder.svg'
-    );
+    return data.heroThumbnail || data.thumbnail || getCardThumbnailForCurrentProject() || '../assets/icons/card-thumbnail-placeholder.svg';
   }
 
   function renderProjectPage(data, target) {
