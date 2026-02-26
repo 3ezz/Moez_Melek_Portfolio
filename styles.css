@@ -476,6 +476,19 @@ section{padding:26px 0}
 
 
 .projectHero{padding:34px 0 6px}
+.projectHeroMedia{
+  margin-bottom:14px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  overflow:hidden;
+  background:rgba(0,0,0,.2);
+}
+.projectHeroImg{
+  width:100%;
+  max-height:360px;
+  object-fit:cover;
+  display:block;
+}
 .backLink{display:inline-block;margin-bottom:14px;color:var(--muted);font-size:14px}
 .backLink:hover{color:var(--text)}
 

@@ -106,7 +106,7 @@
     return match && match.thumbnail ? `../${match.thumbnail}` : '';
   }
 
-  function getStickyThumbnailSource(data) {
+  function getHeroThumbnailSource(data) {
     return (
       data.thumbnail ||
       getCardThumbnailForCurrentProject() ||
@@ -116,6 +116,17 @@
 
   function renderProjectPage(data, target) {
     const heroSection = createEl('section', 'projectHero');
+
+    const heroMedia = createEl('div', 'projectHeroMedia');
+    const heroImg = document.createElement('img');
+    heroImg.className = 'projectHeroImg';
+    heroImg.src = getHeroThumbnailSource(data);
+    heroImg.alt = `${data.title} thumbnail`;
+    heroImg.loading = 'lazy';
+    heroImg.decoding = 'async';
+    heroMedia.appendChild(heroImg);
+    heroSection.appendChild(heroMedia);
+
     const backLink = createEl('a', 'backLink', data.backLabel || '← Back to Projects');
     backLink.href = data.backHref || '../index.html#projects';
     heroSection.appendChild(backLink);
