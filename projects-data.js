@@ -3,7 +3,7 @@ window.PROJECTS_DATA = [
     slug: "hannibal",
     title: "Hannibal",
     href: "projects/hannibal.html",
-    description: "Educational AR game for kids (6–12) with story-driven progression, map missions, and AR interactions.",
+    description: "Educational Unity + Vuforia AR game for kids (6–12) about Carthage and Hannibal, with scan-based progression and mini-games.",
     thumbnail: "assets/icons/card-thumbnail-placeholder.svg",
     thumbLabel: "UNITY",
     status: "Case Study",
