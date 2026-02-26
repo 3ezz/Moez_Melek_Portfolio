@@ -93,6 +93,27 @@
     container.appendChild(hint);
   }
 
+  function getProjectSlugFromPath() {
+    const path = window.location.pathname || '';
+    const fileName = path.split('/').pop() || '';
+    return fileName.replace(/\.html$/i, '');
+  }
+
+  function getCardThumbnailForCurrentProject() {
+    const slug = getProjectSlugFromPath();
+    const projects = Array.isArray(window.PROJECTS_DATA) ? window.PROJECTS_DATA : [];
+    const match = projects.find((project) => project.slug === slug);
+    return match && match.thumbnail ? `../${match.thumbnail}` : '';
+  }
+
+  function getStickyThumbnailSource(data) {
+    return (
+      data.thumbnail ||
+      getCardThumbnailForCurrentProject() ||
+      '../assets/icons/card-thumbnail-placeholder.svg'
+    );
+  }
+
   function renderProjectPage(data, target) {
     const heroSection = createEl('section', 'projectHero');
     const backLink = createEl('a', 'backLink', data.backLabel || '← Back to Projects');
@@ -148,7 +169,19 @@
       target.appendChild(demoSection);
     }
 
-    const projectGrid = createEl('section', 'projectGrid');
+    const projectBody = createEl('section', 'projectBody');
+    const stickyThumbCard = createEl('aside', 'projectThumbSticky panelCard');
+    const stickyThumbImg = document.createElement('img');
+    stickyThumbImg.className = 'projectThumbStickyImg';
+    stickyThumbImg.src = getStickyThumbnailSource(data);
+    stickyThumbImg.alt = `${data.title} thumbnail`;
+    stickyThumbImg.loading = 'lazy';
+    stickyThumbImg.decoding = 'async';
+    stickyThumbCard.appendChild(createEl('h2', 'sectionTitle', 'Project Thumbnail'));
+    stickyThumbCard.appendChild(stickyThumbImg);
+    projectBody.appendChild(stickyThumbCard);
+
+    const projectGrid = createEl('div', 'projectGrid');
 
     const overviewCard = createEl('div', 'panelCard');
     overviewCard.appendChild(createEl('h2', 'sectionTitle', data.overviewTitle || 'Overview'));
@@ -197,7 +230,8 @@
       mediaCard.appendChild(createMediaNode(item));
       projectGrid.appendChild(mediaCard);
     });
-    target.appendChild(projectGrid);
+    projectBody.appendChild(projectGrid);
+    target.appendChild(projectBody);
   }
 
   function initProjectTemplatePage() {
