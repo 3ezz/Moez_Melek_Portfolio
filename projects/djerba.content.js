@@ -1,40 +1,44 @@
 window.PROJECT_PAGE_DATA = {
   title: "Djerba View AR",
-  metaDescription: "Tourism-focused AR mobile app helping visitors discover Djerba activities and locations.",
+  metaDescription: "Unity + Vuforia AR tourism app that helps visitors discover Djerba island through a scannable book, monument cards, and local tradition articles.",
   backHref: "../index.html#projects",
   backLabel: "← Back to Projects",
 
   heroPills: ["Unity", "AR", "Tourism", "Mobile", "Gallery"],
-  lead: "Djerba View AR is a mobile application that helps tourists discover Djerba's places, activities, and local culture through AR-enhanced content and a browsable information gallery.",
+  lead: "Djerba View AR is a tourism companion app where visitors scan a dedicated book (plus visual cards) to reveal Djerba monuments in 3D and explore local culture content.",
 
   demo: {
     title: "Product Demo",
-    note: "Add your app walkthrough video here: login flow, activities list, location details, and AR camera interaction.",
+    note: "Show the complete tourist flow: browse attractions, scan the book/cards, view monuments in 3D AR, and read local traditions articles.",
     videoSrc: "",
     pills: ["Tourism UX", "AR Info Layers", "Gallery Flow"]
   },
 
   overviewTitle: "Overview",
-  overview: "The experience combines a tourism directory with AR modules. Users can browse activities, open detailed location cards, and trigger AR-enhanced visuals for selected spots.",
+  overview: "This project follows the same scan-to-AR concept, adapted for tourism. Instead of standalone postcards, users interact with a themed Djerba book containing scannable visuals and cards. Scanning launches AR monument visualization in 3D, while the app also includes an article section to read about island traditions, culture, and local heritage.",
 
   featuresTitle: "Key Features",
   features: [
-    "Branded home/login screens for quick onboarding",
-    "Activity and location cards with contextual text content",
-    "AR camera module for marker-based interactions",
-    "Integrated gallery and media browsing"
+    "Tourism-first flow focused on discovering Djerba island",
+    "Scannable companion book with image markers",
+    "Additional scan cards to visualize monuments in AR",
+    "Unity + Vuforia marker verification for stable AR activation",
+    "Interactive 3D monument viewing with touch controls",
+    "Articles section covering local traditions and cultural context",
+    "Gallery/media browsing to revisit captured content"
   ],
 
   roleTitle: "My Role",
   roles: [
-    "Integrated UI components and navigation flow",
-    "Integrated 3D assets and AR scenes",
-    "Developed/connected the gallery module",
-    "Implemented tourism content browsing UX"
+    "Built the entire app solo (end-to-end) as the only Unity developer/designer",
+    "Designed and integrated tourist-facing UI/navigation flows",
+    "Implemented Vuforia-based scan flow for book and card markers",
+    "Integrated 3D monument assets and AR scene behavior",
+    "Implemented article reading and cultural content browsing modules"
   ],
 
   toolsTitle: "Tools",
-  tools: ["Unity", "C#", "AR Foundation", "UI/UX Design", "3D Integration"],
+  tools: ["Unity", "C#", "Vuforia", "AR", "UI/UX Design", "3D Integration"],
 
   mediaTitle: "Media",
   mediaNote: "Derived from your reference slides. Replace each placeholder with exported screenshot files under assets/media/djerba/.",

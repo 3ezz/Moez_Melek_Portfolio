@@ -1,40 +1,43 @@
 window.PROJECT_PAGE_DATA = {
   title: "AR Memory",
-  metaDescription: "AR Memory postcard app where monuments and stories come to life via mobile augmented reality.",
+  metaDescription: "AR Memory is a Unity + Vuforia AR companion app for printed postcards that reveals historical monuments in interactive 3D.",
   backHref: "../index.html#projects",
   backLabel: "← Back to Projects",
 
   heroPills: ["Unity", "AR", "Education", "Postcards", "Mobile UX"],
-  lead: "AR Memory is a mobile app where printed postcards trigger interactive AR content, helping users discover monuments through storytelling, visuals, and simple navigation.",
+  lead: "AR Memory accompanies postcards sold separately: scan a postcard in the app to instantly reveal a 3D historical monument you can inspect and capture.",
 
   demo: {
     title: "Experience Demo",
-    note: "Add a full demo showing postcard scan, AR start flow, 3D monument display, and info page transitions.",
+    note: "Show the full flow: postcard scan, 3D monument appearance, pinch/rotate/zoom interaction, and photo capture to gallery.",
     videoSrc: "",
     pills: ["Scan to AR", "Monument Stories", "Mobile Interaction"]
   },
 
   overviewTitle: "Overview",
-  overview: "This project focuses on the moment when static printed content becomes interactive. Users browse cards, scan markers, and move between AR visualization and educational text.",
+  overview: "The experience turns physical postcards into interactive AR memories. After scanning a postcard marker, a 3D monument appears in real space. Users can pinch, scroll, and rotate to inspect the model from different angles, then capture photos they can revisit inside the in-app gallery or save directly to the phone gallery.",
 
   featuresTitle: "Key Features",
   features: [
-    "Card feed with category filters and scan actions",
-    "AR start flow connected to 3D monument visualization",
-    "Detail mode with cultural/historical text",
-    "Gallery + single-item view for captured media"
+    "Companion app flow for postcards sold separately",
+    "Scan-to-AR activation using Vuforia marker verification",
+    "Historical monuments appear as interactive 3D models",
+    "Touch controls: pinch to zoom and scroll/drag to rotate",
+    "In-app photo capture from AR view",
+    "Saved photos available in app gallery and phone gallery"
   ],
 
   roleTitle: "My Role",
   roles: [
-    "Designed and integrated UI flow from feed to AR scene",
-    "Integrated AR modules and marker interactions",
-    "Integrated 3D assets and information panels",
-    "Implemented gallery navigation and media interaction"
+    "Built the entire app solo (end-to-end) as the only Unity developer/designer",
+    "Designed and integrated the postcard-to-AR user journey",
+    "Implemented Vuforia-based scan verification and AR activation",
+    "Integrated 3D monument assets with touch interaction controls",
+    "Built photo capture and gallery save/view workflows"
   ],
 
   toolsTitle: "Tools",
-  tools: ["Unity", "C#", "AR Foundation", "UI/UX Design", "3D Integration"],
+  tools: ["Unity", "C#", "Vuforia", "AR", "UI/UX Design", "3D Integration"],
 
   mediaTitle: "Media",
   mediaNote: "Based on your AR Memory slides. Replace placeholder paths with real exports under assets/media/ar-memory/.",

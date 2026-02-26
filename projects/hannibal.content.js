@@ -1,40 +1,46 @@
 window.PROJECT_PAGE_DATA = {
   title: "Hannibal",
-  metaDescription: "Educational AR mobile game for children (6–12) focused on Hannibal's story and interactive learning.",
+  metaDescription: "Solo-built Unity + Vuforia AR educational game for kids (6–12) about Carthage and Hannibal heritage.",
   backHref: "../index.html#projects",
   backLabel: "← Back to Projects",
 
-  heroPills: ["Unity", "AR", "Educational", "Puzzle", "Adventure"],
-  lead: "Hannibal is an educational mobile game designed for children aged 6–12 to learn heritage through interactive missions, AR moments, and story-driven gameplay.",
+  heroPills: ["Unity", "Vuforia", "AR", "Educational", "Kids 6–12"],
+  lead: "Hannibal is a solo-built educational AR game for children aged 6–12, designed to teach Carthage and Hannibal heritage through guided scanning, mini-games, and story-based exploration.",
 
   demo: {
     title: "Gameplay Demo",
-    note: "Use this slot for the full gameplay walkthrough video (menu navigation, AR scan, map progression, and mission completion).",
+    note: "Show this complete flow: intro cover scan, voyage card sequence, 3D map interaction, first-person collection mission, and episode unlock in Videos.",
     videoSrc: "",
-    pills: ["Kids Experience", "Story Flow", "AR Interaction"]
+    pills: ["Scan Flow", "3D Map", "Story Progression"]
   },
 
   overviewTitle: "Overview",
-  overview: "The project combines cultural storytelling with lightweight game mechanics. The player progresses through chapter-style content, map objectives, and interactive challenges while learning historical context.",
+  overview: "The experience starts in a menu containing mini-games such as crosswords and family tree activities. In the Intro section, the player scans the board-game cover and a miniature Hannibal appears to introduce the game. In the Voyage section, the player selects a level and scans cards in this order: character, place, time, environment, then map. After all scans are validated, the map appears in 3D with touch interaction. Players can inspect it or enter first-person exploration to collect required items. Completing each level unlocks a video in the Videos section, progressively revealing Hannibal's story in chronological order.",
 
   featuresTitle: "Key Features",
   features: [
-    "Arabic-first UI flow and child-friendly navigation",
-    "Map progression with unlockable mission nodes",
-    "AR scan modules connected to story and activities",
-    "Interactive mini-games and chapter-based learning"
+    "Educational AR experience for kids aged 6–12",
+    "Built solo in Unity with Vuforia marker verification",
+    "Menu mini-games (including crosswords and family tree)",
+    "Intro flow: scan board-game cover to spawn miniature Hannibal guide",
+    "Voyage flow with required scan sequence: character → place → time → environment → map",
+    "3D map interaction using touch controls (pinch/zoom/rotate)",
+    "Two map options: closed-dome map view or first-person exploration mode",
+    "Collect all required level items to unlock story videos",
+    "Videos section unlocks episodes in chronological order"
   ],
 
   roleTitle: "My Role",
   roles: [
-    "Designed and integrated UI screens and interaction flows",
-    "Integrated 3D models and scene presentation",
-    "Implemented gameplay mechanics and progression logic",
-    "Composed/assembled audio direction (music + SFX) and integrated AR modules"
+    "Built the entire app solo (end-to-end) as the only Unity developer/designer",
+    "Designed and implemented UI/UX flows for menu, intro, voyage, and videos sections",
+    "Implemented Vuforia scan-validation logic and progression gating",
+    "Integrated 3D map interactions and first-person collectible gameplay",
+    "Implemented unlock system linking level completion to chronological video episodes"
   ],
 
   toolsTitle: "Tools",
-  tools: ["Unity", "C#", "AR Foundation", "UI/UX Design", "3D Integration", "Audio Integration"],
+  tools: ["Unity", "C#", "Vuforia", "AR", "UI/UX Design", "3D Integration", "Game Progression Design"],
 
   mediaTitle: "Media",
   mediaNote: "Based on the slides you shared. Replace placeholder image paths with exported files (recommended folder: assets/media/hannibal/).",
