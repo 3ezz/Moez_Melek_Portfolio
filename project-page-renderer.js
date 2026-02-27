@@ -164,10 +164,19 @@
       target.appendChild(demoSection);
     }
 
-    const projectGrid = createEl('section', 'projectGrid');
-    projectGrid.classList.add('in');
-    projectGrid.style.opacity = '1';
-    projectGrid.style.transform = 'none';
+    const projectBody = createEl('section', 'projectBody');
+    const stickyThumbCard = createEl('aside', 'projectThumbSticky panelCard');
+    const stickyThumbImg = document.createElement('img');
+    stickyThumbImg.className = 'projectThumbStickyImg';
+    stickyThumbImg.src = getStickyThumbnailSource(data);
+    stickyThumbImg.alt = `${data.title} thumbnail`;
+    stickyThumbImg.loading = 'lazy';
+    stickyThumbImg.decoding = 'async';
+    stickyThumbCard.appendChild(createEl('h2', 'sectionTitle', 'Project Thumbnail'));
+    stickyThumbCard.appendChild(stickyThumbImg);
+    projectBody.appendChild(stickyThumbCard);
+
+    const projectGrid = createEl('div', 'projectGrid');
 
     const overviewCard = createEl('div', 'panelCard in');
     overviewCard.appendChild(createEl('h2', 'sectionTitle', data.overviewTitle || 'Overview'));
@@ -217,7 +226,8 @@
       mediaCard.appendChild(createMediaNode(item));
       projectGrid.appendChild(mediaCard);
     });
-    target.appendChild(projectGrid);
+    projectBody.appendChild(projectGrid);
+    target.appendChild(projectBody);
   }
 
   function initProjectTemplatePage() {
