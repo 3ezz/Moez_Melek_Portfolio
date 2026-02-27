@@ -99,6 +99,18 @@
     backLink.href = data.backHref || '../index.html#projects';
     heroSection.appendChild(backLink);
 
+    const heroThumbnailSrc = data.heroThumbnail || data.thumbnail;
+    if (heroThumbnailSrc) {
+      const thumbWrap = createEl('div', 'projectHeroThumb');
+      const thumbImg = document.createElement('img');
+      thumbImg.src = heroThumbnailSrc;
+      thumbImg.alt = data.heroThumbnailAlt || `${data.title} thumbnail`;
+      thumbImg.loading = 'eager';
+      thumbImg.decoding = 'async';
+      thumbWrap.appendChild(thumbImg);
+      heroSection.appendChild(thumbWrap);
+    }
+
     const titleRow = createEl('div', 'projectTitleRow');
     titleRow.appendChild(createEl('h1', 'projectTitle', data.title));
     titleRow.appendChild(createPillRow(data.heroPills));

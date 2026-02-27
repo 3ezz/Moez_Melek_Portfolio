@@ -3,6 +3,8 @@ window.PROJECT_PAGE_DATA = {
   metaDescription: "Solo-built Unity + Vuforia AR educational game for kids (6–12) about Carthage and Hannibal heritage.",
   backHref: "../index.html#projects",
   backLabel: "← Back to Projects",
+  heroThumbnail: "../assets/media/hannibal/thumb2.jpg",
+
 
   heroPills: ["Unity", "Vuforia", "AR", "Educational", "Kids 6–12"],
   lead: "Hannibal is a solo-built educational AR game for children aged 6–12, designed to teach Carthage and Hannibal heritage through guided scanning, mini-games, and story-based exploration.",

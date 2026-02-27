@@ -479,6 +479,22 @@ section{padding:26px 0}
 .backLink{display:inline-block;margin-bottom:14px;color:var(--muted);font-size:14px}
 .backLink:hover{color:var(--text)}
 
+.projectHeroThumb{
+  width:min(100%, 720px);
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(0,0,0,.18);
+  margin-bottom:12px;
+}
+
+.projectHeroThumb img{
+  width:100%;
+  display:block;
+  object-fit:cover;
+  max-height:360px;
+}
+
 .projectTitleRow{
   display:flex;
   align-items:flex-end;

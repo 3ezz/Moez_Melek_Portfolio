@@ -3,6 +3,8 @@ window.PROJECT_PAGE_DATA = {
   metaDescription: "Prototype FPS inspired by color-based territory control: shoot paint balloons, reclaim space, and dynamically change the environment.",
   backHref: "../index.html#projects",
   backLabel: "← Back to Projects",
+  heroThumbnail: "../assets/icons/card-thumbnail-placeholder.svg",
+
 
   heroPills: ["Unreal Engine 5", "FPS Prototype", "Gameplay Systems"],
   lead: "Colors is a prototype FPS inspired by Splatoon-style territory control. The core loop is simple: shoot color balloons, spread your color through space, and use that visual control of the map as a gameplay advantage.",
