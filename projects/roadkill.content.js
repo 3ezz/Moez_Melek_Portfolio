@@ -46,7 +46,10 @@ window.PROJECT_PAGE_DATA = {
     { type: "image", title: "Cinematic", note: "In-game typewriter cinematic text with UI readability pass.", src: "../assets/media/roadkill/shot-04.jpg", alt: "Roadkill cinematic UI" },
     { type: "image", title: "In Game", note: "In-game snapshot.", src: "../assets/media/roadkill/shot-05.jpg", alt: "Roadkill in-game shot" },
     { type: "image", title: "Ability", note: "Ability Blueprint.", src: "../assets/media/roadkill/shot-06.jpg", alt: "Roadkill ability blueprint" },
+    { type: "video", title: "Ability", note: "Ability video.", src: "../assets/media/roadkill/Video Project 9.mp4", alt: "Roadkill ability blueprint" },
     { type: "image", title: "Torch", note: "Torch Blueprint.", src: "../assets/media/roadkill/shot-07.jpg", alt: "Roadkill torch blueprint" },
-    { type: "image", title: "Climb Up", note: "Climb Blueprint.", src: "../assets/media/roadkill/shot-08.jpg", alt: "Roadkill climb blueprint" }
+    { type: "video", title: "Torch", note: "torch video.", src: "../assets/media/roadkill/20260226-1009-32.0861119 (2).mp4", alt: "Roadkill torch video" },
+    { type: "image", title: "Climb Up", note: "Climb Blueprint.", src: "../assets/media/roadkill/shot-08.jpg", alt: "Roadkill climb blueprint" },
+    { type: "video", title: "Climb Up", note: "Climb up snippet.", src: "../assets/media/roadkill/20260227-1037-49.5997750.mp4", alt: "Roadkill climb video" }
   ]
 };
