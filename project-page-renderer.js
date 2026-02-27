@@ -93,8 +93,14 @@
     container.appendChild(hint);
   }
 
+  function getStickyThumbnailSource(data) {
+    const firstImage = (data.mediaItems || []).find((item) => item && item.type !== 'video' && item.src);
+    return data.heroThumbnail || data.thumbnail || (firstImage && firstImage.src) || '../assets/icons/card-thumbnail-placeholder.svg';
+  }
+
   function renderProjectPage(data, target) {
     const heroSection = createEl('section', 'projectHero');
+
     const backLink = createEl('a', 'backLink', data.backLabel || '← Back to Projects');
     backLink.href = data.backHref || '../index.html#projects';
     heroSection.appendChild(backLink);
