@@ -210,6 +210,15 @@ Follow these exact steps in order:
 
 ---
 
+
+## Cache behavior during active edits
+
+This repo now includes a Cloudflare Pages `_headers` file that disables aggressive browser caching for HTML/CSS/JS.
+
+That means new deploys should be visible on normal refresh (without needing a new browser window).
+
+If you still see stale content, clear Cloudflare cache once in dashboard and hard refresh once (`Ctrl/Cmd+Shift+R`).
+
 ## Local preview
 
 Run:
