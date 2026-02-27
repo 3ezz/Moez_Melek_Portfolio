@@ -12,7 +12,9 @@ window.PROJECT_PAGE_DATA = {
   demo: {
     title: "Prototype Demo",
     note: "Add your prototype walkthrough video showing onboarding, museum route/tutorial, and AR object interaction.",
-    videoSrc: "",
+    videoSrc: "../assets/media/bartdo/20260227-1216-09.3612122.mp4",
+    poster: "../assets/media/bartdo/20260227-1216-09.3612122.mp4",
+    mimeType: "video/mp4",
     pills: ["Guided Tour", "AR Content", "Museum UX"]
   },
 
@@ -41,8 +43,8 @@ window.PROJECT_PAGE_DATA = {
   mediaTitle: "Media",
   mediaNote: "Initial set based on the reference slides you provided. Replace placeholders with final captures under assets/media/bartdo/.",
   mediaItems: [
-    { type: "image", title: "Project Intro", note: "Branding and concept/role summary slide.", src: "../assets/icons/card-thumbnail-placeholder.svg", alt: "B.ART.DO intro" },
-    { type: "image", title: "Welcome / Login Screen", note: "Onboarding screen and entry CTA.", src: "../assets/icons/card-thumbnail-placeholder.svg", alt: "B.ART.DO welcome" },
-    { type: "image", title: "Tutorial / Navigation Overlay", note: "Map-like navigation with tutorial card.", src: "../assets/icons/card-thumbnail-placeholder.svg", alt: "B.ART.DO tutorial" }
+    { type: "video", title: "Project Intro", note: "Branding and concept/role summary slide.", src: "../assets/media/bartdo/20260227-1216-09.3612122.mp4", alt: "B.ART.DO intro" },
+    { type: "video", title: "In_Game prototype", note: "Onboarding screen and entry CTA.", src: "../assets/media/bartdo/Composition 1.mp4", alt: "B.ART.DO welcome" },
+    { type: "image", title: "Tutorial / Navigation Overlay", note: "Map-like navigation with tutorial card.", src: "../assets/media/bartdo/image_2026-02-27_131745637.png", alt: "B.ART.DO tutorial" }
   ]
 };
