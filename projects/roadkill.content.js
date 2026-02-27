@@ -3,7 +3,7 @@ window.PROJECT_PAGE_DATA = {
   metaDescription: "Roadkill is an end-of-year 2.5D UE5 project focused on Blueprint gameplay systems, camera travelling, evolving level design, and full UI/UX implementation.",
   backHref: "../projects.html",
   backLabel: "← Back to Projects",
-  heroThumbnail: "../assets/media/roadkill/shot-01.jpg",
+  heroThumbnail: "../assets/media/roadkill/image_2026-02-27_115425149.png",
 
   heroPills: ["UE5", "2.5D", "Blueprint", "In Progress"],
   lead: "Roadkill is my end-of-year project currently in active development. I’m building all gameplay systems in Blueprint, refining level design continuously, and crafting the complete UI/UX flow from menus to in-game cinematics.",
