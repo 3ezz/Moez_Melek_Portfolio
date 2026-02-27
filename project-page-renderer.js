@@ -178,7 +178,7 @@
 
     const projectGrid = createEl('div', 'projectGrid');
 
-    const overviewCard = createEl('div', 'panelCard');
+    const overviewCard = createEl('div', 'panelCard in');
     overviewCard.appendChild(createEl('h2', 'sectionTitle', data.overviewTitle || 'Overview'));
     overviewCard.appendChild(createEl('p', 'sectionNote', data.overview));
 
@@ -196,6 +196,7 @@
     overviewCard.appendChild(featuresList);
 
     const roleCard = createBulletCard(data.roleTitle || 'My Role', data.roles || []);
+    roleCard.classList.add('in');
     const gap2 = createEl('div');
     gap2.style.height = '14px';
     roleCard.appendChild(gap2);
@@ -212,7 +213,7 @@
     const mediaSectionTitle = data.mediaTitle || 'Media';
 
     (data.mediaItems || []).forEach((item, index) => {
-      const mediaCard = createEl('div', 'panelCard');
+      const mediaCard = createEl('div', 'panelCard in');
       mediaCard.style.gridColumn = '1 / -1';
 
       if (index === 0) {
