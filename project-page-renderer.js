@@ -31,11 +31,7 @@
     const mediaGrid = createEl('div', 'mediaGrid');
     mediaGrid.style.marginTop = '8px';
 
-    const mediaBox = createEl('div', 'mediaBox');
-    mediaBox.style.gridColumn = 'span 12';
-    mediaBox.style.height = 'auto';
-    mediaBox.style.padding = '0';
-    mediaBox.style.overflow = 'hidden';
+    const mediaBox = createEl('div', 'mediaBox mediaBoxFull');
 
     if (item.type === 'video') {
       const video = document.createElement('video');
@@ -43,12 +39,6 @@
       video.playsInline = true;
       video.preload = 'metadata';
       if (item.poster) video.poster = item.poster;
-      video.style.width = '100%';
-      video.style.display = 'block';
-      video.style.borderRadius = '14px';
-      video.style.border = '1px solid rgba(255,255,255,.12)';
-      video.style.background = 'rgba(0,0,0,.18)';
-
       const sourcePath = resolveVideoSource(item);
       const sourceType = item.mimeType || inferVideoMimeType(sourcePath);
       const source = document.createElement('source');
@@ -63,8 +53,6 @@
       img.src = item.src;
       img.alt = item.alt || item.title || 'Project media';
       img.loading = 'lazy';
-      img.style.width = '100%';
-      img.style.display = 'block';
       mediaBox.appendChild(img);
     }
 
