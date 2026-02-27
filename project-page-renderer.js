@@ -164,19 +164,10 @@
       target.appendChild(demoSection);
     }
 
-    const projectBody = createEl('section', 'projectBody');
-    const stickyThumbCard = createEl('aside', 'projectThumbSticky panelCard');
-    const stickyThumbImg = document.createElement('img');
-    stickyThumbImg.className = 'projectThumbStickyImg';
-    stickyThumbImg.src = getStickyThumbnailSource(data);
-    stickyThumbImg.alt = `${data.title} thumbnail`;
-    stickyThumbImg.loading = 'lazy';
-    stickyThumbImg.decoding = 'async';
-    stickyThumbCard.appendChild(createEl('h2', 'sectionTitle', 'Project Thumbnail'));
-    stickyThumbCard.appendChild(stickyThumbImg);
-    projectBody.appendChild(stickyThumbCard);
-
-    const projectGrid = createEl('div', 'projectGrid');
+    const projectGrid = createEl('section', 'projectGrid');
+    projectGrid.classList.add('in');
+    projectGrid.style.opacity = '1';
+    projectGrid.style.transform = 'none';
 
     const overviewCard = createEl('div', 'panelCard in');
     overviewCard.appendChild(createEl('h2', 'sectionTitle', data.overviewTitle || 'Overview'));
