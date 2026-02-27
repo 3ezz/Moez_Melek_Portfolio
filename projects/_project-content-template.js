@@ -3,6 +3,7 @@ window.PROJECT_PAGE_DATA = {
   metaDescription: "[One-sentence SEO description of the project]",
   backHref: "../index.html#projects",
   backLabel: "← Back to Projects",
+  heroThumbnail: "../assets/icons/card-thumbnail-placeholder.svg",
 
   heroPills: ["[Engine]", "[Genre/Type]", "[Status]"],
   lead: "[2-3 lines that summarize what the project is, what you built, and why it matters.]",
