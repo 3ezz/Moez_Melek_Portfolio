@@ -217,7 +217,8 @@
       mediaCard.appendChild(createMediaNode(item));
       projectGrid.appendChild(mediaCard);
     });
-    target.appendChild(projectGrid);
+    projectBody.appendChild(projectGrid);
+    target.appendChild(projectBody);
   }
 
   function initProjectTemplatePage() {
