@@ -93,8 +93,24 @@
     container.appendChild(hint);
   }
 
+  function getHeroThumbnailSource(data) {
+    const firstImage = (data.mediaItems || []).find((item) => item && item.type !== 'video' && item.src);
+    return data.heroThumbnail || data.thumbnail || (firstImage && firstImage.src) || '../assets/icons/card-thumbnail-placeholder.svg';
+  }
+
   function renderProjectPage(data, target) {
     const heroSection = createEl('section', 'projectHero');
+
+    const heroMedia = createEl('div', 'projectHeroMedia');
+    const heroImg = document.createElement('img');
+    heroImg.className = 'projectHeroImg';
+    heroImg.src = getHeroThumbnailSource(data);
+    heroImg.alt = `${data.title} thumbnail`;
+    heroImg.loading = 'lazy';
+    heroImg.decoding = 'async';
+    heroMedia.appendChild(heroImg);
+    heroSection.appendChild(heroMedia);
+
     const backLink = createEl('a', 'backLink', data.backLabel || '← Back to Projects');
     backLink.href = data.backHref || '../index.html#projects';
     heroSection.appendChild(backLink);
@@ -149,8 +165,11 @@
     }
 
     const projectGrid = createEl('section', 'projectGrid');
+    projectGrid.classList.add('in');
+    projectGrid.style.opacity = '1';
+    projectGrid.style.transform = 'none';
 
-    const overviewCard = createEl('div', 'panelCard');
+    const overviewCard = createEl('div', 'panelCard in');
     overviewCard.appendChild(createEl('h2', 'sectionTitle', data.overviewTitle || 'Overview'));
     overviewCard.appendChild(createEl('p', 'sectionNote', data.overview));
 
@@ -168,6 +187,7 @@
     overviewCard.appendChild(featuresList);
 
     const roleCard = createBulletCard(data.roleTitle || 'My Role', data.roles || []);
+    roleCard.classList.add('in');
     const gap2 = createEl('div');
     gap2.style.height = '14px';
     roleCard.appendChild(gap2);
@@ -184,7 +204,7 @@
     const mediaSectionTitle = data.mediaTitle || 'Media';
 
     (data.mediaItems || []).forEach((item, index) => {
-      const mediaCard = createEl('div', 'panelCard');
+      const mediaCard = createEl('div', 'panelCard in');
       mediaCard.style.gridColumn = '1 / -1';
 
       if (index === 0) {
