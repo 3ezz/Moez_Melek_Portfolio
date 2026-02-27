@@ -3,7 +3,7 @@ window.PROJECT_PAGE_DATA = {
   metaDescription: "Prototype FPS inspired by color-based territory control: shoot paint balloons, reclaim space, and dynamically change the environment.",
   backHref: "../index.html#projects",
   backLabel: "← Back to Projects",
-  heroThumbnail: "../assets/icons/card-thumbnail-placeholder.svg",
+  heroThumbnail: "../assets/media/color/image_2026-02-27_113332352.png",
 
 
   heroPills: ["Unreal Engine 5", "FPS Prototype", "Gameplay Systems"],
@@ -12,8 +12,8 @@ window.PROJECT_PAGE_DATA = {
   demo: {
     title: "Gameplay Demo",
     note: "Early prototype footage showing color-balloon shooting and environment color takeover.",
-    videoSrc: "../assets/media/roadkill/demo.mp4",
-    poster: "../assets/media/roadkill/shot-01.jpg",
+    videoSrc: "../assets/media/color/20260227-1031-22.3294895.mp4",
+    poster: "../assets/media/color/image_2026-02-27_113332352.png",
     mimeType: "video/mp4",
     pills: ["Color Shooting", "Environment Shift", "Prototype"]
   },
@@ -41,25 +41,13 @@ window.PROJECT_PAGE_DATA = {
   mediaTitle: "Media",
   mediaNote: "Current media uses placeholders until final gameplay captures are exported from the prototype build.",
   mediaItems: [
-    {
-      type: "image",
-      title: "Gameplay Placeholder — Shooting Loop",
-      note: "Will be replaced by an in-game shot showing balloon firing and hit feedback.",
-      src: "../assets/icons/card-thumbnail-placeholder.svg",
-      alt: "Colors prototype gameplay placeholder"
-    },
-    {
-      type: "image",
-      title: "Gameplay Placeholder — Environment Change",
-      note: "Will be replaced by a before/after capture of the environment color transformation.",
-      src: "../assets/icons/card-thumbnail-placeholder.svg",
-      alt: "Colors prototype environment shift placeholder"
-    },
+ 
+
     {
       type: "image",
       title: "Gameplay Placeholder — Prototype Arena",
       note: "Will be replaced by an arena readability screenshot used for iteration notes.",
-      src: "../assets/icons/card-thumbnail-placeholder.svg",
+      src: "../assets/media/color/image_2026-02-27_113332352.png",
       alt: "Colors prototype arena placeholder"
     }
   ]
