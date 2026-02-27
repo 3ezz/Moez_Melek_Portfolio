@@ -3,6 +3,8 @@ window.PROJECT_PAGE_DATA = {
   metaDescription: "B.ART.DO is a guided AR museum visit prototype focused on Bardo artifacts and learning experiences.",
   backHref: "../index.html#projects",
   backLabel: "← Back to Projects",
+  heroThumbnail: "../assets/media/bartdo/image_2026-02-26_224614953.png",
+
 
   heroPills: ["Unity", "AR", "Museum", "Prototype", "Guided Visit"],
   lead: "B.ART.DO is a prototype designed to help visitors discover Bardo Museum artifacts through an AR-guided visit experience with structured UI and in-context educational content.",

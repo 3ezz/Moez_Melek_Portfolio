@@ -3,6 +3,8 @@ window.PROJECT_PAGE_DATA = {
   metaDescription: "Unity + Vuforia AR tourism app that helps visitors discover Djerba island through a scannable book, monument cards, and local tradition articles.",
   backHref: "../index.html#projects",
   backLabel: "← Back to Projects",
+  heroThumbnail: "../assets/media/jerbaview/logo-02.png",
+
 
   heroPills: ["Unity", "AR", "Tourism", "Mobile", "Gallery"],
   lead: "Djerba View AR is a tourism companion app where visitors scan a dedicated book (plus visual cards) to reveal Djerba monuments in 3D and explore local culture content.",
