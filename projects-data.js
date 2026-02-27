@@ -84,9 +84,9 @@ window.PROJECTS_DATA = [
     tags: ["ue5"],
     showFeaturedRow: true,
     featuredOrder: 3,
-    showHomeUe: true,
+    showHomeUe: false,
     homeUeOrder: 1,
-    showProjectsPage: true,
+    showProjectsPage: false,
     projectsOrder: 5
   },
   {
@@ -94,7 +94,7 @@ window.PROJECTS_DATA = [
     title: "Steam House — Dialogue System & UI/UX",
     href: "projects/steamhouse-dialogue-ui.html",
     description: "Behavior Tree-driven dialogue pipeline + typewriter UI, choices, quest/blackboard updates, and full menus.",
-    thumbnail: "assets/icons/card-thumbnail-placeholder.svg",
+    thumbnail: "assets/media/steamhouse/image (10).png",
     thumbLabel: "UE",
     status: "Case Study",
     category: "ui",
@@ -119,9 +119,9 @@ window.PROJECTS_DATA = [
     tags: ["ue5", "ui"],
     showFeaturedRow: false,
     featuredOrder: 99,
-    showHomeUe: true,
+    showHomeUe: false,
     homeUeOrder: 3,
-    showProjectsPage: true,
+    showProjectsPage: false,
     projectsOrder: 7
   },
   {
@@ -137,9 +137,9 @@ window.PROJECTS_DATA = [
     tags: ["ue5"],
     showFeaturedRow: false,
     featuredOrder: 99,
-    showHomeUe: true,
+    showHomeUe: false,
     homeUeOrder: 2,
-    showProjectsPage: true,
+    showProjectsPage: false,
     projectsOrder: 8
   },
   {
@@ -155,9 +155,9 @@ window.PROJECTS_DATA = [
     tags: ["ue5"],
     showFeaturedRow: false,
     featuredOrder: 99,
-    showHomeUe: true,
+    showHomeUe: false,
     homeUeOrder: 4,
-    showProjectsPage: true,
+    showProjectsPage: false,
     projectsOrder: 9
   },
   {
@@ -165,7 +165,7 @@ window.PROJECTS_DATA = [
     title: "Roadkill",
     href: "projects/roadkill.html",
     description: "End-of-year 2.5D project built in UE5 with Blueprint gameplay systems, camera travelling logic, UI/UX flows, and cinematic typewriter sequences.",
-    thumbnail: "assets/media/roadkill/shot-01.jpg",
+    thumbnail: "assets/media/roadkill/image_2026-02-27_115425149.png",
     thumbLabel: "UE5",
     status: "In Progress",
     category: "gameplay",
@@ -183,7 +183,7 @@ window.PROJECTS_DATA = [
     title: "Colors — Prototype FPS",
     href: "projects/colors.html",
     description: "UE5 FPS prototype inspired by color-control gameplay: shoot color balloons and dynamically transform the environment.",
-    thumbnail: "assets/icons/card-thumbnail-placeholder.svg",
+    thumbnail: "assets/media/color/image_2026-02-27_113332352.png",
     thumbLabel: "UE5",
     status: "Prototype",
     category: "gameplay",
