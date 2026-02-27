@@ -102,7 +102,7 @@ window.PROJECTS_DATA = [
     tags: ["ue5", "ui"],
     showFeaturedRow: true,
     featuredOrder: 4,
-    showProjectsPage: false,
+    showProjectsPage: true,
     projectsOrder: 6
   },
   {
