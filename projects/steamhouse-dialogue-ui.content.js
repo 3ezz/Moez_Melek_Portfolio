@@ -3,6 +3,7 @@ window.PROJECT_PAGE_DATA = {
   metaDescription: "Unreal Engine project: Behavior Tree-driven dialogue system with typewriter UI, choices, quest/blackboard updates, and full menu UX.",
   backHref: "../projects.html",
   backLabel: "← Back to Projects",
+  heroThumbnail: "../assets/media/steamhouse/dialogue_06s.png",
 
   heroPills: ["Unreal Engine", "Blueprint", "Behavior Trees", "Blackboard", "UMG", "UI/UX"],
   lead: "Interactive adaptation inspired by Jules Verne’s La Maison à vapeur. I designed the dialogue architecture (Behavior Tree-driven), the typewriter presentation system, and implemented the UI + menu interactions across the game.",

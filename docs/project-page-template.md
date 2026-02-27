@@ -20,6 +20,7 @@ Copy:
 
 Then fill `window.PROJECT_PAGE_DATA`:
 - title/meta
+- heroThumbnail (shown above the project title)
 - hero pills + lead
 - demo video block
 - overview + features
