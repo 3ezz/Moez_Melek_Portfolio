@@ -12,7 +12,9 @@ window.PROJECT_PAGE_DATA = {
   demo: {
     title: "Experience Demo",
     note: "Show the full flow: postcard scan, 3D monument appearance, pinch/rotate/zoom interaction, and photo capture to gallery.",
-    videoSrc: "",
+   videoSrc: "../assets/media/armemory/20260226-1157-02.1061775.mp4",
+    poster: "../assets/media/armemory/20260226-1157-02.1061775.mp4",
+    mimeType: "video/mp4",
     pills: ["Scan to AR", "Monument Stories", "Mobile Interaction"]
   },
 
@@ -42,11 +44,11 @@ window.PROJECT_PAGE_DATA = {
   tools: ["Unity", "C#", "Vuforia", "AR", "UI/UX Design", "3D Integration"],
 
   mediaTitle: "Media",
-  mediaNote: "Based on your AR Memory slides. Replace placeholder paths with real exports under assets/media/ar-memory/.",
+  mediaNote: "",
   mediaItems: [
-    { type: "image", title: "Project Intro", note: "Brand + description overview slide.", src: "../assets/icons/card-thumbnail-placeholder.svg", alt: "AR Memory intro" },
-    { type: "image", title: "Card Feed UI", note: "Scrollable card list with scan actions.", src: "../assets/icons/card-thumbnail-placeholder.svg", alt: "AR Memory card feed" },
-    { type: "image", title: "AR Start + Monument View", note: "Scan entry, 3D overlay view, and contextual text screen.", src: "../assets/icons/card-thumbnail-placeholder.svg", alt: "AR Memory AR view" },
-    { type: "image", title: "Gallery + Single Photo View", note: "Gallery grid and focused media screen.", src: "../assets/icons/card-thumbnail-placeholder.svg", alt: "AR Memory gallery" }
+    { type: "image", title: "Project Intro", note: "Brand + description overview slide.", src: "../assets/media/armemory/image_2026-02-27_125316631.png", alt: "AR Memory intro" },
+    { type: "image", title: "Card Feed UI", note: "Scrollable card list with scan actions.", src: "../assets/media/armemory/image_2026-02-27_125708572.png", alt: "AR Memory card feed" },
+    { type: "image", title: "AR Start + Monument View", note: "Scan entry, 3D overlay view, and contextual text screen.", src: "../assets/media/armemory/image_2026-02-27_125544454.png", alt: "AR Memory AR view" },
+    { type: "image", title: "Gallery + Single Photo View", note: "Gallery grid and focused media screen.", src: "../assets/media/armemory/image_2026-02-27_125413672.png", alt: "AR Memory gallery" }
   ]
 };
