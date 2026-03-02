@@ -315,6 +315,27 @@ Once your endpoint stores events, you can build tables/charts for:
 - Add a privacy notice/cookie notice if required for your region.
 
 
+
+### Why you may need to relink the Cloudflare database every time
+
+If you deploy the Worker from CLI (`npx wrangler deploy`) but your `wrangler.jsonc` does **not** include a `d1_databases` binding, Cloudflare can deploy a version without the DB binding. This makes it look like you must relink the DB manually after each deploy.
+
+Fix it once by storing the binding in `wrangler.jsonc`:
+
+```jsonc
+{
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "portfolio_analytics",
+      "database_id": "<your-d1-id>"
+    }
+  ]
+}
+```
+
+Then deploy again. Your binding will persist across deploys.
+
 ### Cloudflare setup (recommended)
 
 If you're using Cloudflare, follow this exact flow:
