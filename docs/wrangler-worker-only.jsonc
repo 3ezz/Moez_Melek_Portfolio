@@ -5,8 +5,8 @@
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "portfolio-analytics",
-      "database_id": "<d0f37b6f-cfbf-4c5f-ab3f-7b366761ea08>"
+      "database_name": "portfolio_analytics",
+      "database_id": "d0f37b6f-cfbf-4c5f-ab3f-7b366761ea08"
     }
   ]
 }
