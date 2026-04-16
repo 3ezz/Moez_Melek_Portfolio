@@ -70,12 +70,6 @@
     return '';
   }
 
-  function appendVideoLoadHint(container, src) {
-    if (!src) return;
-    const hint = createEl('p', 'sectionNote', `If the video is not visible, verify the file path and format: ${src}`);
-    hint.style.marginTop = '8px';
-    container.appendChild(hint);
-  }
 
   function renderProjectPage(data, target) {
     const heroSection = createEl('section', 'projectHero');
@@ -129,7 +123,6 @@
         video.appendChild(source);
         video.appendChild(document.createTextNode('Your browser does not support the video tag.'));
         demoCard.appendChild(video);
-        appendVideoLoadHint(demoCard, demoVideoSource);
       } else {
         const missingDemo = createEl('p', 'sectionNote', 'Add demo.videoSrc (or demo.src) to display gameplay footage in this section.');
         missingDemo.style.marginTop = '8px';
