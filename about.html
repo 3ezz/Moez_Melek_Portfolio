@@ -112,11 +112,15 @@
           <div class="cta">
             <a class="btn primary" href="mailto:moezmaleksk@gmail.com">Email Me</a>
             <a class="btn" href="https://www.linkedin.com/in/moez-melek-b0105b155/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <details>
+            <details class="cvMenu">
               <summary class="btn" style="list-style:none;cursor:pointer;">CV ▾</summary>
-              <div class="panelCard" style="margin-top:10px;display:grid;gap:8px;min-width:240px;">
-                <a class="btn" href="assets/cv/moez-melek-cv-en.pdf" target="_blank" rel="noopener" download>English (PDF)</a>
-                <a class="btn" href="assets/cv/moez-melek-cv-fr.pdf" target="_blank" rel="noopener" download>Français (PDF)</a>
+              <div class="panelCard cvPanel">
+                <label for="cvLanguage" class="cvLabel">Choose language</label>
+                <select id="cvLanguage" class="cvSelect" onchange="if(this.value){window.open(this.value,'_blank','noopener');this.selectedIndex=0;}">
+                  <option value="">Select CV…</option>
+                  <option value="assets/cv/moez-melek-cv-en.pdf">English (PDF)</option>
+                  <option value="assets/cv/moez-melek-cv-fr.pdf">Français (PDF)</option>
+                </select>
               </div>
             </details>
           </div>
