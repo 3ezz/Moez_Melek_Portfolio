@@ -211,12 +211,14 @@ function createProjectCard(project, includeTags = false){
       <img class="thumbImg" src="${thumbSrc}" alt="${project.title} thumbnail" loading="lazy" decoding="async">
       <span class="thumbLabel">${project.thumbLabel || "PROJECT"}</span>
     </div>
-    <div class="cardTitleRow">
-      <h3>${project.title}</h3>
-      <span class="statusBadge">${statusText}</span>
+    <div class="cardBody">
+      <div class="cardTitleRow">
+        <h3>${project.title}</h3>
+        <span class="statusBadge">${statusText}</span>
+      </div>
+      <p>${project.description}</p>
+      <div class="pillRow">${pills}</div>
     </div>
-    <p>${project.description}</p>
-    <div class="pillRow">${pills}</div>
   `;
 
   return card;
