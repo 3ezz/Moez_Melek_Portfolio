@@ -28,10 +28,7 @@
   }
 
   function createMediaNode(item) {
-    const mediaGrid = createEl('div', 'mediaGrid');
-    mediaGrid.style.marginTop = '8px';
-
-    const mediaBox = createEl('div', 'mediaBox mediaBoxFull');
+    const mediaBox = createEl('div', 'mediaBox mediaBoxFull mediaVisual');
 
     if (item.type === 'video') {
       const video = document.createElement('video');
@@ -56,8 +53,7 @@
       mediaBox.appendChild(img);
     }
 
-    mediaGrid.appendChild(mediaBox);
-    return mediaGrid;
+    return mediaBox;
   }
 
   function resolveVideoSource(entry) {
@@ -184,17 +180,23 @@
     const mediaSectionTitle = data.mediaTitle || 'Media';
 
     (data.mediaItems || []).forEach((item, index) => {
-      const mediaCard = createEl('div', 'panelCard');
+      const mediaCard = createEl('div', 'panelCard mediaCard');
       mediaCard.style.gridColumn = '1 / -1';
+      if (index % 2 === 1) mediaCard.classList.add('mediaCardAlt');
 
       if (index === 0) {
         mediaCard.appendChild(createEl('h2', 'sectionTitle', mediaSectionTitle));
         if (data.mediaNote) mediaCard.appendChild(createEl('p', 'sectionNote', data.mediaNote));
       }
 
-      mediaCard.appendChild(createEl('h2', 'sectionTitle', item.title || `Screenshot ${index + 1}`));
-      if (item.note) mediaCard.appendChild(createEl('p', 'sectionNote', item.note));
-      mediaCard.appendChild(createMediaNode(item));
+      const mediaShowcase = createEl('div', 'mediaShowcase');
+      const mediaMeta = createEl('div', 'mediaMeta');
+      mediaMeta.appendChild(createEl('h3', 'mediaItemTitle', item.title || `Screenshot ${index + 1}`));
+      if (item.note) mediaMeta.appendChild(createEl('p', 'sectionNote', item.note));
+
+      mediaShowcase.appendChild(createMediaNode(item));
+      mediaShowcase.appendChild(mediaMeta);
+      mediaCard.appendChild(mediaShowcase);
       projectGrid.appendChild(mediaCard);
     });
     target.appendChild(projectGrid);

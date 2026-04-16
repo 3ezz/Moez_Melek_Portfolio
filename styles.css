@@ -404,6 +404,7 @@ section{padding:26px 0}
 }
 .card h3{margin:0;font-size:16px;letter-spacing:.1px}
 .cardTitleRow{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 8px;}
+.cardBody{min-width:0}
 .statusBadge{font-size:11px;padding:4px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.16);color:rgba(255,255,255,.86);background:rgba(255,255,255,.06);white-space:nowrap;}
 .card p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
 
@@ -434,6 +435,42 @@ section{padding:26px 0}
 }
 
 .card:hover .thumb{transform:translateY(-2px)}
+
+/* Projects page: compact alternating media/text layout */
+#allProjects .card{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+#allProjects .card .thumb{
+  height:160px;
+  margin-bottom:0;
+}
+
+@media (min-width: 900px){
+  #allProjects .card{
+    flex-direction:row;
+    align-items:center;
+    gap:16px;
+  }
+  #allProjects .card .thumb{
+    flex:0 0 38%;
+    height:130px;
+  }
+  #allProjects .card .cardBody{
+    flex:1;
+  }
+  #allProjects .card .cardTitleRow,
+  #allProjects .card p{
+    margin-bottom:0;
+  }
+  #allProjects .card .cardTitleRow{
+    margin-bottom:8px;
+  }
+  #allProjects .card:nth-child(even) .thumb{
+    order:2;
+  }
+}
 
 .thumbPlaceholder,
 .thumbLabel{
@@ -558,7 +595,7 @@ section{padding:26px 0}
 .mediaBoxFull{
   grid-column:1 / -1;
   height:auto;
-  min-height:220px;
+  min-height:160px;
   aspect-ratio:16 / 9;
   padding:0;
   overflow:hidden;
@@ -572,6 +609,21 @@ section{padding:26px 0}
   height:100%;
   display:block;
   object-fit:contain;
+}
+
+.mediaCard{padding:14px}
+.mediaShowcase{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.mediaItemTitle{
+  margin:0;
+  font-size:16px;
+  letter-spacing:.1px;
+}
+.mediaMeta .sectionNote{
+  margin:6px 0 0;
 }
 
 
@@ -722,6 +774,21 @@ footer{
   .projectGrid{grid-template-columns:1fr 1fr;gap:16px}
   .mediaBox{grid-column:span 6;height:160px}
   .mediaItemHalf{grid-column:span 6;}
+  .mediaShowcase{
+    flex-direction:row;
+    align-items:center;
+    gap:16px;
+  }
+  .mediaVisual{
+    flex:0 0 44%;
+    min-height:130px;
+  }
+  .mediaMeta{
+    flex:1;
+  }
+  .mediaCard.mediaCardAlt .mediaVisual{
+    order:2;
+  }
 
   .featuredCard{
     flex-direction:row;
