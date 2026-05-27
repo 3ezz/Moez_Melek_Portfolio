@@ -3,7 +3,7 @@ window.PROJECT_PAGE_DATA = {
   metaDescription: "Roadkill is an end-of-year 2.5D UE5 project focused on Blueprint gameplay systems, camera travelling, evolving level design, and full UI/UX implementation.",
   backHref: "../projects.html",
   backLabel: "← Back to Projects",
-  heroThumbnail: "../assets/media/roadkill/image_2026-02-27_115425149.png",
+  heroThumbnail: "../assets/media/roadkill/Fichier 18.png",
 
   heroPills: ["UE5", "2.5D", "Blueprint", "In Progress"],
   lead: "Roadkill is my end-of-year project currently in active development. I’m building all gameplay systems in Blueprint, refining level design continuously, and crafting the complete UI/UX flow from menus to in-game cinematics.",
@@ -11,7 +11,7 @@ window.PROJECT_PAGE_DATA = {
   demo: {
     title: "Gameplay Demo",
     note: "Demo clip: in-game cinematic sequence with typewriter timing and in-game abilities.",
-    videoSrc: "../assets/media/roadkill/Gameplay demo.mp4",
+    videoSrc: "../assets/media/roadkill/Gameplay demo .mp4",
     mimeType: "video/mp4"
   },
 
@@ -43,7 +43,7 @@ window.PROJECT_PAGE_DATA = {
     { type: "image", title: "Main Menu", note: "Main menu UI visualisation.", src: "../assets/media/roadkill/Main_menu_Screen.png", alt: "Roadkill main menu" },
     { type: "image", title: "Settings", note: "Settings menu UI.", src: "../assets/media/roadkill/Settings_Screen.png", alt: "Roadkill settings menu" },
     { type: "image", title: "Settings Graphics", note: "Graphics settings view.", src: "../assets/media/roadkill/Graphics_Screen.png", alt: "Roadkill graphics settings" },
-    { type: "image", title: "Cinematic", note: "In-game typewriter cinematic text with UI readability pass.", src: "../assets/media/roadkill/Cinematic_screen.PNG", alt: "Roadkill cinematic UI" },
+    { type: "image", title: "Cinematic", note: "In-game typewriter cinematic text with UI readability pass.", src: "../assets/media/roadkill/Cinematic_screen.png", alt: "Roadkill cinematic UI" },
     { type: "image", title: "In Game", note: "In-game snapshot.", src: "../assets/media/roadkill/shot-05.jpg", alt: "Roadkill in-game shot" },
     { type: "image", title: "Ability", note: "Ability Blueprint.", src: "../assets/media/roadkill/shot-06.jpg", alt: "Roadkill ability blueprint" },
     { type: "video", title: "Ability", note: "Ability video.", src: "../assets/media/roadkill/Ability .mp4", alt: "Roadkill ability blueprint" },
