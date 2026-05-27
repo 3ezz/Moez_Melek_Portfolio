@@ -11,7 +11,7 @@ window.PROJECT_PAGE_DATA = {
   demo: {
     title: "Gameplay Demo",
     note: "Demo clip: in-game cinematic sequence with typewriter timing and in-game abilities.",
-    videoSrc: "../assets/media/roadkill/demo.mp4",
+    videoSrc: "../assets/media/roadkill/Gameplay demo.mp4",
     mimeType: "video/mp4"
   },
 
@@ -40,16 +40,15 @@ window.PROJECT_PAGE_DATA = {
   mediaTitle: "Media",
   mediaNote: "UI flows, cinematic readability passes, and gameplay Blueprint snapshots.",
   mediaItems: [
-    { type: "image", title: "Main Menu", note: "Main menu UI visualisation.", src: "../assets/media/roadkill/shot-01.jpg", alt: "Roadkill main menu" },
-    { type: "image", title: "Settings", note: "Settings menu UI.", src: "../assets/media/roadkill/shot-02.jpg", alt: "Roadkill settings menu" },
-    { type: "image", title: "Settings Graphics", note: "Graphics settings view.", src: "../assets/media/roadkill/shot-03.jpg", alt: "Roadkill graphics settings" },
-    { type: "image", title: "Cinematic", note: "In-game typewriter cinematic text with UI readability pass.", src: "../assets/media/roadkill/shot-04.jpg", alt: "Roadkill cinematic UI" },
+    { type: "image", title: "Main Menu", note: "Main menu UI visualisation.", src: "../assets/media/roadkill/Main_menu_Screen.png", alt: "Roadkill main menu" },
+    { type: "image", title: "Settings", note: "Settings menu UI.", src: "../assets/media/roadkill/Settings_Screen.png", alt: "Roadkill settings menu" },
+    { type: "image", title: "Settings Graphics", note: "Graphics settings view.", src: "../assets/media/roadkill/Graphics_Screen.png", alt: "Roadkill graphics settings" },
+    { type: "image", title: "Cinematic", note: "In-game typewriter cinematic text with UI readability pass.", src: "../assets/media/roadkill/Cinematic_screen.PNG", alt: "Roadkill cinematic UI" },
     { type: "image", title: "In Game", note: "In-game snapshot.", src: "../assets/media/roadkill/shot-05.jpg", alt: "Roadkill in-game shot" },
     { type: "image", title: "Ability", note: "Ability Blueprint.", src: "../assets/media/roadkill/shot-06.jpg", alt: "Roadkill ability blueprint" },
-    { type: "video", title: "Ability", note: "Ability video.", src: "../assets/media/roadkill/Video Project 9.mp4", alt: "Roadkill ability blueprint" },
-    { type: "image", title: "Torch", note: "Torch Blueprint.", src: "../assets/media/roadkill/shot-07.jpg", alt: "Roadkill torch blueprint" },
-    { type: "video", title: "Torch", note: "torch video.", src: "../assets/media/roadkill/20260226-1009-32.0861119 (2).mp4", alt: "Roadkill torch video" },
+    { type: "video", title: "Ability", note: "Ability video.", src: "../assets/media/roadkill/Ability .mp4", alt: "Roadkill ability blueprint" },
     { type: "image", title: "Climb Up", note: "Climb Blueprint.", src: "../assets/media/roadkill/shot-08.jpg", alt: "Roadkill climb blueprint" },
-    { type: "video", title: "Climb Up", note: "Climb up snippet.", src: "../assets/media/roadkill/20260227-1037-49.5997750.mp4", alt: "Roadkill climb video" }
+    { type: "video", title: "Climb Up", note: "Climb up snippet.", src: "../assets/media/roadkill/20260227-1037-49.5997750.mp4", alt: "Roadkill climb video" },
+      { type: "video", title: "Monster Behaviour", note: "Monster behaviour and Interactions: This enemy AI is designed to create tension and encourage stealth-based gameplay. The creature patrols a predefined area, reacts to the player’s proximity, and can detect the use of the player’s special power, such as a sonar ability. As the player gets closer, the monster becomes more alert and its visual feedback system intensifies through stronger lights or glowing signs, allowing the player to understand the danger level without relying on a traditional UI. If the player gets too close, the monster attacks instantly. When the player uses their power, the creature investigates the signal and aggressively searches for the last known position of the player. If it loses the target, it enters a frustration state before calming down and returning to its patrol route, creating dynamic and immersive encounters..", src: "../assets/media/roadkill/MonsterBehaviour.mp4", alt: "Roadkill climb video" }
   ]
 };
