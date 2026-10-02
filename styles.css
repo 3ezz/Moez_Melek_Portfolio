@@ -1014,3 +1014,135 @@ html, body{
     align-self:center;
   }
 }
+
+
+/* =========================================================
+   Polish pass (Oct 2026)
+   ========================================================= */
+
+/* Visible keyboard focus everywhere */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible{
+  outline:2px solid rgba(255,0,170,.75);
+  outline-offset:3px;
+  border-radius:12px;
+}
+
+/* Current page in nav */
+.links a[aria-current="page"]{color:var(--text)}
+@media (min-width:701px){
+  .links a{position:relative}
+  .links a[aria-current="page"]::after{
+    content:"";
+    position:absolute;left:2px;right:2px;bottom:-3px;height:2px;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    border-radius:999px;
+  }
+}
+
+/* Carousel arrows were inheriting the browser's default (dark) text colour */
+.carBtn{
+  color:var(--text);
+  font-size:22px;
+  line-height:1;
+  padding:0 0 3px;
+  transition:background .15s ease, border-color .15s ease;
+}
+.carBtn:hover{
+  background:rgba(255,255,255,.10);
+  border-color:rgba(255,0,170,.45);
+}
+.dot{
+  padding:0;
+  cursor:pointer;
+  appearance:none;
+  transition:width .2s ease, background .2s ease;
+}
+
+/* Card thumbnails: consistent 16:9 frame instead of a fixed 120px strip */
+.grid .card .thumb{
+  height:auto;
+  aspect-ratio:16 / 9;
+}
+#allProjects .card .thumb{aspect-ratio:auto}
+.thumbContain .thumbImg{
+  object-fit:contain;
+  padding:12px 16px;
+}
+.thumbLabel{
+  background:rgba(0,0,0,.55);
+  border-color:rgba(255,255,255,.22);
+  -webkit-backdrop-filter:blur(6px);
+  backdrop-filter:blur(6px);
+  font-size:11px;
+  font-weight:650;
+  padding:5px 9px;
+}
+.card{display:block}
+.cardTitleRow h3{line-height:1.3}
+
+/* Hero CTA: CV link sits quietly next to the main actions */
+.btn.ghost{
+  background:transparent;
+  border-color:rgba(255,255,255,.16);
+  color:rgba(255,255,255,.86);
+}
+.btn .btnIcon{margin-right:8px;opacity:.8}
+
+/* Core skills panel */
+.panelHead{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:12px;
+}
+.panelTitle{font-weight:750;font-size:16px}
+.panelHint{color:var(--muted);font-size:12px}
+
+.aboutBox .btn{margin-top:14px}
+
+/* Contact actions */
+.contactCard .contactLine{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  align-items:baseline;
+  overflow-wrap:anywhere;
+}
+.contactCard .contactLine a{
+  color:var(--text);
+  border-bottom:1px solid rgba(255,0,170,.45);
+}
+.contactCard .contactLine a:hover{border-bottom-color:var(--accent)}
+.contactActions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:6px;
+}
+.contactActions .btn{width:auto;padding:10px 14px;font-size:13px}
+
+@media (max-width:700px){
+  .contactActions{justify-content:center}
+  .contactActions .btn{flex:1 1 140px}
+  .panelHead{justify-content:center;flex-direction:column;align-items:center;gap:2px}
+  .tagCloud{justify-content:center}
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    transition-duration:.01ms !important;
+    animation-duration:.01ms !important;
+  }
+  .reveal{opacity:1;transform:none}
+}
+
+/* Home split columns: slightly wider frames keep the two lists compact */
+.gridTight .card .thumb{aspect-ratio:2 / 1}
+.iconBadge img{filter:none;opacity:.92}
+
+.brand{display:block;color:var(--text)}

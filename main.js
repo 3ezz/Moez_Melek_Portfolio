@@ -1,5 +1,4 @@
 // main.js (FULL)
-console.log("main.js running ✅");
 
 document.addEventListener("DOMContentLoaded", () => {
   // ===== Footer year =====
@@ -20,6 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ===== Burger menu =====
   initBurgerMenu();
+
+  // ===== Highlight current page in nav =====
+  initActiveNav();
 
   // ===== Visitor analytics =====
   initAnalytics();
@@ -90,11 +92,13 @@ function initCarousel(){
 
   let i = 0;
 
-  // Build dots
+  // Build dots (real buttons so they're keyboard-accessible)
   dotsWrap.innerHTML = "";
   slides.forEach((_, idx) => {
-    const d = document.createElement("div");
+    const d = document.createElement("button");
+    d.type = "button";
     d.className = "dot" + (idx === 0 ? " on" : "");
+    d.setAttribute("aria-label", `Show slide ${idx + 1} of ${slides.length}`);
     d.addEventListener("click", () => go(idx));
     dotsWrap.appendChild(d);
   });
@@ -103,7 +107,15 @@ function initCarousel(){
 
   function render(){
     track.style.transform = `translateX(${-i * 100}%)`;
-    dots.forEach((d, idx) => d.classList.toggle("on", idx === i));
+    dots.forEach((d, idx) => {
+      d.classList.toggle("on", idx === i);
+      d.setAttribute("aria-current", idx === i ? "true" : "false");
+    });
+    // Keep links in hidden slides out of the tab order
+    slides.forEach((s, idx) => {
+      s.setAttribute("aria-hidden", idx === i ? "false" : "true");
+      s.querySelectorAll("a").forEach(a => a.tabIndex = idx === i ? 0 : -1);
+    });
   }
 
   function go(idx){
@@ -111,17 +123,34 @@ function initCarousel(){
     render();
   }
 
-  prev.addEventListener("click", () => go(i - 1));
-  next.addEventListener("click", () => go(i + 1));
+  prev.addEventListener("click", () => { go(i - 1); restart(); });
+  next.addEventListener("click", () => { go(i + 1); restart(); });
 
-  // Auto-play (pause on hover)
-  let t = setInterval(() => go(i + 1), 5000);
-  root.addEventListener("mouseenter", () => clearInterval(t));
-  root.addEventListener("mouseleave", () => {
-    clearInterval(t);
-    t = setInterval(() => go(i + 1), 5000);
+  // Auto-play: off for reduced-motion users; paused on hover, focus or hidden tab
+  const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let t = null;
+  function stop(){ if (t) { clearInterval(t); t = null; } }
+  function start(){ if (!reduceMotion && !t) t = setInterval(() => go(i + 1), 5000); }
+  function restart(){ stop(); if (!root.matches(":hover") && !root.contains(document.activeElement)) start(); }
+
+  root.addEventListener("mouseenter", stop);
+  root.addEventListener("mouseleave", start);
+  root.addEventListener("focusin", stop);
+  root.addEventListener("focusout", (e) => { if (!root.contains(e.relatedTarget)) start(); });
+  document.addEventListener("visibilitychange", () => document.hidden ? stop() : start());
+
+  // Swipe on touch screens
+  let x0 = null;
+  root.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; stop(); }, { passive: true });
+  root.addEventListener("touchend", (e) => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) go(dx < 0 ? i + 1 : i - 1);
+    x0 = null;
+    start();
   });
 
+  start();
   render();
 }
 
@@ -190,6 +219,18 @@ function initBurgerMenu(){
 }
 
 
+function initActiveNav(){
+  const file = (location.pathname.split("/").pop() || "index.html").toLowerCase();
+  const inProjectPage = /\/projects\/[^/]+$/.test(location.pathname);
+  document.querySelectorAll("#mobileMenu a").forEach(a => {
+    const target = (a.getAttribute("href") || "").split("/").pop().toLowerCase();
+    if (target.includes("#")) return;
+    const isCurrent = target === file || (inProjectPage && target === "projects.html");
+    if (isCurrent) a.setAttribute("aria-current", "page");
+  });
+}
+
+
 function createProjectCard(project, includeTags = false){
   const card = document.createElement("a");
   card.className = "card";
@@ -206,9 +247,12 @@ function createProjectCard(project, includeTags = false){
   const thumbSrc = project.thumbnail || "assets/icons/card-thumbnail-placeholder.svg";
   const statusText = project.status || "WIP";
 
+  const fitClass = project.thumbFit === "contain" ? " thumbContain" : "";
+  const thumbStyle = project.thumbBg ? ` style="background:${project.thumbBg}"` : "";
+
   card.innerHTML = `
-    <div class="thumb">
-      <img class="thumbImg" src="${thumbSrc}" alt="${project.title} thumbnail" loading="lazy" decoding="async">
+    <div class="thumb${fitClass}"${thumbStyle}>
+      <img class="thumbImg" src="${thumbSrc}" alt="" loading="lazy" decoding="async">
       <span class="thumbLabel">${project.thumbLabel || "PROJECT"}</span>
     </div>
     <div class="cardBody">

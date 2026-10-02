@@ -143,6 +143,12 @@ Each generated card uses:
 - `project.thumbnail` if provided
 - fallback: `assets/icons/card-thumbnail-placeholder.svg`
 
+Optional thumbnail keys:
+- `thumbFit: "contain"` → shows the whole image instead of cropping it (use for logos)
+- `thumbBg: "#ffffff"` (any CSS background) → fills the space around a `contain` thumbnail
+
+Keep card thumbnails light: export a ~960px wide `card-thumb.webp` (50–100 KB) rather than pointing the card at a full-size screenshot.
+
 So the fastest media flow is:
 1. Add files in `assets/media/<project-slug>/`
 2. Set `thumbnail` in that project object
