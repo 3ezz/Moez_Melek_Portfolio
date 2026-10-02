@@ -41,6 +41,12 @@ If you want to keep the same Roadkill/Steam House layout and only fill content:
 
 See detailed workflow in `docs/project-page-template.md`.
 
+Optional extras for UX/UI case studies (see `projects/coffre-fort.content.js` for a full example):
+- `demo` can be left out entirely when there is no video.
+- `sections: [{ eyebrow, title, note, items, wide }]` → extra cards after Overview / Role (research, personas, flows, insights). `wide: true` spans the full width.
+- `closingSections: [...]` → same format, shown after the media (e.g. testing / next steps).
+- `layout: "wide"` on a media item → full-width image under its title, for screens, wireframes and journey maps.
+
 ### Step 2) Add media assets (optional)
 Put images/videos inside:
 - `assets/media/<your-project-folder>/...`

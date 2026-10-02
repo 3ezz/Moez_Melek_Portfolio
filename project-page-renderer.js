@@ -170,12 +170,33 @@
     projectGrid.appendChild(overviewCard);
     projectGrid.appendChild(roleCard);
 
+    // Optional extra sections: [{ eyebrow, title, note, items, wide }]
+    const renderSection = (section) => {
+      const card = createEl('div', 'panelCard');
+      if (section.wide) card.style.gridColumn = '1 / -1';
+      if (section.eyebrow) card.appendChild(createEl('div', 'caseEyebrow', section.eyebrow));
+      card.appendChild(createEl('h2', 'sectionTitle', section.title || ''));
+      if (section.note) card.appendChild(createEl('p', 'sectionNote', section.note));
+      if (Array.isArray(section.items) && section.items.length) {
+        const ul = createEl('ul', 'bullet');
+        section.items.forEach((item) => {
+          const li = document.createElement('li');
+          li.textContent = item;
+          ul.appendChild(li);
+        });
+        card.appendChild(ul);
+      }
+      projectGrid.appendChild(card);
+    };
+    (data.sections || []).forEach(renderSection);
+
     const mediaSectionTitle = data.mediaTitle || 'Media';
 
     (data.mediaItems || []).forEach((item, index) => {
       const mediaCard = createEl('div', 'panelCard mediaCard');
       mediaCard.style.gridColumn = '1 / -1';
-      if (index % 2 === 1) mediaCard.classList.add('mediaCardAlt');
+      if (item.layout === 'wide') mediaCard.classList.add('mediaCardWide');
+      else if (index % 2 === 1) mediaCard.classList.add('mediaCardAlt');
 
       if (index === 0) {
         mediaCard.appendChild(createEl('h2', 'sectionTitle', mediaSectionTitle));
@@ -187,11 +208,20 @@
       mediaMeta.appendChild(createEl('h3', 'mediaItemTitle', item.title || `Screenshot ${index + 1}`));
       if (item.note) mediaMeta.appendChild(createEl('p', 'sectionNote', item.note));
 
-      mediaShowcase.appendChild(createMediaNode(item));
-      mediaShowcase.appendChild(mediaMeta);
+      if (item.layout === 'wide') {
+        mediaShowcase.appendChild(mediaMeta);
+        mediaShowcase.appendChild(createMediaNode(item));
+      } else {
+        mediaShowcase.appendChild(createMediaNode(item));
+        mediaShowcase.appendChild(mediaMeta);
+      }
       mediaCard.appendChild(mediaShowcase);
       projectGrid.appendChild(mediaCard);
     });
+
+    // Optional sections shown after the media (e.g. testing / next steps)
+    (data.closingSections || []).forEach(renderSection);
+
     target.appendChild(projectGrid);
   }
 

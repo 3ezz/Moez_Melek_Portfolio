@@ -1146,3 +1146,32 @@ summary:focus-visible{
 .iconBadge img{filter:none;opacity:.92}
 
 .brand{display:block;color:var(--text)}
+
+/* Case-study pages: full-width media and section labels */
+.caseEyebrow{
+  font-size:11px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:rgba(255,0,170,.85);
+  margin-bottom:6px;
+  font-weight:700;
+}
+.mediaCardWide .mediaShowcase{
+  flex-direction:column;
+  align-items:stretch;
+  gap:12px;
+}
+.mediaCardWide .mediaVisual{
+  flex:none;
+  width:100%;
+  height:auto;
+  min-height:0;
+  aspect-ratio:auto;
+  background:transparent;
+  border:none;
+}
+.mediaCardWide .mediaVisual img{
+  height:auto;
+  border-radius:12px;
+}
+.mediaCardWide .mediaMeta .sectionNote{max-width:860px}
