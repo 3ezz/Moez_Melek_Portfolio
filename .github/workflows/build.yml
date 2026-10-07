@@ -1,0 +1,47 @@
+# Runs tools/build.py after every push to main: compresses new media, creates/updates
+# project pages, link previews and the sitemap, then commits the result back.
+# Check the "Actions" tab on GitHub for the summary and any warnings.
+name: Build portfolio
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-portfolio
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install tools
+        run: |
+          pip install Pillow
+          command -v ffmpeg >/dev/null || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
+
+      - name: Build
+        run: python tools/build.py
+
+      - name: Commit changes
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Auto-build: optimize media and update pages"
+          git pull --rebase origin main
+          git push origin HEAD:main

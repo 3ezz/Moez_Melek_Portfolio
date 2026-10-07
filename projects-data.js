@@ -15,7 +15,13 @@ window.PROJECTS_DATA = [
     showHomeUnity: false,
     showHomeUe: false,
     showProjectsPage: true,
-    projectsOrder: 0
+    projectsOrder: 0,
+    showCarousel: true,
+    carouselOrder: 1,
+    carouselLabel: "Case Study",
+    carouselTitle: "Coffre Fort — UX/UI",
+    carouselText: "Secure document portal for lawyers and clients: research, journeys, wireframes, UI kit and hi-fi screens.",
+    carouselImage: "assets/media/coffre-fort/cover.webp"
   },
   {
     slug: "hannibal",
@@ -33,7 +39,12 @@ window.PROJECTS_DATA = [
     showHomeUnity: true,
     homeUnityOrder: 1,
     showProjectsPage: true,
-    projectsOrder: 1
+    projectsOrder: 1,
+    showCarousel: true,
+    carouselOrder: 2,
+    carouselLabel: "Featured",
+    carouselTitle: "Hannibal (Unity AR)",
+    carouselText: "Educational AR for kids (6–12): UI, mechanics, AR modules, audio."
   },
   {
     slug: "djerba",
@@ -73,7 +84,13 @@ window.PROJECTS_DATA = [
     showHomeUnity: true,
     homeUnityOrder: 3,
     showProjectsPage: true,
-    projectsOrder: 3
+    projectsOrder: 3,
+    showCarousel: true,
+    carouselOrder: 5,
+    carouselLabel: "Unity AR",
+    carouselTitle: "AR Memory",
+    carouselText: "Postcards come to life: clean UI flow + AR trigger moments.",
+    carouselImage: "assets/media/armemory/20260226-1157-02-1061775-poster.webp"
   },
   {
     slug: "bartdo",
@@ -126,7 +143,12 @@ window.PROJECTS_DATA = [
     featuredOrder: 2,
     showHomeUe: true,
     showProjectsPage: true,
-    projectsOrder: 6
+    projectsOrder: 6,
+    showCarousel: true,
+    carouselOrder: 3,
+    carouselLabel: "Case Study",
+    carouselTitle: "Steam House (UE5) — Dialogue & UI",
+    carouselText: "Behavior Tree-driven dialogue + typewriter UI, choices, and full menu implementation."
   },
   {
     slug: "ue-hud",
@@ -200,7 +222,13 @@ window.PROJECTS_DATA = [
     showHomeUe: true,
     homeUeOrder: 5,
     showProjectsPage: true,
-    projectsOrder: 10
+    projectsOrder: 10,
+    showCarousel: true,
+    carouselOrder: 4,
+    carouselLabel: "UE5 Project",
+    carouselTitle: "Roadkill",
+    carouselText: "2.5D game: Blueprint gameplay, camera travelling, UI/UX flows and cinematic typewriter sequences.",
+    carouselImage: "assets/media/roadkill/shot-05.webp"
   },
   {
     slug: "colors",

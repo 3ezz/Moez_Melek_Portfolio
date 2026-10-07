@@ -3,7 +3,7 @@ window.PROJECT_PAGE_DATA = {
   metaDescription: "AR Memory is a Unity + Vuforia AR companion app for printed postcards that reveals historical monuments in interactive 3D.",
   backHref: "../index.html#projects",
   backLabel: "← Back to Projects",
-  heroThumbnail: "../assets/media/armemory/image_2026-02-26_224140994.png",
+  heroThumbnail: "../assets/media/armemory/image-2026-02-26-224140994.png",
 
 
   heroPills: ["Unity", "AR", "Education", "Postcards", "Mobile UX"],

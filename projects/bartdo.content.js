@@ -44,6 +44,6 @@ window.PROJECT_PAGE_DATA = {
   mediaNote: "",
   mediaItems: [
     { type: "video", title: "In-App Quiz", note: "Quiz step: visitors pick the Bey’s room from three museum photos.", src: "../assets/media/bartdo/composition-1.mp4", alt: "B.ART.DO quiz screen" },
-    { type: "image", title: "Start Screen", note: "Personalised welcome that asks visitors to scan a QR code to start the visit.", src: "../assets/media/bartdo/image_2026-02-27_131745637.png", alt: "B.ART.DO start screen with QR code" }
+    { type: "image", title: "Start Screen", note: "Personalised welcome that asks visitors to scan a QR code to start the visit.", src: "../assets/media/bartdo/image-2026-02-27-131745637.png", alt: "B.ART.DO start screen with QR code" }
   ]
 };

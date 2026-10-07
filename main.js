@@ -11,7 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // ===== Reveal (scroll down + up) =====
   initReveal();
 
-  // ===== Carousel =====
+  // ===== Carousel (slides come from projects-data.js: showCarousel) =====
+  renderCarouselSlides();
   initCarousel();
 
   // ===== Projects filters (projects.html) =====
@@ -72,6 +73,27 @@ function initReveal(){
   }, 1800);
 }
 
+
+function renderCarouselSlides(){
+  const track = document.querySelector("[data-carousel] [data-track]");
+  const data = Array.isArray(window.PROJECTS_DATA) ? window.PROJECTS_DATA : [];
+  if (!track || track.children.length) return;
+
+  sortByOrder(data.filter(p => p.showCarousel === true), "carouselOrder").forEach((p, idx) => {
+    const slide = document.createElement("div");
+    slide.className = "carSlide";
+    const img = p.carouselImage || p.thumbnail;
+    slide.innerHTML = `
+      <div class="carCard">
+        ${img ? `<img class="carBg" src="${escapeHtml(img)}" alt="" decoding="async"${idx ? ' fetchpriority="low"' : ""}>` : ""}
+        <div class="carLabel">${escapeHtml(p.carouselLabel || p.status || "Project")}</div>
+        <div class="carTitle">${escapeHtml(p.carouselTitle || p.title)}</div>
+        <div class="carDesc">${escapeHtml(p.carouselText || p.description || "")}</div>
+        <a class="btn primary" href="${escapeHtml(p.href)}">Open</a>
+      </div>`;
+    track.appendChild(slide);
+  });
+}
 
 function initCarousel(){
   const root = document.querySelector("[data-carousel]");

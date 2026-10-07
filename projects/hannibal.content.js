@@ -50,7 +50,7 @@ window.PROJECT_PAGE_DATA = {
   mediaTitle: "Media",
   mediaNote: "",
   mediaItems: [
-    { type: "image", title: "Onboarding & AR Activation", note: "Initial UI + AR character reveal from card scan.", src: "../assets/media/hannibal/image_2026-02-26_122837812.png", alt: "Hannibal onboarding and AR" },
+    { type: "image", title: "Onboarding & AR Activation", note: "Initial UI + AR character reveal from card scan.", src: "../assets/media/hannibal/image-2026-02-26-122837812.png", alt: "Hannibal onboarding and AR" },
     { type: "image", title: "Main Menu & Games Screen", note: "Menu structure and mini-games entry points.", src: "../assets/media/hannibal/image-2026-02-26-122732342.webp", alt: "Hannibal menu and games" },
     { type: "video", title: "World Map & Mission Unlocks", note: "Progression map with lock/unlock node system.", src: "../assets/media/hannibal/20260226-1144-46-5000449.mp4", alt: "Hannibal mission map" },
     { type: "video", title: "Character Scan Objective", note: "Task screen paired with in-game 3D objective view.", src: "../assets/media/hannibal/20260226-1140-54-0426397.mp4", alt: "Hannibal objective interaction" },
