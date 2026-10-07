@@ -13,17 +13,22 @@ git pull
 Required files in this repo:
 - `docs/cloudflare-analytics-worker.js`
 - `docs/cloudflare-d1-schema.sql`
-- `main.js` (`getAnalyticsConfig` section)
+- `docs/analytics-dashboard.html` (stats page)
+- `main.js` (`ANALYTICS` settings near the bottom)
 
 ## 1) Create Worker in Cloudflare dashboard
 1. Open **Cloudflare Dashboard** → **Workers & Pages**.
 2. Click **Create** → **Worker**.
 3. Name it `portfolio-analytics` (or your preferred name).
 4. Open the Worker editor and replace the default code with the full contents of:
-   - `docs/cloudflare-analytics-worker.js`
+   - `docs/cloudflare-worker-single-file.js` (generated; it already contains the stats page)
+5. Worker → **Settings** → **Variables and Secrets**:
+   - add a **Secret** `STATS_TOKEN` = a long random key (your stats page password)
+   - optional **Variable** `ALLOWED_ORIGINS` = `https://3ezz.github.io` (the default)
 
 Important routes implemented by the Worker:
-- `POST /track` → receives analytics events
+- `POST /track` → receives analytics events (only from your site)
+- `GET /dashboard` → your private stats page
 - `GET /health` → health check endpoint
 
 ## 2) Create and bind D1 database (dashboard)
@@ -49,11 +54,11 @@ Your endpoint will look like:
 `https://<worker-name>.<subdomain>.workers.dev/track`
 
 Quick check after deploy:
-- Open `https://<worker-name>.<subdomain>.workers.dev/` (should return a JSON "Worker is running" message)
+- Open `https://<worker-name>.<subdomain>.workers.dev/` (should return `{ ok: true }`)
 - Open `https://<worker-name>.<subdomain>.workers.dev/health` (should return `{ ok: true }`)
 
 ## 5) Connect site frontend
-In `main.js`, edit `getAnalyticsConfig()`:
+In `main.js`, edit the `ANALYTICS` settings:
 - set `endpoint` to your Worker `/track` URL
 - set `debug: true` temporarily while testing
 

@@ -2,6 +2,10 @@
   "name": "moez-melek-portfolio",
   "main": "src/index.js",
   "compatibility_date": "2026-02-17",
+  // Sites allowed to send visit events (comma-separated)
+  "vars": { "ALLOWED_ORIGINS": "https://3ezz.github.io" },
+  // Lets the worker import the dashboard page (docs/analytics-dashboard.html) as text
+  "rules": [{ "type": "Text", "globs": ["**/*.html"], "fallthrough": true }],
   "d1_databases": [
     {
       "binding": "DB",
