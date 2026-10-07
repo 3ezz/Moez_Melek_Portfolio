@@ -1,271 +1,79 @@
-# Moez Melek Portfolio — Content Update Guide
+# Moez Melek Portfolio
 
-This portfolio now uses a **single source of truth** for project cards so you can update content faster.
+Live site: https://3ezz.github.io/Moez_Melek_Portfolio/
 
-## Always sync before making/suggesting changes
+## Add a new project (3 steps)
 
-Before any edits or change suggestions, pull latest updates first:
+1. **Media**: create `assets/media/<slug>/` and drop your files in, as they come out of
+   OBS / Unreal / Figma. Any name and format is fine (`My Clip (1).mov`, 2 MB PNGs…).
+2. **Page**: copy `projects/_template.content.js` to `projects/<slug>.content.js` and fill it in.
+   Point `src` / `videoSrc` / `heroThumbnail` at the files from step 1.
+3. **Card**: copy an existing entry in `projects-data.js`, set `href: "projects/<slug>.html"`
+   and choose where it shows (see the fields below).
+
+Push to `main`. Within a few minutes the **Build portfolio** job on GitHub (Actions tab) will:
+
+- compress the videos (and convert `.mov`/`.mkv`/`.webm` to `.mp4`), turn big screenshots into WebP,
+  rename files with spaces or capitals, and make a poster still for every video,
+- update the file names inside your content files to match,
+- create `projects/<slug>.html` with its title, description and LinkedIn/Discord preview image,
+- refresh the `?v=` cache numbers on CSS/JS and rebuild `sitemap.xml`,
+- list anything to fix in the run summary: leftover `[placeholder]` text, missing files,
+  a page without a card, unused media.
+
+It commits these changes back to `main`, so **run `git pull` before your next edit**.
+Nothing is ever deleted automatically.
+
+> Don't edit `projects/<slug>.html` by hand: it is regenerated on every build.
+> Change `projects/<slug>.content.js` (content) or `tools/page-shell.html` (layout for all pages) instead.
+
+### Card fields (`projects-data.js`)
+
+| Field | What it does |
+|---|---|
+| `slug`, `title`, `href`, `description` | Basics. `href` is `projects/<slug>.html` |
+| `thumbnail` | Card image, ideally a ~960 px `card-thumb.webp` |
+| `thumbFit: "contain"`, `thumbBg` | Show the whole image (logos) on a background colour |
+| `thumbLabel`, `status`, `pills` | Small badges and pills on the card |
+| `tags` | Filters on the Projects page: `unity`, `ue5`, `ar`, `ui` |
+| `showProjectsPage`, `projectsOrder` | Projects page (shown unless set to `false`) |
+| `showFeaturedRow`, `featuredOrder` | Home: Featured Projects row |
+| `showHomeUnity`, `homeUnityOrder` / `showHomeUe`, `homeUeOrder` | Home: Unity / Unreal columns |
+| `showCarousel`, `carouselOrder` | Home: hero carousel |
+| `carouselLabel`, `carouselTitle`, `carouselText`, `carouselImage` | Optional carousel overrides (default to `status`, `title`, `description`, `thumbnail`) |
+
+### Page content options (`projects/<slug>.content.js`)
+
+See `projects/_template.content.js`; `projects/coffre-fort.content.js` is a full UX case-study example.
+
+- `demo` (optional): main video at the top.
+- `sections` / `closingSections` (optional): extra cards before / after the media,
+  `{ eyebrow, title, note, items, wide }`.
+- `mediaItems`: images and videos. `layout: "wide"` gives a full-width image.
+  Posters are automatic (`<video>-poster.webp`); add `poster:` only to override.
+
+## Run the build yourself (optional)
+
+Needs Python 3, `pip install Pillow`, ffmpeg and Node.
 
 ```bash
-git checkout main
-git pull origin main
-git checkout <your-branch>
-git rebase main
+python3 tools/build.py
 ```
-
-## Files you need
-
-1. `projects-data.js` → all project card content (title, description, tags, links, labels, where cards appear).
-2. `main.js` → renders cards automatically into the right sections.
-3. `index.html` / `projects.html` → contain only card containers (no manual per-card HTML blocks).
-
----
-
-## Step-by-step: add a new project card
-
-### Step 1) Create your project page
-Create a new file in `projects/`, for example:
-- `projects/my-new-project.html`
-
-Use `projects/new-project.html` as the base template for every new project page.
-(`projects/_template.html` is deprecated and has been removed to avoid duplicate templates.)
-
-### Step 1.1) Use the `content.js` template (recommended, no hardcoded sections)
-If you want to keep the same Roadkill/Steam House layout and only fill content:
-
-1. Copy `projects/new-project.html` to `projects/<your-slug>.html`.
-2. Copy `projects/_project-content-template.js` to `projects/<your-slug>.content.js`.
-3. Fill `window.PROJECT_PAGE_DATA` in `projects/<your-slug>.content.js` (hero, gameplay demo, overview, features, role, tools, media).
-4. In `projects/<your-slug>.html`, update script include from `./new-project.content.js` to `./<your-slug>.content.js`.
-5. Keep `../project-page-renderer.js` in the page so content is rendered automatically.
-
-See detailed workflow in `docs/project-page-template.md`.
-
-Optional extras for UX/UI case studies (see `projects/coffre-fort.content.js` for a full example):
-- `demo` can be left out entirely when there is no video.
-- `sections: [{ eyebrow, title, note, items, wide }]` → extra cards after Overview / Role (research, personas, flows, insights). `wide: true` spans the full width.
-- `closingSections: [...]` → same format, shown after the media (e.g. testing / next steps).
-- `layout: "wide"` on a media item → full-width image under its title, for screens, wireframes and journey maps.
-
-### Step 2) Add media assets (optional)
-Put images/videos inside:
-- `assets/media/<your-project-folder>/...`
-
-### Step 3) Add one entry in `projects-data.js`
-Copy an existing object and edit fields:
-
-- `slug`: unique id
-- `title`: card title
-- `href`: link to the project page
-- `description`: short card description
-- `thumbnail`: thumbnail path (e.g. `assets/media/my-project/thumb.jpg`)
-- `thumbLabel`: small badge text (e.g. `UNITY`, `UE5`)
-- `status`: small status badge (e.g. `Prototype`, `Case Study`, `Published`)
-- `category`: category keyword (e.g. `education`, `ui`, `systems`)
-- `pills`: array of visible pills
-- `tags`: array used by filters on `projects.html` (`unity`, `ue5`, `ar`, `ui`)
-- `showFeaturedRow`: `true/false` (home featured row)
-- `featuredOrder`: number order for featured row
-- `showHomeUnity`: `true/false` (home Unity column)
-- `homeUnityOrder`: number order for home Unity list
-- `showHomeUe`: `true/false` (home UE column)
-- `homeUeOrder`: number order for home UE list
-- `showProjectsPage`: `true/false` (all projects page, defaults to visible if omitted)
-- `projectsOrder`: number order for all projects page
-
-#### Full object example
-```js
-{
-  slug: "my-project",
-  title: "My Project",
-  href: "projects/my-project.html",
-  description: "One-line value proposition.",
-  thumbnail: "assets/media/my-project/thumb.jpg",
-  thumbLabel: "UNITY",
-  status: "Prototype",
-  category: "education",
-  pills: ["Unity", "AR", "UI/UX"],
-  tags: ["unity", "ar", "ui"],
-  showFeaturedRow: true,
-  featuredOrder: 5,
-  showHomeUnity: true,
-  homeUnityOrder: 4,
-  showHomeUe: false,
-  homeUeOrder: 99,
-  showProjectsPage: true,
-  projectsOrder: 8
-}
-```
-
-If `showProjectsPage` is not set, the project is shown by default on `projects.html`.
-
-### Step 4) Save and reload
-No extra HTML card editing is needed.
-Cards are auto-rendered by `main.js`.
-
----
-
-## Step-by-step: edit an existing project card
-
-1. Open `projects-data.js`
-2. Find the project object (by `slug` or `title`)
-3. Update text/tags/pills/visibility flags
-4. Save and refresh
-
----
-
-## Visibility rules (important)
-
-- Set `showFeaturedRow: true` to display in the home featured row.
-- Set `showHomeUnity: true` to display in the Unity section on home.
-- Set `showHomeUe: true` to display in the UE section on home.
-- Set `showProjectsPage: true` to display in `projects.html` grid and be filterable.
-
-You can enable multiple locations at once.
-
----
-
-## Filters on `projects.html`
-
-Filters work from the `tags` array in `projects-data.js`:
-
-- `unity`
-- `ue5`
-- `ar`
-- `ui`
-
-If a card should appear under a filter, include that tag in `tags`.
-
-Example:
-```js
-tags: ["unity", "ar", "ui"]
-```
-
----
-
-## Thumbnail behavior
-
-Each generated card uses:
-- `project.thumbnail` if provided
-- fallback: `assets/icons/card-thumbnail-placeholder.svg`
-
-Optional thumbnail keys:
-- `thumbFit: "contain"` → shows the whole image instead of cropping it (use for logos)
-- `thumbBg: "#ffffff"` (any CSS background) → fills the space around a `contain` thumbnail
-
-Keep card thumbnails light: export a ~960px wide `card-thumb.webp` (50–100 KB) rather than pointing the card at a full-size screenshot.
-
-So the fastest media flow is:
-1. Add files in `assets/media/<project-slug>/`
-2. Set `thumbnail` in that project object
-3. Refresh the page
-
----
-
-
-## Fast media implementation workflow (recommended)
-
-1. Create project media folder:
-   - `assets/media/<slug>/`
-2. Add files with predictable names:
-   - `thumb.jpg` (card thumbnail)
-   - `cover.jpg` (hero image)
-   - `shot-01.jpg`, `shot-02.jpg`, ...
-   - `demo.mp4` (optional)
-3. In `projects-data.js`, set:
-   - `thumbnail: "assets/media/<slug>/thumb.jpg"`
-4. In the project page (`projects/<slug>.html`), replace media placeholders with those files.
-
-This keeps card updates data-driven and media assets organized by project.
-
-### Keep media light (important)
-
-Raw screen recordings are 20+ MB each; the site gets slow fast. Before adding files:
-
-- **File names:** lowercase, no spaces or brackets (`gameplay-demo.mp4`, not `Gameplay demo .mp4`).
-- **Screenshots:** export as `.webp`, max 1920 px wide (Squoosh / `cwebp -q 84`). A 2.4 MB PNG becomes ~150 KB.
-- **Videos:** H.264, max 1080p, with "faststart" so they play before fully downloading:
-  ```bash
-  ffmpeg -i input.mp4 -c:v libx264 -crf 26 -preset medium -pix_fmt yuv420p \
-    -vf "scale=-2:min(1080\,ih)" -movflags +faststart -c:a aac -b:a 96k output.mp4
-  ```
-- **Video posters:** add a still next to each video named `<video-name>-poster.webp`
-  (e.g. `ability.mp4` → `ability-poster.webp`). The page renderer picks it up automatically;
-  a `poster:` field in `content.js` overrides it. To grab a frame:
-  `ffmpeg -ss 1 -i ability.mp4 -frames:v 1 ability-poster.webp`
-- **Social preview images** (LinkedIn/Discord link cards) live in `assets/og/` (1200×630 JPG).
-  Add one for a new project and the matching `og:*` tags in its HTML `<head>`
-  (copy them from `projects/roadkill.html`), plus a line in `sitemap.xml`.
-- Delete media you no longer reference; everything in the repo is published.
-
----
-
-
-## Detailed workflow: add a brand-new project (example: Roadkill)
-
-Follow these exact steps in order:
-
-1. **Create the page file**
-   - Copy `projects/new-project.html`
-   - Save as `projects/roadkill.html`
-   - Replace `./new-project.content.js` with `./roadkill.content.js`
-2. **Fill the page content**
-   - Update `<title>`, meta description, hero summary, features, role, tools, media placeholders.
-3. **Create media folder**
-   - `assets/media/roadkill/`
-4. **Prepare media files**
-   - `thumb.jpg` (card thumbnail)
-   - `cover.jpg` (optional hero/cover)
-   - `shot-01.jpg`, `shot-02.jpg`, ...
-   - `demo.mp4` (optional)
-5. **Add the project object in `projects-data.js`**
-   - Required keys: `slug`, `title`, `href`, `description`, `thumbnail`, `thumbLabel`, `status`, `pills`, `tags`
-   - Placement keys: `showFeaturedRow`, `showHomeUnity/showHomeUe`, `showProjectsPage`
-   - Ordering keys: `featuredOrder`, `homeUnityOrder/homeUeOrder`, `projectsOrder`
-6. **Verify filters**
-   - Ensure `tags` includes expected filter values (`ue5`, `ui`, `ar`, `unity`).
-7. **Run local preview**
-   - `python3 -m http.server 4173`
-   - Check `index.html`, `projects.html`, and `projects/roadkill.html`
-8. **Finalize**
-   - Confirm card appears in correct sections and links to the new page.
-
----
-
-## Quick checklist before publishing
-
-1. Card appears in the correct sections (`index.html` / `projects.html`)
-2. Filters work on `projects.html`
-3. Card link opens correct `projects/<file>.html`
-4. Pills and labels are correct
-5. No console errors in browser
-
----
-
-
-## Cache behavior during active edits
-
-The live site is on GitHub Pages, which caches everything for ~10 minutes and ignores `_headers`.
-`_headers` only applies if the site is served from Cloudflare: HTML always revalidates, CSS/JS cache for
-an hour, and `assets/` caches for 30 days.
-
-When you change `styles.css`, `main.js`, `projects-data.js`, `project-page-renderer.js` or a
-`projects/*.content.js` file, **bump its `?v=` number** in the HTML that loads it so visitors get the new version.
-If you replace an image or video, give it a new file name rather than overwriting it.
-
-If you still see stale content, clear Cloudflare cache once in dashboard and hard refresh once (`Ctrl/Cmd+Shift+R`).
 
 ## Local preview
-
-Run:
 
 ```bash
 python3 -m http.server 4173
 ```
 
-Then open:
-- `http://127.0.0.1:4173/index.html`
-- `http://127.0.0.1:4173/projects.html`
+Open http://127.0.0.1:4173/index.html
+
+## Caching
+
+GitHub Pages caches files for about 10 minutes. The build adds a content hash to every CSS/JS link
+(`main.js?v=29d14b78`), so visitors get new code as soon as it changes. If you replace an image or
+video, give it a new file name instead of overwriting it.
+`_headers` only applies if the site is ever served from Cloudflare.
 
 ---
 
