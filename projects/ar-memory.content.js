@@ -11,9 +11,9 @@ window.PROJECT_PAGE_DATA = {
 
   demo: {
     title: "Experience Demo",
-    note: "Show the full flow: postcard scan, 3D monument appearance, pinch/rotate/zoom interaction, and photo capture to gallery.",
-   videoSrc: "../assets/media/armemory/20260226-1157-02.1061775.mp4",
-    poster: "../assets/media/armemory/20260226-1157-02.1061775.mp4",
+    note: "The full flow: postcard scan, 3D monument appearance, pinch/rotate/zoom interaction, and photo capture to gallery.",
+   videoSrc: "../assets/media/armemory/20260226-1157-02-1061775.mp4",
+    poster: "../assets/media/armemory/20260226-1157-02-1061775-poster.webp",
     mimeType: "video/mp4",
     pills: ["Scan to AR", "Monument Stories", "Mobile Interaction"]
   },
@@ -46,9 +46,9 @@ window.PROJECT_PAGE_DATA = {
   mediaTitle: "Media",
   mediaNote: "",
   mediaItems: [
-    { type: "image", title: "Project Intro", note: "Brand + description overview slide.", src: "../assets/media/armemory/image_2026-02-27_125316631.png", alt: "AR Memory intro" },
-    { type: "image", title: "Card Feed UI", note: "Scrollable card list with scan actions.", src: "../assets/media/armemory/image_2026-02-27_125708572.png", alt: "AR Memory card feed" },
-    { type: "image", title: "AR Start + Monument View", note: "Scan entry, 3D overlay view, and contextual text screen.", src: "../assets/media/armemory/image_2026-02-27_125544454.png", alt: "AR Memory AR view" },
-    { type: "image", title: "Gallery + Single Photo View", note: "Gallery grid and focused media screen.", src: "../assets/media/armemory/image_2026-02-27_125413672.png", alt: "AR Memory gallery" }
+    { type: "image", title: "Postcard Feed", note: "Monument postcards filtered by city (Djerba, Tozeur, Kairouan), each with a scan action.", src: "../assets/media/armemory/image-2026-02-27-125316631.webp", alt: "AR Memory postcard feed" },
+    { type: "image", title: "Card Feed, Scrolled", note: "Further down the feed: each card links a real postcard to its AR scene.", src: "../assets/media/armemory/image-2026-02-27-125708572.webp", alt: "AR Memory card feed" },
+    { type: "image", title: "AR Start + Monument View", note: "Scan entry, 3D overlay view, and contextual text screen.", src: "../assets/media/armemory/image-2026-02-27-125544454.webp", alt: "AR Memory AR view" },
+    { type: "image", title: "Gallery + Single Photo View", note: "Gallery grid and focused media screen.", src: "../assets/media/armemory/image-2026-02-27-125413672.webp", alt: "AR Memory gallery" }
   ]
 };

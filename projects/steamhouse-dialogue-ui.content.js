@@ -3,7 +3,7 @@ window.PROJECT_PAGE_DATA = {
   metaDescription: "Unreal Engine project: Behavior Tree-driven dialogue system with typewriter UI, choices, quest/blackboard updates, and full menu UX.",
   backHref: "../projects.html",
   backLabel: "← Back to Projects",
-  heroThumbnail: "../assets/media/steamhouse/dialogue_06s.png",
+  heroThumbnail: "../assets/media/steamhouse/dialogue-06s.webp",
 
   heroPills: ["Unreal Engine", "Blueprint", "Behavior Trees", "Blackboard", "UMG", "UI/UX"],
   lead: "Interactive adaptation inspired by Jules Verne’s La Maison à vapeur. I designed the dialogue architecture (Behavior Tree-driven), the typewriter presentation system, and implemented the UI + menu interactions across the game.",
@@ -12,7 +12,7 @@ window.PROJECT_PAGE_DATA = {
     title: "Dialogue Demo",
     note: "NPC interaction → dialogue appears with typewriter effect → advance/skip → state updates (blackboard/quest).",
     videoSrc: "../assets/media/steamhouse/dialoguesystem.mp4",
-    poster: "../assets/media/steamhouse/dialogue_06s.png",
+    poster: "../assets/media/steamhouse/dialogue-06s.webp",
     mimeType: "video/mp4",
     pills: ["Typewriter UI", "Choices", "Skip/Advance", "State-driven narrative"]
   },
@@ -49,21 +49,21 @@ window.PROJECT_PAGE_DATA = {
       type: "image",
       title: "Dialogue System Architecture (Behavior Tree)",
       note: "Each NPC has a corresponding Behavior Tree; blackboard conditions gate branches and trigger UI tasks.",
-      src: "../assets/media/steamhouse/bt.png",
+      src: "../assets/media/steamhouse/bt.webp",
       alt: "Behavior Tree dialogue structure"
     },
     {
       type: "image",
       title: "Blueprint Implementation — Dialogue Pipeline",
       note: "Event-driven widget creation, viewport injection, and 'Text Finished' binding to continue flow.",
-      src: "../assets/media/steamhouse/bp_dialogue.png",
+      src: "../assets/media/steamhouse/bp-dialogue.webp",
       alt: "Blueprint dialogue pipeline"
     },
     {
       type: "image",
       title: "Blueprint Implementation — Blackboard & Quest Updates",
       note: "Dialogue directly updates quest rewards and blackboard variables.",
-      src: "../assets/media/steamhouse/bp_blackboard.png",
+      src: "../assets/media/steamhouse/bp-blackboard.webp",
       alt: "Blueprint quest reward and blackboard update"
     },
     {

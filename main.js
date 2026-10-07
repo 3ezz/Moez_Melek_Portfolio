@@ -231,6 +231,12 @@ function initActiveNav(){
 }
 
 
+function escapeHtml(value){
+  return String(value ?? "").replace(/[&<>"']/g, ch => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  })[ch]);
+}
+
 function createProjectCard(project, includeTags = false){
   const card = document.createElement("a");
   card.className = "card";
@@ -243,24 +249,24 @@ function createProjectCard(project, includeTags = false){
     card.dataset.tags = tags.join(" ");
   }
 
-  const pills = (project.pills || []).map(pill => `<span class="pill">${pill}</span>`).join("");
+  const pills = (project.pills || []).map(pill => `<span class="pill">${escapeHtml(pill)}</span>`).join("");
   const thumbSrc = project.thumbnail || "assets/icons/card-thumbnail-placeholder.svg";
   const statusText = project.status || "WIP";
 
   const fitClass = project.thumbFit === "contain" ? " thumbContain" : "";
-  const thumbStyle = project.thumbBg ? ` style="background:${project.thumbBg}"` : "";
+  const thumbStyle = project.thumbBg ? ` style="background:${escapeHtml(project.thumbBg)}"` : "";
 
   card.innerHTML = `
     <div class="thumb${fitClass}"${thumbStyle}>
-      <img class="thumbImg" src="${thumbSrc}" alt="" loading="lazy" decoding="async">
-      <span class="thumbLabel">${project.thumbLabel || "PROJECT"}</span>
+      <img class="thumbImg" src="${escapeHtml(thumbSrc)}" alt="" loading="lazy" decoding="async" width="640" height="360">
+      <span class="thumbLabel">${escapeHtml(project.thumbLabel || "PROJECT")}</span>
     </div>
     <div class="cardBody">
       <div class="cardTitleRow">
-        <h3>${project.title}</h3>
-        <span class="statusBadge">${statusText}</span>
+        <h3>${escapeHtml(project.title)}</h3>
+        <span class="statusBadge">${escapeHtml(statusText)}</span>
       </div>
-      <p>${project.description}</p>
+      <p>${escapeHtml(project.description)}</p>
       <div class="pillRow">${pills}</div>
     </div>
   `;
@@ -334,7 +340,10 @@ function initAnalytics(){
   trackScrollDepth(cfg, visitorId, sessionId);
   trackNavigationClicks(cfg, visitorId, sessionId);
 
-  window.addEventListener("beforeunload", () => {
+  let exitSent = false;
+  window.addEventListener("pagehide", () => {
+    if (exitSent) return;
+    exitSent = true;
     const secondsOnPage = Math.max(0, Math.round((Date.now() - sessionId.createdAt) / 1000));
     trackAnalyticsEvent("page_exit", {
       path: window.location.pathname + window.location.search + window.location.hash,
@@ -350,18 +359,20 @@ function getAnalyticsConfig(){
     // Example: "https://portfolio-analytics.<your-subdomain>.workers.dev/track"
     endpoint: "https://moez-melek-portfolio.moezmaleksk.workers.dev/track",
     // Set to true while wiring Cloudflare Worker + browser debugging.
-    debug: true,
+    debug: false,
     site: "Moez_Melek_Portfolio"
   };
 }
 
 function getVisitorId(){
   const key = "mm_visitor_id";
-  const existing = localStorage.getItem(key);
-  if (existing) return existing;
-
   const created = `visitor_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
-  localStorage.setItem(key, created);
+  // localStorage can throw (private mode, blocked storage); analytics must never break the page.
+  try {
+    const existing = localStorage.getItem(key);
+    if (existing) return existing;
+    localStorage.setItem(key, created);
+  } catch (_) { /* fall back to a per-page id */ }
   return created;
 }
 

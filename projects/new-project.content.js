@@ -3,7 +3,7 @@ window.PROJECT_PAGE_DATA = {
   metaDescription: "Starter project page driven by a fillable data file so content can be updated without editing HTML structure.",
   backHref: "../index.html#projects",
   backLabel: "← Back to Projects",
-  heroThumbnail: "../assets/media/roadkill/shot-01.jpg",
+  heroThumbnail: "../assets/media/roadkill/shot-01.webp",
 
 
   heroPills: ["Engine", "Prototype", "Status"],
@@ -13,7 +13,7 @@ window.PROJECT_PAGE_DATA = {
     title: "Gameplay Demo",
     note: "Replace with your own captured gameplay clip.",
     videoSrc: "../assets/media/roadkill/demo.mp4",
-    poster: "../assets/media/roadkill/shot-01.jpg",
+    poster: "../assets/media/roadkill/shot-01.webp",
     mimeType: "video/mp4",
     pills: ["Gameplay", "Prototype", "Iteration"]
   },
