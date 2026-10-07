@@ -178,6 +178,26 @@ So the fastest media flow is:
 
 This keeps card updates data-driven and media assets organized by project.
 
+### Keep media light (important)
+
+Raw screen recordings are 20+ MB each; the site gets slow fast. Before adding files:
+
+- **File names:** lowercase, no spaces or brackets (`gameplay-demo.mp4`, not `Gameplay demo .mp4`).
+- **Screenshots:** export as `.webp`, max 1920 px wide (Squoosh / `cwebp -q 84`). A 2.4 MB PNG becomes ~150 KB.
+- **Videos:** H.264, max 1080p, with "faststart" so they play before fully downloading:
+  ```bash
+  ffmpeg -i input.mp4 -c:v libx264 -crf 26 -preset medium -pix_fmt yuv420p \
+    -vf "scale=-2:min(1080\,ih)" -movflags +faststart -c:a aac -b:a 96k output.mp4
+  ```
+- **Video posters:** add a still next to each video named `<video-name>-poster.webp`
+  (e.g. `ability.mp4` → `ability-poster.webp`). The page renderer picks it up automatically;
+  a `poster:` field in `content.js` overrides it. To grab a frame:
+  `ffmpeg -ss 1 -i ability.mp4 -frames:v 1 ability-poster.webp`
+- **Social preview images** (LinkedIn/Discord link cards) live in `assets/og/` (1200×630 JPG).
+  Add one for a new project and the matching `og:*` tags in its HTML `<head>`
+  (copy them from `projects/roadkill.html`), plus a line in `sitemap.xml`.
+- Delete media you no longer reference; everything in the repo is published.
+
 ---
 
 
@@ -225,9 +245,13 @@ Follow these exact steps in order:
 
 ## Cache behavior during active edits
 
-This repo now includes a Cloudflare Pages `_headers` file that disables aggressive browser caching for HTML/CSS/JS.
+The live site is on GitHub Pages, which caches everything for ~10 minutes and ignores `_headers`.
+`_headers` only applies if the site is served from Cloudflare: HTML always revalidates, CSS/JS cache for
+an hour, and `assets/` caches for 30 days.
 
-That means new deploys should be visible on normal refresh (without needing a new browser window).
+When you change `styles.css`, `main.js`, `projects-data.js`, `project-page-renderer.js` or a
+`projects/*.content.js` file, **bump its `?v=` number** in the HTML that loads it so visitors get the new version.
+If you replace an image or video, give it a new file name rather than overwriting it.
 
 If you still see stale content, clear Cloudflare cache once in dashboard and hard refresh once (`Ctrl/Cmd+Shift+R`).
 

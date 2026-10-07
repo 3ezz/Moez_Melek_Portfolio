@@ -3,7 +3,7 @@ window.PROJECT_PAGE_DATA = {
   metaDescription: "Unity + Vuforia AR tourism app that helps visitors discover Djerba island through a scannable book, monument cards, and local tradition articles.",
   backHref: "../index.html#projects",
   backLabel: "← Back to Projects",
-  heroThumbnail: "../assets/media/jerbaview/logo-02.png",
+  heroThumbnail: "../assets/media/jerbaview/logo-02.webp",
 
 
   heroPills: ["Unity", "AR", "Tourism", "Mobile", "Gallery"],
@@ -11,9 +11,9 @@ window.PROJECT_PAGE_DATA = {
 
   demo: {
     title: "Product Demo",
-    note: "Show the complete tourist flow: browse attractions, scan the book/cards, view monuments in 3D AR, and read local traditions articles.",
-    videoSrc: "../assets/media/jerbaview/Video Project.mp4",
-    poster: "../assets/media/jerbaview/logo-02.png",
+    note: "The complete tourist flow: browse attractions, scan the book/cards, view monuments in 3D AR, and read local traditions articles.",
+    videoSrc: "../assets/media/jerbaview/djerba-demo.mp4",
+    poster: "../assets/media/jerbaview/logo-02.webp",
     mimeType: "video/mp4",
     pills: ["Tourism UX", "AR Info Layers", "Gallery Flow"]
   },
@@ -45,13 +45,12 @@ window.PROJECT_PAGE_DATA = {
   tools: ["Unity", "C#", "Vuforia", "AR", "UI/UX Design", "3D Integration"],
 
   mediaTitle: "Media",
-  mediaNote: "Derived from your reference slides. Replace each placeholder with exported screenshot files under assets/media/djerba/.",
+  mediaNote: "",
   mediaItems: [
-    { type: "image", title: "Project Intro", note: "Branding + concept/role summary slide.", src: "../assets/media/jerbaview/image_2026-02-27_123252176.png", alt: "Djerba intro" },
-    { type: "image", title: "Home & Login UI", note: "Main landing and authentication screens.", src: "../assets/media/jerbaview/image_2026-02-27_123252176.png", alt: "Djerba home and login" },
-    { type: "image", title: "Home & Login UI", note: "Main landing and authentication screens.", src: "../assets/media/jerbaview/image_2026-02-27_123324309.png", alt: "Djerba home and login" },
-    { type: "image", title: "Activities Grid + Detail", note: "Tourism category cards and text-rich detail page.", src: "../assets/media/jerbaview/image_2026-02-27_123409151.png", alt: "Djerba activities" },
-    { type: "image", title: "Local Experiences View", note: "Alternate activity set with item detail panel.", src: "../assets/media/jerbaview/image_2026-02-27_123455927.png", alt: "Djerba experiences" },
-    { type: "image", title: "AR Camera + Gallery", note: "AR camera module and in-app media gallery.", src: "../assets/media/jerbaview/image_2026-02-27_123550723.png", alt: "Djerba AR gallery" }
+    { type: "image", title: "Home Screen", note: "Main menu with activities, photos and the AR scan entry point.", src: "../assets/media/jerbaview/image-2026-02-27-123252176.webp", alt: "Djerba View AR home screen" },
+    { type: "image", title: "Login", note: "Sign-in with the companion book’s serial number and an email.", src: "../assets/media/jerbaview/image-2026-02-27-123324309.webp", alt: "Djerba View AR login screen" },
+    { type: "image", title: "Activities Grid + Detail", note: "Tourism category cards and text-rich detail page.", src: "../assets/media/jerbaview/image-2026-02-27-123409151.webp", alt: "Djerba activities" },
+    { type: "image", title: "Local Experiences View", note: "Alternate activity set with item detail panel.", src: "../assets/media/jerbaview/image-2026-02-27-123455927.webp", alt: "Djerba experiences" },
+    { type: "image", title: "AR Camera + Gallery", note: "AR camera module and in-app media gallery.", src: "../assets/media/jerbaview/image-2026-02-27-123550723.webp", alt: "Djerba AR gallery" }
   ]
 };

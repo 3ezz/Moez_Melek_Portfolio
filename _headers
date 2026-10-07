@@ -1,13 +1,20 @@
-/*
-  Cache-Control: no-cache, no-store, must-revalidate
-  Pragma: no-cache
-  Expires: 0
+# Used when the site is served from Cloudflare (GitHub Pages ignores this file
+# and applies its own 10-minute cache).
 
+# HTML: always revalidate so content updates show up immediately
 /*.html
-  Cache-Control: no-cache, no-store, must-revalidate
+  Cache-Control: no-cache
+
+/
+  Cache-Control: no-cache
+
+# CSS / JS: short cache; bump the ?v= number in the HTML when you change them
+/*.css
+  Cache-Control: public, max-age=3600
 
 /*.js
-  Cache-Control: no-cache, no-store, must-revalidate
+  Cache-Control: public, max-age=3600
 
-/*.css
-  Cache-Control: no-cache, no-store, must-revalidate
+# Images, videos, icons, CVs: cache for 30 days
+/assets/*
+  Cache-Control: public, max-age=2592000

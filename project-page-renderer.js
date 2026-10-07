@@ -34,9 +34,11 @@
       const video = document.createElement('video');
       video.controls = true;
       video.playsInline = true;
-      video.preload = 'metadata';
-      if (item.poster) video.poster = item.poster;
+      video.preload = 'none';
       const sourcePath = resolveVideoSource(item);
+      const itemPoster = resolvePoster(item, sourcePath);
+      if (itemPoster) video.poster = itemPoster;
+      if (item.alt || item.title) video.setAttribute('aria-label', item.alt || item.title);
       const sourceType = item.mimeType || inferVideoMimeType(sourcePath);
       const source = document.createElement('source');
       source.src = sourcePath;
@@ -50,10 +52,20 @@
       img.src = item.src;
       img.alt = item.alt || item.title || 'Project media';
       img.loading = 'lazy';
+      img.decoding = 'async';
       mediaBox.appendChild(img);
     }
 
     return mediaBox;
+  }
+
+  // Poster frame for a video: explicit image poster wins; otherwise use the
+  // "<video-name>-poster.webp" still that sits next to every compressed video.
+  function resolvePoster(entry, src) {
+    const explicit = entry && entry.poster;
+    if (explicit && !/\.(mp4|m4v|webm|mov|ogv)$/i.test(explicit)) return explicit;
+    if (src && /\.mp4$/i.test(src)) return src.replace(/\.mp4$/i, '-poster.webp');
+    return '';
   }
 
   function resolveVideoSource(entry) {
@@ -108,8 +120,10 @@
         const video = document.createElement('video');
         video.controls = true;
         video.playsInline = true;
-        video.preload = 'metadata';
-        if (data.demo.poster) video.poster = data.demo.poster;
+        video.preload = 'none';
+        const demoPoster = resolvePoster(data.demo, demoVideoSource);
+        if (demoPoster) video.poster = demoPoster;
+        video.setAttribute('aria-label', data.demo.title || `${data.title} demo video`);
         video.style.width = '100%';
         video.style.borderRadius = '14px';
         video.style.border = '1px solid rgba(255,255,255,.12)';
