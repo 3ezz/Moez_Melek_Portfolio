@@ -340,72 +340,107 @@ function initProjectCards(){
 }
 
 
+/* =========================================================
+   Visitor analytics (sent to the Cloudflare Worker in docs/)
+   - anonymous: random visitor id, no cookies, no third parties
+   - visitor id expires after 13 months (CNIL audience-measurement rule)
+   - a session = one browser tab until 30 minutes without activity
+   - never runs on localhost, for visitors with Global Privacy Control,
+     or on a browser where you opened the site once with ?notrack
+     (open it with ?track to undo)
+   ========================================================= */
+const ANALYTICS = {
+  endpoint: "https://moez-melek-portfolio.moezmaleksk.workers.dev/track",
+  site: "Moez_Melek_Portfolio",
+  debug: false,                       // true = log every event in the browser console
+  visitorMaxAgeMs: 395 * 24 * 3600e3, // ~13 months
+  sessionIdleMs: 30 * 60e3            // 30 minutes
+};
+
+function storageGet(store, key){
+  try { return window[store].getItem(key); } catch (_) { return null; }
+}
+function storageSet(store, key, value){
+  try { window[store].setItem(key, value); } catch (_) { /* storage blocked: ignore */ }
+}
+function randomId(prefix){
+  const rnd = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : Math.random().toString(36).slice(2) + Date.now().toString(36);
+  return `${prefix}_${rnd}`;
+}
+
+function analyticsAllowed(){
+  const params = new URLSearchParams(location.search);
+  if (params.has("notrack")) storageSet("localStorage", "mm_notrack", "1");
+  if (params.has("track")) { try { localStorage.removeItem("mm_notrack"); } catch (_) {} }
+  if (storageGet("localStorage", "mm_notrack") === "1") return false;
+  if (navigator.globalPrivacyControl === true) return false;
+  if (location.protocol === "file:") return false;
+  if (/^(localhost|127\.0\.0\.1|0\.0\.0\.0|\[::1\])$/.test(location.hostname)) return false;
+  return true;
+}
+
+function getVisitorId(){
+  const now = Date.now();
+  let saved = null;
+  try { saved = JSON.parse(storageGet("localStorage", "mm_visitor") || "null"); } catch (_) {}
+  if (saved && saved.id && now - saved.created < ANALYTICS.visitorMaxAgeMs) return saved.id;
+  const id = randomId("visitor");
+  storageSet("localStorage", "mm_visitor", JSON.stringify({ id, created: now }));
+  try { localStorage.removeItem("mm_visitor_id"); } catch (_) {} // old format, never expired
+  return id;
+}
+
+function getSessionId(){
+  const now = Date.now();
+  let saved = null;
+  try { saved = JSON.parse(storageGet("sessionStorage", "mm_session") || "null"); } catch (_) {}
+  const id = (saved && saved.id && now - saved.last < ANALYTICS.sessionIdleMs) ? saved.id : randomId("session");
+  storageSet("sessionStorage", "mm_session", JSON.stringify({ id, last: now }));
+  return id;
+}
+
+function touchSession(id){
+  storageSet("sessionStorage", "mm_session", JSON.stringify({ id, last: Date.now() }));
+}
+
+function currentPath(){
+  return window.location.pathname + window.location.search + window.location.hash;
+}
+
 function initAnalytics(){
-  const cfg = getAnalyticsConfig();
-  if (!cfg.endpoint) {
-    if (cfg.debug) console.warn("Analytics disabled: set ANALYTICS_ENDPOINT in main.js.");
+  if (!ANALYTICS.endpoint || !analyticsAllowed()) {
+    if (ANALYTICS.debug) console.info("analytics off on this browser/page");
     return;
   }
 
-  const sessionId = getSessionId();
-  const visitorId = getVisitorId();
-  const startPath = window.location.pathname + window.location.search + window.location.hash;
+  const ids = { visitorId: getVisitorId(), sessionId: getSessionId() };
+  const pageStart = Date.now();
+  const send = (event, data, beacon = false) => {
+    touchSession(ids.sessionId);
+    trackAnalyticsEvent(event, { ...data, ...ids }, beacon);
+  };
 
-  trackAnalyticsEvent("page_view", {
-    path: startPath,
+  send("page_view", {
+    path: currentPath(),
     title: document.title,
-    referrer: document.referrer || "direct",
-    visitorId,
-    sessionId: sessionId.id
-  }, cfg);
+    referrer: document.referrer || "direct"
+  });
 
-  trackScrollDepth(cfg, visitorId, sessionId);
-  trackNavigationClicks(cfg, visitorId, sessionId);
+  trackScrollDepth(send);
+  trackNavigationClicks(send);
 
   let exitSent = false;
   window.addEventListener("pagehide", () => {
     if (exitSent) return;
     exitSent = true;
-    const secondsOnPage = Math.max(0, Math.round((Date.now() - sessionId.createdAt) / 1000));
-    trackAnalyticsEvent("page_exit", {
-      path: window.location.pathname + window.location.search + window.location.hash,
-      secondsOnPage,
-      visitorId,
-      sessionId: sessionId.id
-    }, cfg, true);
+    send("page_exit", {
+      path: currentPath(),
+      secondsOnPage: Math.max(0, Math.round((Date.now() - pageStart) / 1000))
+    }, true);
   });
 }
 
-function getAnalyticsConfig(){
-  return {
-    // Example: "https://portfolio-analytics.<your-subdomain>.workers.dev/track"
-    endpoint: "https://moez-melek-portfolio.moezmaleksk.workers.dev/track",
-    // Set to true while wiring Cloudflare Worker + browser debugging.
-    debug: false,
-    site: "Moez_Melek_Portfolio"
-  };
-}
-
-function getVisitorId(){
-  const key = "mm_visitor_id";
-  const created = `visitor_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
-  // localStorage can throw (private mode, blocked storage); analytics must never break the page.
-  try {
-    const existing = localStorage.getItem(key);
-    if (existing) return existing;
-    localStorage.setItem(key, created);
-  } catch (_) { /* fall back to a per-page id */ }
-  return created;
-}
-
-function getSessionId(){
-  return {
-    id: `session_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
-    createdAt: Date.now()
-  };
-}
-
-function trackNavigationClicks(cfg, visitorId, sessionId){
+function trackNavigationClicks(send){
   document.addEventListener("click", (event) => {
     const link = event.target.closest("a[href]");
     if (!link) return;
@@ -413,19 +448,17 @@ function trackNavigationClicks(cfg, visitorId, sessionId){
     const href = link.getAttribute("href") || "";
     if (!href || href.startsWith("javascript:")) return;
 
-    const isExternal = /^https?:\/\//i.test(href) && !href.includes(window.location.host);
-    trackAnalyticsEvent("navigation_click", {
-      fromPath: window.location.pathname + window.location.search + window.location.hash,
+    const isExternal = /^(https?:|mailto:)/i.test(href) && !href.includes(window.location.host);
+    send("navigation_click", {
+      fromPath: currentPath(),
       to: href,
       text: (link.textContent || "").trim().slice(0, 120),
-      isExternal,
-      visitorId,
-      sessionId: sessionId.id
-    }, cfg);
+      isExternal
+    }, isExternal || /\.pdf($|\?)/i.test(href)); // leaving the page: use a beacon so it isn't lost
   });
 }
 
-function trackScrollDepth(cfg, visitorId, sessionId){
+function trackScrollDepth(send){
   const marks = [25, 50, 75, 100];
   const sent = new Set();
 
@@ -438,12 +471,7 @@ function trackScrollDepth(cfg, visitorId, sessionId){
     marks.forEach((mark) => {
       if (percent < mark || sent.has(mark)) return;
       sent.add(mark);
-      trackAnalyticsEvent("scroll_depth", {
-        path: window.location.pathname + window.location.search + window.location.hash,
-        percent: mark,
-        visitorId,
-        sessionId: sessionId.id
-      }, cfg);
+      send("scroll_depth", { path: currentPath(), percent: mark });
     });
 
     if (sent.size === marks.length) {
@@ -455,31 +483,28 @@ function trackScrollDepth(cfg, visitorId, sessionId){
   onScroll();
 }
 
-function trackAnalyticsEvent(eventName, data, cfg, preferBeacon = false){
-  const payload = {
+function trackAnalyticsEvent(eventName, data, preferBeacon = false){
+  const body = JSON.stringify({
     event: eventName,
-    site: cfg.site,
+    site: ANALYTICS.site,
     timestamp: new Date().toISOString(),
     userAgent: navigator.userAgent,
     ...data
-  };
+  });
+  if (ANALYTICS.debug) console.log("analytics", JSON.parse(body));
 
-  const body = JSON.stringify(payload);
-  if (cfg.debug) console.log("analytics", payload);
-
+  // text/plain keeps this a "simple" request: no CORS preflight, and allowed in sendBeacon.
   if (preferBeacon && navigator.sendBeacon) {
-    const blob = new Blob([body], { type: "application/json" });
-    navigator.sendBeacon(cfg.endpoint, blob);
-    return;
+    if (navigator.sendBeacon(ANALYTICS.endpoint, new Blob([body], { type: "text/plain" }))) return;
   }
 
-  fetch(cfg.endpoint, {
+  fetch(ANALYTICS.endpoint, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "text/plain" },
     body,
     keepalive: true,
     mode: "cors"
   }).catch((err) => {
-    if (cfg.debug) console.warn("analytics failed", err);
+    if (ANALYTICS.debug) console.warn("analytics failed", err);
   });
 }

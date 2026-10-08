@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Portfolio Stats</title>
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #f4f4f2; --surface: #fcfcfb; --line: #e3e2de;
+    --text: #0b0b0b; --text-2: #52514e; --muted: #7a7974;
+    --series: #2a78d6; --series-soft: rgba(42,120,214,.14);
+    --accent: #c4007f; --good: #0a7d3c;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #0b0c10; --surface: #141519; --line: #262830;
+      --text: #ffffff; --text-2: #c3c2b7; --muted: #8d8c86;
+      --series: #3987e5; --series-soft: rgba(57,135,229,.18);
+      --accent: #ff4fbf; --good: #4cc27c;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #0b0c10; --surface: #141519; --line: #262830;
+    --text: #ffffff; --text-2: #c3c2b7; --muted: #8d8c86;
+    --series: #3987e5; --series-soft: rgba(57,135,229,.18);
+    --accent: #ff4fbf; --good: #4cc27c;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 20px 16px 48px; }
+  header { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+  h1 { font-size: 20px; margin: 0; letter-spacing: -.01em; }
+  h1 small { display: block; font-size: 12px; font-weight: 400; color: var(--muted); }
+  h2 { font-size: 13px; font-weight: 600; margin: 0 0 10px; color: var(--text-2); text-transform: uppercase; letter-spacing: .04em; }
+  .controls { display: flex; gap: 8px; flex-wrap: wrap; }
+  select, button, input {
+    font: inherit; color: var(--text); background: var(--surface);
+    border: 1px solid var(--line); border-radius: 10px; padding: 7px 12px;
+  }
+  button { cursor: pointer; }
+  button.primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px; min-width: 0; }
+  .grid { display: grid; gap: 14px; }
+  .kpis { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-bottom: 14px; }
+  .two { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 14px; }
+  .three { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 14px; }
+  @media (max-width: 860px) { .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } .two, .three { grid-template-columns: 1fr; } }
+  .kpi .label { color: var(--text-2); font-size: 12.5px; }
+  .kpi .value { font-size: 30px; font-weight: 700; letter-spacing: -.02em; font-variant-numeric: tabular-nums; margin-top: 2px; }
+  .kpi .hint { color: var(--muted); font-size: 12px; }
+  table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  th, td { text-align: left; padding: 7px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 500; font-size: 12px; }
+  td.num, th.num { text-align: right; white-space: nowrap; }
+  tr:last-child td { border-bottom: 0; }
+  .barcell { position: relative; }
+  .barcell .bar { position: absolute; left: 0; top: 5px; bottom: 5px; background: var(--series-soft); border-radius: 0 4px 4px 0; z-index: 0; }
+  .barcell span { position: relative; z-index: 1; padding-left: 6px; }
+  .muted { color: var(--muted); }
+  .empty { color: var(--muted); padding: 10px 0; }
+  .badge { display: inline-block; font-size: 11.5px; padding: 1px 7px; border-radius: 999px; border: 1px solid var(--line); color: var(--text-2); margin: 0 4px 2px 0; }
+  .badge.hot { border-color: var(--accent); color: var(--accent); }
+  .path { color: var(--text-2); font-size: 12.5px; }
+  .scroll { overflow-x: auto; }
+  #chart { position: relative; }
+  #chart svg { display: block; width: 100%; height: 220px; overflow: visible; }
+  #chart .axis text { fill: var(--muted); font-size: 11px; }
+  #chart .grid line { stroke: var(--line); }
+  #chart .bar { fill: var(--series); }
+  #chart .hit { fill: transparent; cursor: default; }
+  #chart .hit:hover + .bar, #chart .bar.on { opacity: .8; }
+  .tip { position: absolute; pointer-events: none; background: var(--text); color: var(--bg); padding: 6px 9px; border-radius: 8px; font-size: 12px; white-space: nowrap; transform: translate(-50%, -100%); margin-top: -8px; opacity: 0; transition: opacity .1s; }
+  .tip.on { opacity: 1; }
+  #login { max-width: 420px; margin: 12vh auto; }
+  #login p { color: var(--text-2); }
+  #login form { display: flex; gap: 8px; }
+  #login input { flex: 1; }
+  .error { color: var(--accent); margin-top: 10px; }
+  details summary { cursor: pointer; color: var(--text-2); margin-top: 6px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <section id="login" class="card" hidden>
+    <h1>Portfolio stats</h1>
+    <p>Enter the key you set with <code>npx wrangler secret put STATS_TOKEN</code>. It is remembered in this browser only.</p>
+    <form id="loginForm">
+      <input id="keyInput" type="password" autocomplete="current-password" placeholder="Stats key" required>
+      <button class="primary" type="submit">Open</button>
+    </form>
+    <div class="error" id="loginError"></div>
+  </section>
+
+  <main id="app" hidden>
+    <header>
+      <h1>Portfolio stats <small id="sub">…</small></h1>
+      <div class="controls">
+        <select id="days" aria-label="Time range">
+          <option value="7">Last 7 days</option>
+          <option value="30" selected>Last 30 days</option>
+          <option value="90">Last 90 days</option>
+          <option value="365">Last 12 months</option>
+        </select>
+        <button id="refresh" type="button">Refresh</button>
+        <button id="logout" type="button" title="Forget the key on this browser">Lock</button>
+      </div>
+    </header>
+
+    <div class="grid kpis">
+      <div class="card kpi"><div class="label">Visitors</div><div class="value" id="kVisitors">–</div><div class="hint">unique browsers</div></div>
+      <div class="card kpi"><div class="label">Visits</div><div class="value" id="kSessions">–</div><div class="hint">sessions (30 min idle = new visit)</div></div>
+      <div class="card kpi"><div class="label">Page views</div><div class="value" id="kViews">–</div><div class="hint" id="kPerVisit">&nbsp;</div></div>
+      <div class="card kpi"><div class="label">Contact actions</div><div class="value" id="kContacts">–</div><div class="hint">CV opens, emails, LinkedIn</div></div>
+    </div>
+
+    <section class="card">
+      <h2>Visitors per day</h2>
+      <div id="chart"><div class="tip" id="tip"></div></div>
+      <details><summary>Show as table</summary><div class="scroll"><table id="dailyTable"></table></div></details>
+    </section>
+
+    <div class="grid two">
+      <section class="card">
+        <h2>Pages</h2>
+        <div class="scroll"><table id="pages"></table></div>
+        <p class="muted" style="margin:8px 0 0;font-size:12px">Read = share of visits that scrolled at least 75% of the page.</p>
+      </section>
+      <section class="card">
+        <h2>Contact actions</h2>
+        <div class="scroll"><table id="contacts"></table></div>
+      </section>
+    </div>
+
+    <div class="grid three">
+      <section class="card"><h2>Where visits come from</h2><table id="referrers"></table></section>
+      <section class="card"><h2>Countries</h2><table id="countries"></table></section>
+      <section class="card"><h2>Devices</h2><table id="devices"></table></section>
+    </div>
+
+    <section class="card" style="margin-top:14px">
+      <h2>Recent visits</h2>
+      <div class="scroll"><table id="recent"></table></div>
+    </section>
+  </main>
+</div>
+
+<script>
+(() => {
+  const KEY = 'mm_stats_key';
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  const fmt = (n) => (n == null ? '–' : Number(n).toLocaleString());
+  const store = {
+    get: () => { try { return localStorage.getItem(KEY); } catch (_) { return null; } },
+    set: (v) => { try { localStorage.setItem(KEY, v); } catch (_) {} },
+    clear: () => { try { localStorage.removeItem(KEY); } catch (_) {} }
+  };
+  let key = store.get();
+
+  const pageName = (p) => {
+    if (!p || p === '/' ) return 'Home';
+    const m = p.match(/\/projects\/([^/]+)\.html$/);
+    if (m) return m[1].replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()).replace(/\bUi\b/g, 'UI').replace(/\bAr\b/g, 'AR');
+    return p.replace(/^\//, '').replace(/\.html$/, '').replace(/^\w/, (c) => c.toUpperCase()) || 'Home';
+  };
+  const flag = (cc) => (cc && /^[A-Z]{2}$/.test(cc) ? String.fromCodePoint(...[...cc].map((c) => 0x1f1e6 + c.charCodeAt(0) - 65)) + ' ' + cc : 'Unknown');
+  const dur = (s) => (!s ? '–' : s < 60 ? `${s}s` : `${Math.floor(s / 60)}m ${String(s % 60).padStart(2, '0')}s`);
+  const when = (iso) => new Date(iso).toLocaleString(undefined, { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
+
+  function table(el, head, rows, empty = 'No data yet.') {
+    if (!rows.length) { el.innerHTML = `<tr><td class="empty">${empty}</td></tr>`; return; }
+    el.innerHTML = `<thead><tr>${head.map((h) => `<th class="${h.num ? 'num' : ''}">${esc(h.label)}</th>`).join('')}</tr></thead>` +
+      `<tbody>${rows.map((r) => `<tr>${r.join('')}</tr>`).join('')}</tbody>`;
+  }
+  const td = (v, num) => `<td class="${num ? 'num' : ''}">${v}</td>`;
+  const barTd = (label, value, max) =>
+    `<td class="barcell"><div class="bar" style="width:${max ? Math.max(2, (value / max) * 100) : 0}%"></div><span>${label}</span></td>`;
+
+  function fillDays(daily, days) {
+    const byDay = Object.fromEntries(daily.map((d) => [d.day, d]));
+    const out = [];
+    for (let i = days - 1; i >= 0; i--) {
+      const d = new Date(Date.now() - i * 864e5).toISOString().slice(0, 10);
+      out.push(byDay[d] || { day: d, visitors: 0, pageViews: 0 });
+    }
+    return out;
+  }
+
+  function drawChart(series) {
+    const box = $('chart');
+    box.querySelector('svg')?.remove();
+    const W = Math.max(320, box.clientWidth), H = 220, padL = 32, padR = 6, padT = 10, padB = 24;
+    const max = Math.max(1, ...series.map((d) => d.visitors));
+    const step = Math.max(1, Math.ceil(max / 4));
+    const top = step * Math.ceil(max / step);
+    const innerW = W - padL - padR, innerH = H - padT - padB;
+    const slot = innerW / series.length;
+    const bw = Math.min(24, Math.max(2, slot - 2));
+    const y = (v) => padT + innerH - (v / top) * innerH;
+    const ns = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(ns, 'svg');
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', `Visitors per day, maximum ${max}`);
+    let html = '<g class="grid">';
+    for (let v = 0; v <= top; v += step) html += `<line x1="${padL}" x2="${W - padR}" y1="${y(v)}" y2="${y(v)}"/>`;
+    html += '</g><g class="axis">';
+    for (let v = 0; v <= top; v += step) html += `<text x="${padL - 6}" y="${y(v) + 4}" text-anchor="end">${v}</text>`;
+    const every = Math.max(1, Math.ceil(series.length / Math.max(2, Math.floor(innerW / 64))));
+    const lastLabel = Math.floor((series.length - 1) / every) * every;
+    series.forEach((d, i) => {
+      // evenly spaced labels; the newest day replaces the last regular label so they never collide
+      if ((i % every === 0 && (i !== lastLabel || lastLabel === series.length - 1) && (series.length - 1 - i >= every || i === series.length - 1)) || i === series.length - 1) {
+        const label = new Date(d.day + 'T12:00:00Z').toLocaleDateString(undefined, { day: 'numeric', month: 'short' });
+        html += `<text x="${padL + slot * i + slot / 2}" y="${H - 6}" text-anchor="middle">${label}</text>`;
+      }
+    });
+    html += '</g><g>';
+    series.forEach((d, i) => {
+      const x = padL + slot * i + (slot - bw) / 2;
+      const h = (d.visitors / top) * innerH;
+      const r = Math.min(4, bw / 2, h);
+      const base = padT + innerH;
+      // rounded data-end, square at the baseline
+      const path = h > 0
+        ? `M${x},${base} V${base - h + r} Q${x},${base - h} ${x + r},${base - h} H${x + bw - r} Q${x + bw},${base - h} ${x + bw},${base - h + r} V${base} Z`
+        : '';
+      html += `<rect class="hit" data-i="${i}" x="${padL + slot * i}" y="${padT}" width="${slot}" height="${innerH}"/>`;
+      if (path) html += `<path class="bar" data-i="${i}" d="${path}"/>`;
+    });
+    html += '</g>';
+    svg.innerHTML = html;
+    box.prepend(svg);
+
+    const tip = $('tip');
+    svg.addEventListener('pointermove', (e) => {
+      const t = e.target.closest('[data-i]');
+      svg.querySelectorAll('.bar.on').forEach((b) => b.classList.remove('on'));
+      if (!t) { tip.classList.remove('on'); return; }
+      const i = +t.dataset.i, d = series[i];
+      svg.querySelector(`.bar[data-i="${i}"]`)?.classList.add('on');
+      const date = new Date(d.day + 'T12:00:00Z').toLocaleDateString(undefined, { weekday: 'short', day: 'numeric', month: 'short' });
+      tip.innerHTML = `<b>${date}</b><br>${fmt(d.visitors)} visitor${d.visitors === 1 ? '' : 's'} · ${fmt(d.pageViews)} page views`;
+      const scale = box.clientWidth / W;
+      tip.style.left = `${Math.min(box.clientWidth - 70, Math.max(70, (padL + slot * i + slot / 2) * scale))}px`;
+      tip.style.top = `${y(d.visitors) * (box.clientHeight / H || 1)}px`;
+      tip.classList.add('on');
+    });
+    svg.addEventListener('pointerleave', () => { tip.classList.remove('on'); svg.querySelectorAll('.bar.on').forEach((b) => b.classList.remove('on')); });
+  }
+
+  let lastSeries = [];
+  async function load() {
+    const days = +$('days').value;
+    $('sub').textContent = 'Loading…';
+    let res;
+    try {
+      res = await fetch(`/stats?days=${days}`, { headers: { authorization: `Bearer ${key}` }, cache: 'no-store' });
+    } catch (e) {
+      $('sub').textContent = 'Network error, try Refresh.';
+      return;
+    }
+    if (res.status === 401 || res.status === 503) {
+      const body = await res.json().catch(() => ({}));
+      showLogin(res.status === 401 ? 'Wrong key.' : body.error);
+      return;
+    }
+    const s = await res.json();
+    showApp();
+    $('sub').textContent = `${new Date(s.since).toLocaleDateString()} → today · updated ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+
+    const t = s.totals || {};
+    $('kVisitors').textContent = fmt(t.visitors || 0);
+    $('kSessions').textContent = fmt(t.sessions || 0);
+    $('kViews').textContent = fmt(t.pageViews || 0);
+    $('kPerVisit').textContent = t.sessions ? `${(t.pageViews / t.sessions).toFixed(1)} pages per visit` : ' ';
+    $('kContacts').textContent = fmt(s.contacts.filter((c) => c.action !== 'Other external link').reduce((a, c) => a + c.clicks, 0));
+
+    lastSeries = fillDays(s.daily, days);
+    drawChart(lastSeries);
+    table($('dailyTable'), [{ label: 'Day' }, { label: 'Visitors', num: 1 }, { label: 'Page views', num: 1 }],
+      lastSeries.slice().reverse().map((d) => [td(esc(d.day)), td(fmt(d.visitors), 1), td(fmt(d.pageViews), 1)]));
+
+    const maxViews = Math.max(0, ...s.pages.map((p) => p.views));
+    table($('pages'), [{ label: 'Page' }, { label: 'Views', num: 1 }, { label: 'Visitors', num: 1 }, { label: 'Avg time', num: 1 }, { label: 'Read', num: 1 }],
+      s.pages.map((p) => [barTd(esc(p.page !== '/' && p.title ? p.title.replace(/\s+—\s+Moez Melek$/, '') : pageName(p.page)), p.views, maxViews), td(fmt(p.views), 1), td(fmt(p.visitors), 1),
+        td(dur(p.avgSeconds), 1), td(p.readPct == null ? '–' : `${p.readPct}%`, 1)]));
+
+    table($('contacts'), [{ label: 'Action' }, { label: 'Clicks', num: 1 }, { label: 'People', num: 1 }],
+      s.contacts.map((c) => [td(esc(c.action)), td(fmt(c.clicks), 1), td(fmt(c.visitors), 1)]),
+      'Nobody has opened your CV, emailed or clicked LinkedIn in this period yet.');
+
+    const simple = (el, rows, label, valueKey, fmtLabel = esc) => {
+      const max = Math.max(0, ...rows.map((r) => r[valueKey]));
+      table(el, [{ label }, { label: valueKey === 'visitors' ? 'Visitors' : 'Visits', num: 1 }],
+        rows.map((r) => [barTd(fmtLabel(r[Object.keys(r)[0]]), r[valueKey], max), td(fmt(r[valueKey]), 1)]));
+    };
+    simple($('referrers'), s.referrers, 'Source', 'sessions');
+    simple($('countries'), s.countries, 'Country', 'visitors', (c) => esc(flag(c === '??' ? null : c)));
+    simple($('devices'), s.devices, 'Device', 'sessions');
+
+    table($('recent'), [{ label: 'When' }, { label: 'From' }, { label: 'Pages viewed' }, { label: 'Did', num: 0 }, { label: 'Time', num: 1 }],
+      s.recent.map((r) => {
+        const src = !r.referrer || r.referrer === 'direct' ? 'Direct' : r.referrer.replace(/^https?:\/\//, '').split('/')[0];
+        const pages = (r.pages || '').split(' → ').filter(Boolean).map(pageName).join(' → ');
+        const did = (r.actions || '').split(',').filter(Boolean).map((a) => `<span class="badge hot">${esc(a)}</span>`).join('');
+        return [
+          td(`${esc(when(r.started))}<div class="muted" style="font-size:12px">${esc(flag(r.country))} · ${esc(r.device)}</div>`),
+          td(esc(src)),
+          td(`<span class="path">${esc(pages) || '–'}</span>`),
+          td(did || '<span class="muted">–</span>'),
+          td(dur(r.seconds), 1)
+        ];
+      }));
+  }
+
+  function showLogin(msg) {
+    $('app').hidden = true; $('login').hidden = false;
+    $('loginError').textContent = msg || '';
+    $('keyInput').focus();
+  }
+  function showApp() { $('login').hidden = true; $('app').hidden = false; }
+
+  $('loginForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    key = $('keyInput').value.trim();
+    store.set(key);
+    load();
+  });
+  $('days').addEventListener('change', load);
+  $('refresh').addEventListener('click', load);
+  $('logout').addEventListener('click', () => { store.clear(); key = null; $('keyInput').value = ''; showLogin(); });
+  let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => lastSeries.length && drawChart(lastSeries), 150); });
+
+  key ? load() : showLogin();
+})();
+</script>
+</body>
+</html>

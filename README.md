@@ -77,173 +77,51 @@ video, give it a new file name instead of overwriting it.
 
 ---
 
-## Visitor tracking (who visits + what they open)
+## Visitor tracking
 
-A built-in tracking system is now available in `main.js`.
+Visits are sent from `main.js` to a Cloudflare Worker (`docs/cloudflare-analytics-worker.js`,
+entry point `src/index.js`) and stored in a D1 database (`portfolio_analytics`).
 
-It records:
-- `page_view` (page path, title, referrer)
-- `navigation_click` (where a visitor clicked next)
-- `scroll_depth` (25/50/75/100)
-- `page_exit` (time spent before leaving)
+**What is recorded:** page views, clicks (including CV opens, email and LinkedIn), how far people
+scroll (25/50/75/100 %) and time on page, with an anonymous random visitor id, country and device.
+A *visit* (session) is one browser tab until 30 minutes without activity.
+The visitor id expires after 13 months. No cookies, no third parties.
 
-### 1) Turn it on
-Open `main.js` and set the analytics config in `getAnalyticsConfig()`:
+**Not recorded:** `localhost` previews, visitors with Global Privacy Control, bots, and any browser
+where you opened the site once with `?notrack`. Do that on your own phone and laptop:
+`https://3ezz.github.io/Moez_Melek_Portfolio/?notrack` (undo with `?track`).
 
-```js
-function getAnalyticsConfig(){
-  return {
-    endpoint: "https://YOUR-ENDPOINT.example.com/track",
-    debug: false,
-    site: "Moez_Melek_Portfolio"
-  };
-}
-```
+### Your stats page
 
-- `endpoint` must accept `POST` JSON.
-- Keep `debug: true` while testing to print events in the browser console.
+`https://moez-melek-portfolio.moezmaleksk.workers.dev/dashboard`
 
-### 2) Create a receiver
-Use any webhook/data pipeline you like (for example: n8n webhook, Supabase Edge Function, Cloudflare Worker, custom backend).
+It asks for your stats key once per browser and shows visitors per day, top pages (views, time,
+how many read to the end), contact actions (CV / email / LinkedIn), where visits come from,
+countries, devices, and the most recent visits page by page.
 
-Expected payload shape:
+### Deploying the worker
 
-```json
-{
-  "event": "page_view",
-  "site": "Moez_Melek_Portfolio",
-  "timestamp": "2026-02-17T12:00:00.000Z",
-  "userAgent": "...",
-  "path": "/projects/colors.html",
-  "title": "Colors — Moez Melek",
-  "referrer": "direct",
-  "visitorId": "visitor_...",
-  "sessionId": "session_..."
-}
-```
+The GitHub build does **not** deploy the worker. After changing anything in `docs/cloudflare-*`,
+`docs/analytics-dashboard.html` or `wrangler.jsonc`, deploy it one of two ways:
 
+- **Command line**, from the repo folder: `npx wrangler deploy`
+- **Cloudflare website**: open the Worker's editor, replace everything with the contents of
+  `docs/cloudflare-worker-single-file.js` (the build keeps this file up to date), and click Deploy.
 
-### Data model (coherent visitor journey)
-The Cloudflare schema is now split into 3 tables:
-- `analytics_visitors`: one row per unique `visitor_id` (first seen / last seen)
-- `analytics_sessions`: one row per `session_id` tied to a visitor
-- `analytics_events`: one row per tracked action (`page_view`, click, scroll, exit)
+One-time setup for the stats page: pick a long random key, keep it in your password manager, and
+save it as the secret `STATS_TOKEN`, either with `npx wrangler secret put STATS_TOKEN` or on the
+Cloudflare website under Worker → Settings → Variables and Secrets.
 
-This lets you answer: "which visitor did what, in which session, and in what order?"
+Only `https://3ezz.github.io` may send events. If the site moves to another address, add it to
+`ALLOWED_ORIGINS` in `wrangler.jsonc` (comma-separated) and deploy again.
 
-Example query: full journey for one visitor
-```sql
-SELECT
-  e.timestamp,
-  e.event,
-  COALESCE(e.path, e.from_path) AS from_path,
-  e.to_path,
-  e.percent,
-  e.seconds_on_page,
-  e.session_id
-FROM analytics_events e
-WHERE e.visitor_id = 'visitor_xxx'
-ORDER BY e.timestamp ASC;
-```
-
-### 3) View flow/journey
-Once your endpoint stores events, you can build tables/charts for:
-- Top pages (`page_view`)
-- Entry pages (`referrer = direct`)
-- Visitor journey (`navigation_click.fromPath -> navigation_click.to`)
-- Engagement (`scroll_depth`, `page_exit.secondsOnPage`)
-
-### Notes
-- Visitor IDs are anonymous IDs stored in browser localStorage.
-- This is basic analytics, not user authentication/identity tracking.
-- Add a privacy notice/cookie notice if required for your region.
-
-
-
-### Why you may need to relink the Cloudflare database every time
-
-If you deploy the Worker from CLI (`npx wrangler deploy`) but your `wrangler.jsonc` does **not** include a `d1_databases` binding, Cloudflare can deploy a version without the DB binding. This makes it look like you must relink the DB manually after each deploy.
-
-Fix it once by storing the binding in `wrangler.jsonc`:
-
-```jsonc
-{
-  "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "portfolio_analytics",
-      "database_id": "<your-d1-id>"
-    }
-  ]
-}
-```
-
-Then deploy again. Your binding will persist across deploys.
-
-### Cloudflare setup (recommended)
-
-If you're using Cloudflare, follow this exact flow:
-
-**Important:** you can manage this in **either** of these ways:
-- **Git-based workflow**: edit code locally, commit/push to GitHub, then deploy Worker with Wrangler.
-- **Cloudflare Dashboard workflow**: edit Worker directly in Cloudflare dashboard and run D1 commands via Wrangler/console.
-
-Use whichever is easier for you — both are valid.
-
-If you are using only the browser/dashboard (no local CLI), follow:
-- `docs/cloudflare-browser-only-setup.md`
-
-If you think you are one push behind, run:
-```bash
-git fetch origin
-git pull
-```
-
-### Avoid merge conflicts (quick routine)
-
-If conflicts keep happening, it usually means your branch has local commits while `main` moved forward.
-Use this routine before starting new edits:
+Useful commands:
 
 ```bash
-git checkout main
-git pull origin main
-git checkout <your-branch>
-git rebase main
+npx wrangler tail                       # live worker logs
+npx wrangler d1 execute portfolio_analytics --remote --command \
+  "SELECT event, path, to_path, timestamp FROM analytics_events ORDER BY timestamp DESC LIMIT 20;"
 ```
 
-If this repository has no remote configured yet, add it first:
-
-```bash
-git remote add origin <your-github-repo-url>
-git fetch origin
-```
-
-Then continue with the rebase flow above.
-
-1. **Create a Worker**
-   - `npm create cloudflare@latest portfolio-analytics`
-   - Choose **Worker only** + **JavaScript**.
-2. **Paste collector code**
-   - Replace your Worker file with `docs/cloudflare-analytics-worker.js`.
-3. **Create D1 database**
-   - `npx wrangler d1 create portfolio_analytics`
-   - Add the DB binding in `wrangler.toml` as shown in `docs/cloudflare-analytics-worker.js` comments.
-4. **Create analytics table**
-   - `npx wrangler d1 execute portfolio_analytics --remote --file=docs/cloudflare-d1-schema.sql`
-5. **Deploy Worker**
-   - `npx wrangler deploy`
-   - Your endpoint will be: `https://<worker-name>.<subdomain>.workers.dev/track`
-6. **Connect portfolio frontend**
-   - In `main.js` → `getAnalyticsConfig()`, set:
-     - `endpoint` to your `/track` URL
-     - `debug: true` for first tests, then `false`
-7. **Test events**
-   - Open your portfolio and click through pages.
-   - Check Worker logs: `npx wrangler tail`
-   - Query D1 for latest events:
-     - `npx wrangler d1 execute portfolio_analytics --remote --command "SELECT event, visitor_id, session_id, path, to_path, timestamp FROM analytics_events ORDER BY timestamp DESC LIMIT 20;"`
-
-This gives you visitor flow (entry page → pages viewed → clicked destination), plus time-on-page and scroll depth.
-
-If deploy fails with "uploading a directory of assets", use the troubleshooting steps in `docs/cloudflare-browser-only-setup.md` (section 8) and remove `assets` from Wrangler config for this API-only Worker.
-If deploy fails with `Missing entry-point to Worker script or to assets directory`, use `docs/cloudflare-browser-only-setup.md` (section 9), or run `npx wrangler deploy src/index.js`.
+The database layout is in `docs/cloudflare-d1-schema.sql`. Dashboard-only setup and deploy
+troubleshooting: `docs/cloudflare-browser-only-setup.md`.
